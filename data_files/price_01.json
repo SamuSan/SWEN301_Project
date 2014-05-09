@@ -1,0 +1,9 @@
+{
+  "price": {
+    "to": "Rome",
+    "from": "New Zealand",
+    "priority": "International Air",
+    "weightcost": "6",
+    "volumecost": "8"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Rodney's Longhaul",
+    "to": "Hamilton",
+    "from": "Auckland",
+    "type": "Land",
+    "weightcost": "0",
+    "volumecost": "1",
+    "maxWeight": "8000",
+    "maxVolume": "260",
+    "duration": "2",
+    "frequency": "12",
+    "day": "Monday"
+  }
+}

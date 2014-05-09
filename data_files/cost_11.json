@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Qantas",
+    "to": "Sydney",
+    "from": "Wellington",
+    "type": "Air",
+    "weightcost": "2",
+    "volumecost": "1",
+    "maxWeight": "120",
+    "maxVolume": "150",
+    "duration": "3",
+    "frequency": "12",
+    "day": "Monday"
+  }
+}

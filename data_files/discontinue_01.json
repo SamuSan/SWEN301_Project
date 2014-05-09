@@ -1,0 +1,8 @@
+{
+  "discontinue": {
+    "company": "Kelburn Airways",
+    "to": "Sydney",
+    "from": "Wellington",
+    "type": "Air"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Davy Jones Ltd",
+    "to": "Rome",
+    "from": "Auckland",
+    "type": "Sea",
+    "weightcost": "5",
+    "volumecost": "4",
+    "maxWeight": "1000",
+    "maxVolume": "1000",
+    "duration": "36",
+    "frequency": "168",
+    "day": "Monday"
+  }
+}

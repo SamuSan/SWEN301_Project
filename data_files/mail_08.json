@@ -1,0 +1,10 @@
+{
+  "mail": {
+    "day": "Wednesday",
+    "to": "Sydney",
+    "from": "Auckland",
+    "weight": "100",
+    "volume": "5",
+    "priority": "International Standard"
+  }
+}

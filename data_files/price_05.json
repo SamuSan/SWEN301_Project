@@ -1,0 +1,9 @@
+{
+  "price": {
+    "to": "New Zealand",
+    "from": "New Zealand",
+    "priority": "Domestic Standard",
+    "weightcost": "1",
+    "volumecost": "1"
+  }
+}

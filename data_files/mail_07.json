@@ -1,0 +1,10 @@
+{
+  "mail": {
+    "day": "Wednesday",
+    "to": "Rome",
+    "from": "Hamilton",
+    "weight": "400",
+    "volume": "25",
+    "priority": "International Standard"
+  }
+}
