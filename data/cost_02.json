@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Kelburn Airways",
+    "to": "Sydney",
+    "from": "Wellington",
+    "type": "Air",
+    "weightcost": "2",
+    "volumecost": "0",
+    "maxWeight": "800",
+    "maxVolume": "80",
+    "duration": "3",
+    "frequency": "12",
+    "day": "Friday"
+  }
+}

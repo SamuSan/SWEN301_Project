@@ -1,0 +1,9 @@
+{
+  "price": {
+    "to": "Suva",
+    "from": "New Zealand",
+    "priority": "International Standard",
+    "weightcost": "3",
+    "volumecost": "2"
+  }
+}

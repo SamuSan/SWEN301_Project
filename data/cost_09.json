@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Pacifica Merchants",
+    "to": "Suva",
+    "from": "Sydney",
+    "type": "Sea",
+    "weightcost": "3",
+    "volumecost": "3",
+    "maxWeight": "100",
+    "maxVolume": "100",
+    "duration": "36",
+    "frequency": "168",
+    "day": "Monday"
+  }
+}

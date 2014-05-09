@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Roman Air Freight Ltd",
+    "to": "Rome",
+    "from": "Sydney",
+    "type": "Air",
+    "weightcost": "2",
+    "volumecost": "3",
+    "maxWeight": "120",
+    "maxVolume": "140",
+    "duration": "12",
+    "frequency": "24",
+    "day": "Monday"
+  }
+}

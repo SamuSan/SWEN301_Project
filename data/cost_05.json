@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Kelburn Freight",
+    "to": "Wellington",
+    "from": "Auckland",
+    "type": "Land",
+    "weightcost": "0",
+    "volumecost": "1",
+    "maxWeight": "1200",
+    "maxVolume": "120",
+    "duration": "14",
+    "frequency": "24",
+    "day": "Thursday"
+  }
+}

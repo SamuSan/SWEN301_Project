@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Kelburn Freight",
+    "to": "Wellington",
+    "from": "Hamilton",
+    "type": "Land",
+    "weightcost": "0",
+    "volumecost": "1",
+    "maxWeight": "1100",
+    "maxVolume": "130",
+    "duration": "10",
+    "frequency": "24",
+    "day": "Tuesday"
+  }
+}

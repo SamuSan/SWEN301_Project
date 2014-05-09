@@ -1,0 +1,15 @@
+{
+  "cost": {
+    "company": "Air NZ",
+    "to": "Rome",
+    "from": "Wellington",
+    "type": "Air",
+    "weightcost": "6",
+    "volumecost": "6",
+    "maxWeight": "350",
+    "maxVolume": "50",
+    "duration": "16",
+    "frequency": "36",
+    "day": "Thursday"
+  }
+}
