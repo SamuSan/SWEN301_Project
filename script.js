@@ -134,10 +134,16 @@ kpsApp.config(function($routeProvider) {
 
 		$scope.numItems = data.simulation.mail.length;
 		var rev = revenue(data);
+		var exp = expenditure(data);
+		var time = deliveryTimes(data);
 
 		console.log(data);
 		console.log(rev);
+		console.log(exp);
+		console.log(time);
 		$scope.totalRevenue = rev;
+		$scope.totalExpenditure = exp;
+		$scope.averageTime = time;
 });
 
 		// create a message to display in our view
