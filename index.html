@@ -12,8 +12,11 @@
 	  <!-- SPELLS -->
 	  <!-- load angular via CDN -->
 	  <script src="angular/angular.js"></script>
-	    <script src="angular/angular-route.js"></script>
+	  <script src="angular/angular-route.js"></script>
 	  <script src="script.js"></script>
+	  <script src="figureCalculations.js"></script>
+
+
 	</head>
 	<body ng-controller="mainController">
 
@@ -25,12 +28,14 @@
 					<a class="navbar-brand" href="/">KPSmart Mail Provider</a>
 				</div>
 
-				<ul class="nav navbar-form ">
-					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
 					<li><a href="#addMailItem"><i class="fa fa-plus"></i> Add Mail Item</a></li>
 					<li><a href="#addRoute"><i class="fa fa-plus"></i> Add Route</a></li>
 					<li><a href="#updateRoute"><i class="fa fa-exchange"></i> Update Route</a></li>
 					<li><a href="#updatePrice"><i class="fa fa-exchange"></i> Update Price</a></li>
+					<li><a href="#"><i id="showLoginModal"></i> Login</a></li>
+
 				</ul>
 			</div>
 			</nav>
@@ -42,14 +47,22 @@
 
 			<!-- angular templating -->
 			<!-- this is where content will be injected -->
-			<div ng-view></div>
+			<div ng-view=""></div>
 
-		</div>
-
+</div>
 		<!-- FOOTER -->
-		<footer class="text-center">
-
-		</footer>
+   <div class="footer">
+      <div >
+        <p ng-controller="mainController">
+				<label class="badge" >
+			Items in System :	{{numItems}}
+				</label>
+				<label class="badge" >
+			Total Revenue :	$ {{totalRevenue}}
+				</label>
+        	</p>
+      </div>
+    </div>
 
 	</body>
 	</html>
