@@ -1,0 +1,21 @@
+{
+  "NewZealand": {
+    "cities": [
+      {
+        "ID": "Wellington"
+      },
+      {
+        "ID": "Auckland"
+      },
+            {
+        "ID": "Christchurch"
+      },
+            {
+        "ID": "Hamilton"
+      },
+            {
+        "ID": "Dunedin"
+      }
+    ]
+  }
+}
