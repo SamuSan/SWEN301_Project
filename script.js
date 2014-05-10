@@ -39,9 +39,7 @@ kpsApp.config(function($routeProvider) {
 		$scope.message = 'Should say some shit about KPSmart';
 	});
 
-	kpsApp.controller('addMailItemController', function($scope){
-		$scope.message = 'Should say some shit about mail items';
-	});
+
 	kpsApp.controller('addRouteController', function($scope){
 		$scope.message = 'Should say some shit about routes (Not that Mike gets any)';
 	});
