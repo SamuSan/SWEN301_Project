@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8"> 
+<head>
+	<title>Monitoring</title>
+</head>
+<body>
+	<div ng-controller="monitorController">
+		<table ng-table="tableParams" class="table">
+	        <tr ng-repeat="user in $data">
+	            <td data-title="'ID'" sortable="'id'">
+	                {{user.id}}
+	            </td>
+	            <td data-title="'Start Date'" sortable="'startDate'">
+	                {{user.startDate}}
+	            </td>
+	            <td data-title="'End Date'" sortable="'endDate'">
+	                {{user.endDate}}
+	            </td>
+	            <td data-title="'Revenue'" sortable="'revenue'">
+	                {{user.revenue}}
+	            </td>
+	            <td data-title="'Expenditure'" sortable="'Expenditure'">
+	                {{user.expenditure}}
+	            </td>
+	            <td data-title="'Average Delivery Times'" sortable="'averageDeliveryTimes'">
+	                {{user.averageDeliveryTimes}}
+	            </td>
+	        </tr>
+	    </table>
+	</div>
+</body>
+</html>
