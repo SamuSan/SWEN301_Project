@@ -2,11 +2,13 @@
  * Created by Marcus on 5/10/2014.
  */
 
+var routes = []
+
 kpsApp.controller('addMailItemController', function($scope,filefetch){
-    $scope.price = 'priceless';
 
     filefetch.fetch().then(function(data){
-        $scope.routes = data;
+        $scope.data = data;
+        routes = data;
     })
 });
 
@@ -31,17 +33,15 @@ kpsApp.directive('customValidation', function(){
 });
 
 /*the factory which gets files. Called by the controller*/
-kpsApp.factory('filefetch', function($q, $timeout, $http) {
+kpsApp.factory('filefetch', function($q, $http) {
     var getFile = {
         fetch: function(callback) {
 
             var deferred = $q.defer();
 
-            $timeout(function() {
                 $http.get('../route.json').success(function(data) {
                     deferred.resolve(data);
                 });
-            }, 30);
             return deferred.promise;
         }
     };
