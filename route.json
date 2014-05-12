@@ -1,0 +1,21 @@
+[
+    {
+        "Route": {
+            "objectId": "ObjectRef1",
+            "origin": "Sydney",
+            "destination": "Rome",
+            "type": "Air",
+            "maxWeight":"5000",
+            "maxVolume":"29000",
+            "wieghtCost":"1000",
+            "volumeCost":"1000",
+            "duration": "18hrs",
+            "frequencyOfDeparture": "2 daily",
+            "day":"Thursday",
+            "company":"Transport Co.",
+            "weightPrice":"7",
+            "volumePrice":"5",
+            "priority": "International Air"
+        }
+    }
+]

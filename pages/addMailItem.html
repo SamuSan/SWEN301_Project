@@ -1,6 +1,6 @@
 <!-- index.html -->
 	<!DOCTYPE html>
-	<html>
+	<html ng-app="kpsApp">
 	<meta charset="utf-8"> 
 	<head>
 	  <!-- SCROLLS -->
@@ -10,11 +10,16 @@
 
 	  <!-- SPELLS -->
 	  <!-- load angular via CDN -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	  <script src="script.js"></script>
-	</head>
-	<body>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-route.min.js"></script>
+        <script src="../script.js"></script>
+	   <script src="../addMailItemCtrl.js"></script>
 
+
+	</head>
+	<body ng-controller="addMailItemController">
+
+<<<<<<< HEAD
 		<div class = "main"></div>
 		<table><tr><td><input ></input>
 <input ></input>
@@ -24,6 +29,21 @@
 </tr></table>
 
 	
+=======
+	<ul>
+        <li><label>Volume(M): </label>  <input ng-model="input1" ng-trim="false" custom-validation> </li>
+        <li><label>Weight(KG): </label>  <input ng-model="input2" ng-trim="false" custom-validation></li>
+        <li><label>Dimension </label>
+            <ul>
+                <li><label>Height(M): </label>  <input ng-model="input3" ng-trim="false" custom-validation> </li>
+                <li><label>Width(M): </label>  <input ng-model="input4" ng-trim="false" custom-validation> </li>
+                <li><label>Length(M): </label>  <input ng-model="input5" ng-trim="false" custom-validation> </li>
+        </ul></li>
+        <li>  <label>Route: </label> <select ng-init="selectBox2 = selectBox2 || dataRoute[0].Route" ng-model="selectBox2" ng-options="datum.Route as datum.Route.destination + ' (' + datum.Route.priority + ')' for datum in data"></select>
+        </li>
+        <li><label>Price: </label> ${{selectBox2.weightPrice * input2 + selectBox2.volumePrice * input1}}</li>
+	</ul>
+>>>>>>> 9a128d9c91fb5bb7e2e33d14ee877496af209153
 
 	</body>
 	</html>
