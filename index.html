@@ -1,77 +1,65 @@
 <!-- index.html -->
-	<!DOCTYPE html>
-	<html ng-app="kpsApp">
-	<meta charset="utf-8"> 
-	<head>
-	  <!-- SCROLLS -->
-	  <!-- load bootstrap and fontawesome via CDN -->
-	  <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css" />
-	  <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.css" />
-	  	  <link rel="stylesheet" href="styles/main.css" />
+<!DOCTYPE html>
+<html ng-app="kpsApp">
+<meta charset="utf-8"> 
+<head>
+	<!-- SCROLLS -->
+	<!-- load bootstrap and fontawesome via CDN -->
+	<link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="styles/font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="styles/main.css" />
 
-	  <!-- SPELLS -->
-	  <!-- load angular via CDN -->
-	  <script src="angular/angular.js"></script>
-	  <script src="angular/angular-route.js"></script>
-	  <script src="script.js"></script>
-<<<<<<< HEAD
-	  <script src="figureCalculations.js"></script>
-		<script src="js/numeral/numeral.min.js"></script>
-=======
+	<!-- SPELLS -->
+	<!-- load angular via CDN -->
+	<script src="angular/angular.js"></script>
+	<script src="angular/angular-route.js"></script>
+	<script src="script.js"></script>
+
+	<script src="figureCalculations.js"></script>
+	<script src="js/numeral/numeral.min.js"></script>
 
 
-	  <!-- Monitoring Page Imports -->
-	  <link rel="stylesheet" href="styles/main.css" />
-	  <script src="angular/ng-table.js"></script>
->>>>>>> origin/fb-alex
+	<!-- Monitoring Page Imports -->
+	<link rel="stylesheet" href="styles/main.css" />
+	<script src="angular/ng-table.js"></script>
 
-	</head>
-	<body ng-controller="mainController">
+</head>
+<body ng-controller="mainController">
 
-		<!-- HEADER AND NAVBAR -->
-		<header>
-			<nav class="navbar navbar-default">
+	<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/">KPSmart Mail Provider</a>
 				</div>
 
-<<<<<<< HEAD
 				<ul class="nav navbar-nav navbar-right">
 					<!-- <li><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
 					<li><a href="#addMailItem"><i class="fa fa-plus"></i> Add Mail Item</a></li>
 					<li><a href="#addRoute"><i class="fa fa-plus"></i> Add Route</a></li>
 					<li><a href="#updateRoute"><i class="fa fa-exchange"></i> Update Route</a></li>
 					<li><a href="#updatePrice"><i class="fa fa-exchange"></i> Update Price</a></li>
-					<li><a href="#"><i class></i> Login</a></li>
-
-=======
-				<ul class="nav navbar-nav ">
-					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-					<li><a href="#addMailItem"><i class="fa fa-shield"></i> Add Mail Item</a></li>
-					<li><a href="#addRoute"><i class="fa fa-comment"></i> Add Route</a></li>
-					<li><a href="#updateRoute"><i class="fa fa-comment"></i> Update Route</a></li>
-					<li><a href="#updatePrice"><i class="fa fa-comment"></i> Update Price</a></li>
 					<li><a href="#monitoring"><i class="fa fa-comment"></i> Monitoring</a></li>
->>>>>>> origin/fb-alex
+					<li><a href="#"><i class></i> Login</a></li>
 				</ul>
+				
 			</div>
-			</nav>
-		</header>
+		</nav>
+	</header>
 
-		<!-- MAIN CONTENT AND INJECTED VIEWS -->
-		<div id="main">
-			{{message}}
-
-			<!-- angular templating -->
-			<!-- this is where content will be injected -->
-			<div ng-view=""></div>
-
-</div>
-		<!-- FOOTER -->
-   <div class="footer">
-      <div >
-        <p ng-controller="mainController">
+	<!-- MAIN CONTENT AND INJECTED VIEWS -->
+	<div id="main">
+		{{message}}
+		<!-- angular templating -->
+		<!-- this is where content will be injected -->
+		<div ng-view=""></div>
+	</div>
+	
+	<!-- FOOTER -->
+   	<div class="footer">
+      		<div>
+        		<p ng-controller="mainController">
 				<label class="badge" >
 			Items in System :	{{numItems}}
 				</label>
@@ -85,9 +73,9 @@
 								<label class="badge" >
 			Average Delivery TIme : {{averageTime}} Days
 				</label>
-        	</p>
-      </div>
-    </div>
+        		</p>
+		</div>
+	</div>
 
-	</body>
-	</html>
+</body>
+</html>
