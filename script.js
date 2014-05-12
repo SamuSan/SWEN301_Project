@@ -28,7 +28,7 @@ kpsApp.config(function($routeProvider) {
 			.when('/updatePrice', {
 				templateUrl : 'pages/updatePrice.html',
 				controller  : 'updatePriceController'
-			});
+			})
 			.when('/monitoring', {
 				templateUrl : 'pages/monitoring.html',
 				controller  : 'monitorController'
