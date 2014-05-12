@@ -1,50 +1,41 @@
 // script.js
+var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
 
-	// create the module and name it scotchApp
-<<<<<<< HEAD
-=======
-	var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
->>>>>>> origin/fb-alex
-
-	var kpsApp = angular.module('kpsApp', ['ngRoute']);
 
 var NZ;
 kpsApp.config(function($routeProvider) {
-		$routeProvider
+	$routeProvider
 
-			// route for the home page
-			.when('/#', {
-				templateUrl : 'index.html',
-				controller  : 'mainController'
-			})
-
-			.when('/addMailItem', {
-				templateUrl : 'pages/addMailItem.html',
-				controller  : 'addMailItemController'
-			})
-			.when('/addRoute', {
-				templateUrl : 'pages/addRoute.html',
-				controller  : 'addRouteController'
-			})
-			.when('/updateRoute', {
-				templateUrl : 'pages/updateRoute.html',
-				controller  : 'updateRouteController'
-			})
-			.when('/updatePrice', {
-				templateUrl : 'pages/updatePrice.html',
-				controller  : 'updatePriceController'
-			})
-<<<<<<< HEAD
-			.when('/login', {
-				templateUrl : 'pages/login.html',
-				controller  : 'loginController'
-=======
-			.when('/monitoring', {
-				templateUrl : 'pages/monitoring.html',
-				controller  : 'monitorController'
->>>>>>> origin/fb-alex
-			});
-	});
+		// route for the home page
+		.when('/#', {
+			templateUrl : 'index.html',
+			controller  : 'mainController'
+		})
+		.when('/addMailItem', {
+			templateUrl : 'pages/addMailItem.html',
+			controller  : 'addMailItemController'
+		})
+		.when('/addRoute', {
+			templateUrl : 'pages/addRoute.html',
+			controller  : 'addRouteController'
+		})
+		.when('/updateRoute', {
+			templateUrl : 'pages/updateRoute.html',
+			controller  : 'updateRouteController'
+		})
+		.when('/updatePrice', {
+			templateUrl : 'pages/updatePrice.html',
+			controller  : 'updatePriceController'
+		})
+		.when('/login', {
+			templateUrl : 'pages/login.html',
+			controller  : 'loginController'
+		})
+		.when('/monitoring', {
+			templateUrl : 'pages/monitoring.html',
+			controller  : 'monitorController'
+		});
+			
 // Array.prototype.contains = function(obj) {
 //     var i = this.length;
 //     while (i--) {
@@ -127,26 +118,27 @@ kpsApp.config(function($routeProvider) {
 // 		});
 // 		return revenue;
 // 		};
-	// create the controller and inject Angular's $scope
-	kpsApp.controller('mainController', function($scope, $http) {
 
-		$http.get("http://localhost:8000/data/nationalCities.json").success(function(data){
+// create the controller and inject Angular's $scope
+kpsApp.controller('mainController', function($scope, $http) {
+
+	$http.get("http://localhost:8000/data/nationalCities.json").success(function(data){
 
 		NZ = data.NewZealand.cities;
 
 		console.log(data);
 		console.log(NZ);
 
-});
+	});
 
 
-		$http.get("http://localhost:8000/data/master_simulation.json").success(function(data){
+	$http.get("http://localhost:8000/data/master_simulation.json").success(function(data){
 
 		$scope.numItems = data.simulation.mail.length;
 		var rev = revenue(data);
 		var exp = expenditure(data);
 		var time = deliveryTimes(data);
-
+		
 		console.log(data);
 		console.log(rev);
 		console.log(exp);
@@ -154,28 +146,27 @@ kpsApp.config(function($routeProvider) {
 		$scope.totalRevenue = rev;
 		$scope.totalExpenditure = exp;
 		$scope.averageTime = time;
+	});
+
+	// create a message to display in our view
+	$scope.message = 'Should say some shit about KPSmart';
 });
 
-		// create a message to display in our view
-		$scope.message = 'Should say some shit about KPSmart';
-	});
+kpsApp.controller('addRouteController', function($scope){
+	$scope.message = 'Should say some shit about routes (Not that Mike gets any)';
+});
 
+kpsApp.controller('updateRouteController', function($scope){
+	$scope.message = 'Should say some shit about up your date';
+});
 
-	kpsApp.controller('addRouteController', function($scope){
-		$scope.message = 'Should say some shit about routes (Not that Mike gets any)';
-	});
-	kpsApp.controller('updateRouteController', function($scope){
-		$scope.message = 'Should say some shit about up your date';
-	});
-	kpsApp.controller('updatePriceController', function($scope){
-		$scope.message = 'Should say some shit about privey up your date';
-	})
-		kpsApp.controller('loginController', function($scope,$rootScope,AUTH_EVENTS,AuthService){
+kpsApp.controller('updatePriceController', function($scope){
+	$scope.message = 'Should say some shit about privey up your date';
+});
 
-
-
-		$scope.message = 'Should say some shit about privey up your date';
-	});
+kpsApp.controller('loginController', function($scope,$rootScope,AUTH_EVENTS,AuthService){
+	$scope.message = 'Should say some shit about privey up your date';
+});
 
 // Monitor Controller
 kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableParams) {
