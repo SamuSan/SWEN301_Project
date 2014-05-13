@@ -4,38 +4,38 @@ var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
 
 var NZ;
 kpsApp.config(function($routeProvider) {
-	$routeProvider
+    $routeProvider
 
-		// route for the home page
-		.when('/#', {
-			templateUrl : 'index.html',
-			controller  : 'mainController'
-		})
-		.when('/addMailItem', {
-			templateUrl : 'pages/addMailItem.html',
-			controller  : 'addMailItemController'
-		})
-		.when('/addRoute', {
-			templateUrl : 'pages/addRoute.html',
-			controller  : 'addRouteController'
-		})
-		.when('/updateRoute', {
-			templateUrl : 'pages/updateRoute.html',
-			controller  : 'updateRouteController'
-		})
-		.when('/updatePrice', {
-			templateUrl : 'pages/updatePrice.html',
-			controller  : 'updatePriceController'
-		})
-		.when('/login', {
-			templateUrl : 'pages/login.html',
-			controller  : 'loginController'
-		})
-		.when('/monitoring', {
-			templateUrl : 'pages/monitoring.html',
-			controller  : 'monitorController'
-		});
-			
+        // route for the home page
+        .when('/#', {
+            templateUrl: 'index.html',
+            controller: 'mainController'
+        })
+        .when('/addMailItem', {
+            templateUrl: 'pages/addMailItem.html',
+            controller: 'addMailItemController'
+        })
+        .when('/addRoute', {
+            templateUrl: 'pages/addRoute.html',
+            controller: 'addRouteController'
+        })
+        .when('/updateRoute', {
+            templateUrl: 'pages/updateRoute.html',
+            controller: 'updateRouteController'
+        })
+        .when('/updatePrice', {
+            templateUrl: 'pages/updatePrice.html',
+            controller: 'updatePriceController'
+        })
+        .when('/login', {
+            templateUrl: 'pages/login.html',
+            controller: 'loginController'
+        })
+        .when('/monitoring', {
+            templateUrl: 'pages/monitoring.html',
+            controller: 'monitorController'
+        });
+});
 // Array.prototype.contains = function(obj) {
 //     var i = this.length;
 //     while (i--) {
@@ -164,7 +164,7 @@ kpsApp.controller('updatePriceController', function($scope){
 	$scope.message = 'Should say some shit about privey up your date';
 });
 
-kpsApp.controller('loginController', function($scope,$rootScope,AUTH_EVENTS,AuthService){
+kpsApp.controller('loginController', function($scope){
 	$scope.message = 'Should say some shit about privey up your date';
 });
 
