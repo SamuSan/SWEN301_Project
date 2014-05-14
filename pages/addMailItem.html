@@ -29,12 +29,12 @@
 <ul>
     <li><label>Dimension </label>
         <ul>
-            <li><label>Height(M): </label>  <input ng-model="input3" ng-trim="false" custom-validation/> </li>
-            <li><label>Width(M): </label>  <input ng-model="input4" ng-trim="false" custom-validation/> </li>
-            <li><label>Length(M): </label>  <input ng-model="input5" ng-trim="false" custom-validation/> </li>
+            <li><label>Height(Centimeter): </label>  <input ng-model="input3" ng-trim="false" custom-validation/> </li>
+            <li><label>Width(Centimeter): </label>  <input ng-model="input4" ng-trim="false" custom-validation/> </li>
+            <li><label>Length(Centimeter): </label>  <input ng-model="input5" ng-trim="false" custom-validation/> </li>
         </ul></li>
-    <li><label>Volume(M):</label> {{input3 * input4 * input5}} </li>
-    <li><label>Weight(KG): </label>  <input ng-model="input2" ng-trim="false" custom-validation/></li>
+    <li><label>Volume(Cubic Centimeter):</label> {{input3 * input4 * input5}} </li>
+    <li><label>Weight(Grams): </label>  <input ng-model="input2" ng-trim="false" custom-validation/></li>
     <li>  <label>Route: </label> <select ng-init="selectBox2 = selectBox2 || dataRoute[0].Route" ng-model="selectBox2" ng-options="datum.Route as datum.Route.destination + ' (' + datum.Route.priority + ')' for datum in data"></select>
     </li>
     <li><label>Price: </label> ${{selectBox2.weightPrice * input2 + selectBox2.volumePrice * (input3 * input4 * input5)}}</li>
