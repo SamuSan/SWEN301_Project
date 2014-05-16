@@ -1,6 +1,6 @@
 /**
  * Created by Marcus on 5/10/2014.
- */
+ *
 
 var routes = []
 
@@ -32,7 +32,6 @@ kpsApp.directive('customValidation', function(){
     };
 });
 
-/*the factory which gets files. Called by the controller*/
 kpsApp.factory('filefetch', function($q, $http) {
     var getFile = {
         fetch: function(callback) {
