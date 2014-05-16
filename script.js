@@ -1,3 +1,6 @@
+
+
+
 // script.js
 var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
 
@@ -36,95 +39,15 @@ kpsApp.config(function($routeProvider) {
             controller: 'monitorController'
         });
 });
-Array.prototype.contains = function(obj) {
-     var i = this.length;
-     while (i--) {
-         if (this[i].ID === obj) {
-             return true;
-         }
-     }
-     return false;
-}
-function expenditure(data){
-		var expenditure = 0;
-		for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
-			var item = data.simulation.mail[i];
-			var origin = "";
-			if(NZ.contains(item.from)){
-				origin = "New Zealand";
-			}
-			else{
-				origin = item.from;
-			}
-
-			var prices = data.simulation.price;
-			for (var x = prices.length - 1; x >= 0; x--) {
-				var currPrice = prices[x];
-				if(prices[x].to ===  item.to){
-					if(prices[x].from === origin){
-						if(prices[x].priority === item.priority){
-							price = prices[x];
-							var weightCost = price.weightcost * item.weight;
-							var volumeCost = price.volumecost * item.volume;
-                            expenditure+=(weightCost+volumeCost);
-						}
-					}
-				}
-				
-			};
 
 
-
-		};
-		expenditure.toFixed(2).replace(/./g, function(c, i, a) {
-    			 return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
-		});
-		return expenditure;
-		};
-
-function revenue(data, NZ){
-		var revenue = 0;
-		for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
-			var item = data.simulation.mail[i];
-			var origin = "";
-			if(NZ.contains(item.from)){
-				origin = "New Zealand";
-			}
-			else{
-				origin = item.from;
-			}
-
-			var prices = data.simulation.price;
-			for (var x = prices.length - 1; x >= 0; x--) {
-				var currPrice = prices[x];
-				if(prices[x].to ===  item.to){
-					if(prices[x].from === origin){
-						if(prices[x].priority === item.priority){
-							price = prices[x];
-							var weightCost = price.weightcost * item.weight;
-							var volumeCost = price.volumecost * item.volume;
-							revenue+=(weightCost+volumeCost);
-						}
-					}
-				}
-				
-			};
-
-
-
-		};
-		revenue.toFixed(2).replace(/./g, function(c, i, a) {
-    			 return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
-		});
-		return revenue;
-		};
 
 // create the controller and inject Angular's $scope
 kpsApp.controller('mainController', function($scope, $http) {
-var NZ;
+var cities ={};
 	$http.get("/data/nationalCities.json").success(function(data){
 
-		NZ = data.NewZealand.cities;
+		cities.NZ = data.NewZealand.cities;
 
 		console.log(data);
 		console.log(NZ);
@@ -134,18 +57,18 @@ var NZ;
 
 	$http.get("data/master_simulation.json").success(function(data){
 
-		$scope.numItems = data.simulation.mail.length;
-		var rev = revenue(data, NZ);
-		var exp = expenditure(data);
-		var time = deliveryTimes(data);
-		
-		console.log(data);
-		console.log(rev);
-		console.log(exp);
-		console.log(time);
-		$scope.totalRevenue = rev;
-		$scope.totalExpenditure = exp;
-		$scope.averageTime = time;
+//		$scope.numItems = data.simulation.mail.length;
+//		var rev = revenue(data, cities.NZ);
+//		var exp = expenditure(data);
+//		var time = deliveryTimes(data);
+//
+//		console.log(data);
+////		console.log(rev);
+////		console.log(exp);
+//		console.log(time);
+////		$scope.totalRevenue = rev;
+////		$scope.totalExpenditure = exp;
+//		$scope.averageTime = time;
 	});
 
 	// create a message to display in our view
@@ -153,10 +76,14 @@ var NZ;
 });
 
 kpsApp.controller('addRouteController', function($scope){
-	$scope.message = 'Should say some shit about routes (Not that Mike gets any)';
+    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    $scope.days = days;
 });
 
 kpsApp.controller('updateRouteController', function($scope){
+
+
+
 	$scope.message = 'Should say some shit about up your date';
 });
 
@@ -337,3 +264,81 @@ kpsApp.factory('filefetch', function($q, $http) {
     };
     return getFile;
 });
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i].ID === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+function expenditure(data){
+    var expenditure = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+        var origin = "";
+        if(NZ.contains(item.from)){
+            origin = "New Zealand";
+        }
+        else{
+            origin = item.from;
+        }
+
+        var prices = data.simulation.price;
+        for (var x = prices.length - 1; x >= 0; x--) {
+            var currPrice = prices[x];
+            if(prices[x].to ===  item.to){
+                if(prices[x].from === origin){
+                    if(prices[x].priority === item.priority){
+                        price = prices[x];
+                        var weightCost = price.weightcost * item.weight;
+                        var volumeCost = price.volumecost * item.volume;
+                        expenditure+=(weightCost+volumeCost);
+                    }
+                }
+            }
+
+        }
+    }
+    expenditure.toFixed(2).replace(/./g, function(c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+    return expenditure;
+}
+function revenue(data, NZ){
+    var revenue = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+        var origin = "";
+        if(NZ.contains(item.from)){
+            origin = "New Zealand";
+        }
+        else{
+            origin = item.from;
+        }
+
+        var prices = data.simulation.price;
+        for (var x = prices.length - 1; x >= 0; x--) {
+            var currPrice = prices[x];
+            if(prices[x].to ===  item.to){
+                if(prices[x].from === origin){
+                    if(prices[x].priority === item.priority){
+                        price = prices[x];
+                        var weightCost = price.weightcost * item.weight;
+                        var volumeCost = price.volumecost * item.volume;
+                        revenue+=(weightCost+volumeCost);
+                    }
+                }
+            }
+
+        }
+
+
+
+    }
+    revenue.toFixed(2).replace(/./g, function(c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+    return revenue;
+}

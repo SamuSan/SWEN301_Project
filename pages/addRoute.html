@@ -1,21 +1,213 @@
 <!-- index.html -->
-	<!DOCTYPE html>
-	<html>
-	<meta charset="utf-8"> 
-	<head>
-	  <!-- SCROLLS -->
-	  <!-- load bootstrap and fontawesome via CDN -->
-	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-controller="addRouteController">
 
-	  <!-- SPELLS -->
-	  <!-- load angular via CDN -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	  <script src="script.js"></script>
-	</head>
-	<body>
+<div>
+    <table>
 
-	
+        <tr>
+            <td>
+                <div>
+                    <label>Company :</label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input ng-model="query">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <label>Destination : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input ng-model="query">
+                </div>
+            </td>
+        </tr>
+        <tr></tr>
+        <td>
+            <div>
+                <label class="itemLabel">Type: </label>
+            </div>
+        </td>
+        <td>
+            <div>
+                <select>
 
-	</body>
-	</html>
+                    <option>Land</option>
+                    <option>Sea</option>
+                    <option>Air</option>
+
+                </select>
+            </div>
+
+        </td>
+        <tr></tr>
+        <td>
+            <div>
+               <label>Weight Cost : </label>
+            </div>
+        </td>
+        <td>
+            <div>
+                <input>
+            </div>
+        </td>
+        <tr>
+            <td>
+                <div>
+                    <label>Volume Cost : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <label>Maximum Weight : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <label>Maximum Volume : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <label>Duration : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <label>Frequency : </label>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <div>
+                  <label>Departs : </label>
+
+                </div>
+            </td>
+            <td>
+                <div>
+                    <select class="select.input-sm">
+                    <option ng-repeat="day in days" value="''"> {{day}}</option>
+                </select>
+                </div>
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+<!--<div class="">-->
+    <!--<div>-->
+        <!--Company : <input ng-model="query">-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--Destination : <input ng-model="query">-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--Type:-->
+        <!--<select>-->
+
+            <!--<option>Land</option>-->
+            <!--<option>Sea</option>-->
+            <!--<option>Air</option>-->
+
+        <!--</select>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--Weight Cost : <input>-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--Volume Cost : <input>-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--Max Weight : <input>-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--Max Volume : <input>-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--Duration : <input>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--Frequency : <input>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--Leaves : <select>-->
+        <!--<option ng-repeat="day in days" value="''"> {{day}}</option>-->
+    <!--</select>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--"company": "Kelburn Freight",-->
+<!--"to": "Wellington",-->
+<!--"from": "Hamilton",-->
+<!--"type": "Land",-->
+<!--"weightcost": "0",-->
+<!--"volumecost": "1",-->
+<!--"maxWeight": "1100",-->
+<!--"maxVolume": "130",-->
+<!--"duration": "10",-->
+<!--"frequency": "24",-->
+<!--"day": "Tuesday"-->
+
+</body>
+</html>
