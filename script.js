@@ -341,4 +341,64 @@ function revenue(data, NZ){
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
     });
     return revenue;
+
+
+
+    
 }
+
+    /* James fat controller
+    */
+    
+    kpsApp.controller('updatePriceController', function($scope,pricefetch){
+    
+
+    pricefetch.fetch().then(function(data){
+        $scope.data = data;
+        $scope.selectBox3 = data[0];
+        var weight = selectBox3.weightcost;
+
+       
+
+    })
+});
+
+    kpsApp.factory('pricefetch', function($q, $http) {
+    var getFile = {
+        fetch: function(callback) {
+
+            var deferred = $q.defer();
+
+                $http.get('../data/prices.json').success(function(data) {
+                    deferred.resolve(data);
+                });
+            return deferred.promise;
+        }
+    };
+    return getFile;
+});
+    //########################update route
+
+        kpsApp.controller('updateRouteController', function($scope,pricefetch){
+    
+
+    pricefetch.fetch().then(function(data){
+        $scope.data = data;
+        $scope.routeSelect = data[0];
+    })
+});
+
+    kpsApp.factory('pricefetch', function($q, $http) {
+    var getFile = {
+        fetch: function(callback) {
+
+            var deferred = $q.defer();
+
+                $http.get('../data/prices.json').success(function(data) {
+                    deferred.resolve(data);
+                });
+            return deferred.promise;
+        }
+    };
+    return getFile;
+});

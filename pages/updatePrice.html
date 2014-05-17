@@ -13,9 +13,23 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 	  <script src="script.js"></script>
 	</head>
-	<body>
+<body ng-controller="updatePriceController">
 
-	
+    <ul>
 
-	</body>
+        <li>  <label>Select route for price update: </label> <select ng-init="selectBox3 = selectBox3 || dataRoute[0].Price" ng-model="selectBox3" ng-options="datum.Price as 'Route : ' + datum.Price.from + ' to ' + datum.Price.to for datum in data"></select>
+        </li>
+        <li><label>Current Weight Cost: $ </label> {{ selectBox3.weightcost }} </li>
+ 		<li><label>Current Volume Cost: $ </label> {{ selectBox3.volumecost }} </li>
+
+
+        <li><label>New Weight Cost: </label>  <input ng-model="nCost" ng-trim="false"/> </li>
+        <li><label>New Volume Cost: </label>  <input ng-model="nCost" ng-trim="false"/> </li>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Submit changes</button>
+
+</ul>
+
+
+</body>
+
 	</html>

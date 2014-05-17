@@ -17,5 +17,19 @@
             "volumePrice":"5",
             "priority": "International Air"
         }
-    }
+    },
+    {
+      "Route: {
+    "company": "Qantas",
+    "to": "Sydney",
+    "from": "Wellington",
+    "type": "Air",
+    "weightcost": "2",
+    "volumecost": "1",
+    "maxWeight": "700",
+    "maxVolume": "60",
+    "duration": "3",
+    "frequency": "12",
+    "day": "Monday"
+  }
 ]
