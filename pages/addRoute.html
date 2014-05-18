@@ -13,7 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="script.js"></script>
 </head>
-<body ng-controller="addRouteController">
+<form name="addRouteFrom" action="" class="form-horizontal">
+    <h3>Add Route</h3>
+<div ng-controller="addRouteController">
 
 <div>
     <table>
@@ -26,7 +28,7 @@
             </td>
             <td>
                 <div>
-                    <input ng-model="query">
+                    <input placeholder="{{placeHolder}}" id="companyInput" type="text" name="company" ng-model="addRoute.company" required>
                 </div>
             </td>
         </tr>
@@ -38,23 +40,19 @@
             </td>
             <td>
                 <div>
-                    <input ng-model="query">
+                    <input placeholder="{{placeHolder}}" id="destination" ng-model="addRoute.destination" required>
                 </div>
             </td>
         </tr>
         <tr></tr>
         <td>
             <div>
-                <label class="itemLabel">Type: </label>
+                <label>Type: </label>
             </div>
         </td>
         <td>
             <div>
-                <select>
-
-                    <option>Land</option>
-                    <option>Sea</option>
-                    <option>Air</option>
+                <select  id="typeSelection" type="typeSelect" ng-model="addRoute.type" required ng-options="type for type in types">
 
                 </select>
             </div>
@@ -68,7 +66,7 @@
         </td>
         <td>
             <div>
-                <input>
+                <input placeholder="{{placeHolder}}" id="weightCost" ng-model="addRoute.weightCost" required>
             </div>
         </td>
         <tr>
@@ -79,7 +77,7 @@
             </td>
             <td>
                 <div>
-                    <input>
+                    <input placeholder="{{placeHolder}}" id="volumeCost" ng-model="addRoute.volumeCost" required>
                 </div>
             </td>
         </tr>
@@ -91,7 +89,7 @@
             </td>
             <td>
                 <div>
-                    <input>
+                    <input placeholder="{{placeHolder}}" id="maxWeight" ng-model="addRoute.maxWeight" required>
                 </div>
             </td>
         </tr>
@@ -103,7 +101,7 @@
             </td>
             <td>
                 <div>
-                    <input>
+                    <input placeholder="{{placeHolder}}" id="maxVolume" ng-model="addRoute.maxVolume" required>
                 </div>
             </td>
         </tr>
@@ -115,7 +113,7 @@
             </td>
             <td>
                 <div>
-                    <input>
+                    <input placeholder="{{placeHolder}}" id="duration" ng-model="addRoute.duration" required>
                 </div>
             </td>
         </tr>
@@ -127,7 +125,7 @@
             </td>
             <td>
                 <div>
-                    <input>
+                    <input placeholder="{{placeHolder}}" id="frequency" ng-model="addRoute.frequency" required>
                 </div>
             </td>
         </tr>
@@ -141,73 +139,30 @@
             </td>
             <td>
                 <div>
-                    <select class="select.input-sm">
-                    <option ng-repeat="day in days" value="''"> {{day}}</option>
-                </select>
+                    <select class="select" id="departs" ng-model="addRoute.departs" required ng-options="day for day in days">
+                    <!--<option ng-repeat="day in days" value="''"> {{day}}</option>-->
+                    </select>
                 </div>
             </td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+
+                    <button type="submit" class="btn btn-success" ng-disabled="addRouteFrom.$invalid">Submit</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>
+
+            </td>
+
         </tr>
 
-
     </table>
+    <label>{{addRoute.company}}  {{addRoute.destination}}  {{addRoute.type}} {{addRoute.weightCost}} {{addRoute.volumeCost}} </label>
+<label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}} {{addRoute.departs}}</label>
 </div>
-<!--<div class="">-->
-    <!--<div>-->
-        <!--Company : <input ng-model="query">-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--Destination : <input ng-model="query">-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--Type:-->
-        <!--<select>-->
 
-            <!--<option>Land</option>-->
-            <!--<option>Sea</option>-->
-            <!--<option>Air</option>-->
+</div>
+</form>
 
-        <!--</select>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--Weight Cost : <input>-->
-    <!--</div>-->
-
-    <!--<div>-->
-        <!--Volume Cost : <input>-->
-    <!--</div>-->
-
-    <!--<div>-->
-        <!--Max Weight : <input>-->
-    <!--</div>-->
-
-    <!--<div>-->
-        <!--Max Volume : <input>-->
-    <!--</div>-->
-
-    <!--<div>-->
-        <!--Duration : <input>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--Frequency : <input>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--Leaves : <select>-->
-        <!--<option ng-repeat="day in days" value="''"> {{day}}</option>-->
-    <!--</select>-->
-    <!--</div>-->
-<!--</div>-->
-
-<!--"company": "Kelburn Freight",-->
-<!--"to": "Wellington",-->
-<!--"from": "Hamilton",-->
-<!--"type": "Land",-->
-<!--"weightcost": "0",-->
-<!--"volumecost": "1",-->
-<!--"maxWeight": "1100",-->
-<!--"maxVolume": "130",-->
-<!--"duration": "10",-->
-<!--"frequency": "24",-->
-<!--"day": "Tuesday"-->
-
-</body>
 </html>

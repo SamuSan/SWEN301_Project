@@ -72,12 +72,27 @@ var cities ={};
 	});
 
 	// create a message to display in our view
-	$scope.message = 'Should say some shit about KPSmart';
+//	$scope.message = 'Should say some shit about KPSmart';
 });
 
 kpsApp.controller('addRouteController', function($scope){
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var types = ["Land", "Air", "Sea"];
     $scope.days = days;
+    $scope.types = types;
+    $scope.placeHolder = "*";
+    $scope.addRoute = {
+        "company":"" ,
+        "destination":"",
+        "type":"",
+        "weightCost":"",
+        "volumeCost":"",
+        "maxWeight":"",
+        "maxVolume":"",
+        "duration":"",
+        "frequency":"",
+        "departs":""
+    };
 });
 
 kpsApp.controller('updateRouteController', function($scope){
@@ -233,7 +248,7 @@ kpsApp.controller('addMailItemController', function($scope,filefetch){
 kpsApp.directive('customValidation', function(){
     return {
         require: 'ngModel',
-        link: function(scope, element, attrs, modelCtrl) {
+        link: function(scope, element, attrs,    modelCtrl) {
 
             modelCtrl.$parsers.push(function (inputValue) {
 
