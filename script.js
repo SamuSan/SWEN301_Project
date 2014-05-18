@@ -76,6 +76,7 @@ var cities ={};
 });
 
 kpsApp.controller('addRouteController', function($scope){
+
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     var types = ["Land", "Air", "Sea"];
     $scope.days = days;
@@ -93,6 +94,10 @@ kpsApp.controller('addRouteController', function($scope){
         "frequency":"",
         "departs":""
     };
+    $scope.submit = function(){
+   var newRoute = $scope.addRoute;
+
+    }
 });
 
 kpsApp.controller('updateRouteController', function($scope){

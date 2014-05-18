@@ -15,196 +15,202 @@
 </head>
 <form name="addRouteFrom" action="" class="form-horizontal">
     <h3>Add Route</h3>
-<div ng-controller="addRouteController">
 
-<div>
-    <table>
+    <div ng-controller="addRouteController">
 
-        <tr>
-            <td>
-                <div>
-                    <label>Company :</label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="companyInput"
-                           type="text"
-                           name="company"
-                           ng-model="addRoute.company"
-                           required >
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <label>Destination : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="destination"
-                           ng-model="addRoute.destination"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr></tr>
-        <td>
-            <div>
-                <label>Type: </label>
-            </div>
-        </td>
-        <td>
-            <div>
-                <select  id="typeSelection"
-                         ng-model="addRoute.type"
-                         required ng-options="type for type in types">
+        <div>
+            <table>
 
-                </select>
-            </div>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Company :</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="companyInput"
+                                   type="text"
+                                   name="company"
+                                   ng-model="addRoute.company"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Destination : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="destination"
+                                   ng-model="addRoute.destination"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr></tr>
+                <td>
+                    <div>
+                        <label>Type: </label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <select id="typeSelection"
+                                ng-model="addRoute.type"
+                                required ng-options="type for type in types">
 
-        </td>
-        <tr></tr>
-        <td>
-            <div>
-               <label>Weight Cost : </label>
-            </div>
-        </td>
-        <td>
-            <div>
-                <input placeholder="{{placeHolder}}"
-                       id="weightCost"
-                       type="text"
-                       ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                       ng-model="addRoute.weightCost"
-                       required>
-            </div>
-        </td>
-        <tr>
-            <td>
-                <div>
-                    <label>Volume Cost : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}" id="volumeCost"
-                           type="text"
-                           ng-model="addRoute.volumeCost"
-                           ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <label>Maximum Weight : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="maxWeight"
-                           type="text"
-                           ng-model="addRoute.maxWeight"
-                           ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <label>Maximum Volume : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="maxVolume"
-                           type="text"
-                           ng-model="addRoute.maxVolume"
-                           ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <label>Duration : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="duration"
-                           type="text"
-                           ng-model="addRoute.duration"
-                           ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    <label>Frequency : </label>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <input placeholder="{{placeHolder}}"
-                           id="frequency"
-                           type="text"
-                           ng-model="addRoute.frequency"
-                           ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
-                           required>
-                </div>
-            </td>
-        </tr>
-        <tr>
+                        </select>
+                    </div>
 
-            <td>
-                <div>
-                  <label>Departs : </label>
+                </td>
+                <tr></tr>
+                <td>
+                    <div>
+                        <label>Weight Cost : </label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input placeholder="{{placeHolder}}"
+                               id="weightCost"
+                               type="text"
+                               ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                               ng-model="addRoute.weightCost"
+                               required>
+                    </div>
+                </td>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Volume Cost : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}" id="volumeCost"
+                                   type="text"
+                                   ng-model="addRoute.volumeCost"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Maximum Weight : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="maxWeight"
+                                   type="text"
+                                   ng-model="addRoute.maxWeight"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Maximum Volume : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="maxVolume"
+                                   type="text"
+                                   ng-model="addRoute.maxVolume"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Duration : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="duration"
+                                   type="text"
+                                   ng-model="addRoute.duration"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Frequency : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}"
+                                   id="frequency"
+                                   type="text"
+                                   ng-model="addRoute.frequency"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
 
-                </div>
-            </td>
-            <td>
-                <div>
-                    <select class="select" id="departs"
-                            ng-model="addRoute.departs"
-                            required
-                            ng-options="day for day in days">
-                    </select>
-                </div>
-            </td>
+                    <td>
+                        <div>
+                            <label>Departs : </label>
 
-        </tr>
-        <tr>
-            <td></td>
-            <td>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <select class="select" id="departs"
+                                    ng-model="addRoute.departs"
+                                    required
+                                    ng-options="day for day in days">
+                            </select>
+                        </div>
+                    </td>
 
-                    <button type="submit" class="btn btn-success"
-                            ng-disabled="addRouteFrom.$invalid">Submit</button>
-                    <button type="submit" class="btn btn-danger">Cancel</button>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
 
-            </td>
+                        <button type="submit" class="btn btn-success"
+                                ng-disabled="addRouteFrom.$invalid"
+                                ng-click="submit()"
+                                >Submit
+                        </button>
+                        <button type="submit" class="btn btn-danger">Cancel</button>
 
-        </tr>
+                    </td>
 
-    </table>
-    <label>{{addRoute.company}}  {{addRoute.destination}}  {{addRoute.type}} {{addRoute.weightCost}} {{addRoute.volumeCost}} </label>
-<label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}} {{addRoute.departs}}</label>
-</div>
+                </tr>
 
-</div>
+            </table>
+            <label>{{addRoute.company}} {{addRoute.destination}} {{addRoute.type}} {{addRoute.weightCost}}
+                {{addRoute.volumeCost}} </label>
+            <label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}}
+                {{addRoute.departs}}</label>
+        </div>
+
+    </div>
 </form>
 
 </html>
