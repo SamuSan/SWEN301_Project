@@ -55,8 +55,11 @@ var cities ={};
 	});
 
 
-	$http.get("data/master_simulation.json").success(function(data){
 
+	$http.get("data/master_simulation.json").success(function(data){
+        localStorage.setItem("mainSimulation",JSON.stringify(data));
+        var r = localStorage.getItem("mainSimulation");
+//        console.log(r);
 //		$scope.numItems = data.simulation.mail.length;
 //		var rev = revenue(data, cities.NZ);
 //		var exp = expenditure(data);
@@ -75,8 +78,14 @@ var cities ={};
 //	$scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function($scope){
-
+kpsApp.controller('addRouteController', function($scope, $http){
+    var r;
+    $http.get("data/master_simulation.json").success(function(data){
+        localStorage.setItem("mainSimulation",JSON.stringify(data));
+        r = localStorage.getItem("mainSimulation");
+        r = JSON.parse(r);
+        console.log(r);
+    });
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     var types = ["Land", "Air", "Sea"];
     $scope.days = days;
@@ -84,7 +93,7 @@ kpsApp.controller('addRouteController', function($scope){
     $scope.placeHolder = "*";
     $scope.addRoute = {
         "company":"" ,
-        "destination":"",
+        "to":"",
         "type":"",
         "weightCost":"",
         "volumeCost":"",
@@ -95,7 +104,15 @@ kpsApp.controller('addRouteController', function($scope){
         "departs":""
     };
     $scope.submit = function(){
-   var newRoute = $scope.addRoute;
+    var newRoute = $scope.addRoute;
+    console.log(newRoute);
+        r.simulation.route.push(newRoute);
+
+console.log(r);
+        localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+
+
 
     }
 });
