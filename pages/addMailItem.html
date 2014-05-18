@@ -14,28 +14,37 @@
     <script src="../angular/angular-route.js"></script>
     <script src="../angular/ng-table.js"></script>
     <script src="../script.js"></script>
-    <script src="../addMailItemCtrl.js"></script>
 
 
 </head>
-<body ng-controller="addMailItemController">
 
-<ul>
-    <li><label>Dimension </label>
+
+<form name="addMailItem" action="" class="css-form" novalidate>
+    <div ng-controller="addMailItemController">
         <ul>
-            <li><label>Height(Centimeter): </label>  <input ng-model="input3" ng-trim="false" custom-validation/> </li>
-            <li><label>Width(Centimeter): </label>  <input ng-model="input4" ng-trim="false" custom-validation/> </li>
-            <li><label>Length(Centimeter): </label>  <input ng-model="input5" ng-trim="false" custom-validation/> </li>
-        </ul></li>
+            <li><label>Dimension </label>
+                <ul>
+                    <li><label>Height(Centimeter): </label>  <input ng-model="input3" ng-trim="false" custom-validation required/> </li>
+                    <li><label>Width(Centimeter): </label>  <input ng-model="input4" ng-trim="false" custom-validation required=""/> </li>
+                    <li><label>Length(Centimeter): </label>  <input ng-model="input5" ng-trim="false" custom-validation required/> </li>
+                </ul></li>
 
-    <li><label>Volume(Cubic Centimeter):</label> {{input3 * input4 * input5}} </li>
-    <li><label>Weight(Grams): </label>  <input ng-model="input2" ng-trim="false" custom-validation/></li>
-    <li>  <label>To: </label> <select ng-init="To = To || dataRoute[0].Route" ng-model="To" ng-options="datum.Route as datum.Route.destination + ' (' + datum.Route.priority + ')' for datum in data"></select>
-    <li>  <label>From: </label> <select ng-init="selectBox2 = selectBox2 || dataRoute[0].Route" ng-model="selectBox2" ng-options="datum.Route as datum.Route.destination + ' (' + datum.Route.priority + ')' for datum in data"></select>
-    </li>
-    <li><label>Price: </label> ${{selectBox2.weightPrice * input2 + selectBox2.volumePrice * (input3 * input4 * input5)}}</li>
-</ul>
+            <li><label>Volume(Cubic Centimeter):</label> <p ng-model = "mailItem.Volume">{{input3 * input4 * input5}}</p> </li>
+            <li><label>Weight(Grams): </label>  <input ng-model="mailItem.Weight" ng-trim="false" custom-validation required/></li>
+            <li>  <label>To: </label> <select ng-init="To = To || dataRoute[0]" ng-model="mailItem.To" ng-options="datum as datum.destination + ' (' + datum.priority + ')' for datum in data" required></select>
+            <li>  <label>From: </label> <select ng-init="mailItem.From = mailItem.From || dataRoute[0]" ng-model="mailItem.From" ng-options="datum as datum.origin + ' (' + datum.priority + ')' for datum in data" required></select>
+            </li>
+            <li><label>Price: </label> <p ng-model = "mailItem.Price"> ${{mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5)}} </p></li>
+        </ul>
+
+        <button type="submit" class="btn btn-success"
+                ng-disabled="addMailItem.$invalid"
+                ng-click="submit()"
+                >Submit
+        </button>
+        <button type="submit" class="btn btn-danger">Cancel</button>
+    </div>
+</form>
 
 
-</body>
 </html>

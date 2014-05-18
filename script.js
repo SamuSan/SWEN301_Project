@@ -44,48 +44,28 @@ kpsApp.config(function($routeProvider) {
 
 // create the controller and inject Angular's $scope
 kpsApp.controller('mainController', function($scope, $http) {
-var cities ={};
-	$http.get("/data/nationalCities.json").success(function(data){
+    var cities ={};
 
-		cities.NZ = data.NewZealand.cities;
+    if(localStorage.getItem("mainSimulation") == "undefined") {
+        $http.get("data/master_simulation.json").success(function (data) {
+            localStorage.setItem("mainSimulation", JSON.stringify(data));
+        });
+    }
+    $http.get("/data/nationalCities.json").success(function(data){
 
-		console.log(data);
-		console.log(NZ);
+        cities.NZ = data.NewZealand.cities;
+        console.log(data);
+        console.log(NZ);
+    });
 
-	});
-
-
-
-	$http.get("data/master_simulation.json").success(function(data){
-        localStorage.setItem("mainSimulation",JSON.stringify(data));
-        var r = localStorage.getItem("mainSimulation");
-//        console.log(r);
-//		$scope.numItems = data.simulation.mail.length;
-//		var rev = revenue(data, cities.NZ);
-//		var exp = expenditure(data);
-//		var time = deliveryTimes(data);
-//
-//		console.log(data);
-////		console.log(rev);
-////		console.log(exp);
-//		console.log(time);
-////		$scope.totalRevenue = rev;
-////		$scope.totalExpenditure = exp;
-//		$scope.averageTime = time;
-	});
-
-	// create a message to display in our view
+    // create a message to displa in our view
 //	$scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function($scope, $http){
+kpsApp.controller('addRouteController', function($scope){
     var r;
-    $http.get("data/master_simulation.json").success(function(data){
-        localStorage.setItem("mainSimulation",JSON.stringify(data));
-        r = localStorage.getItem("mainSimulation");
-        r = JSON.parse(r);
-        console.log(r);
-    });
+    r = JSON.parse(localStorage.getItem("mainSimulation"));
+
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     var types = ["Land", "Air", "Sea"];
     $scope.days = days;
@@ -104,15 +84,12 @@ kpsApp.controller('addRouteController', function($scope, $http){
         "departs":""
     };
     $scope.submit = function(){
-    var newRoute = $scope.addRoute;
-    console.log(newRoute);
+        var newRoute = $scope.addRoute;
+        console.log(newRoute);
         r.simulation.route.push(newRoute);
 
-console.log(r);
+        console.log(r);
         localStorage.setItem("mainSimulation",JSON.stringify(r));
-
-
-
 
     }
 });
@@ -121,118 +98,118 @@ kpsApp.controller('updateRouteController', function($scope){
 
 
 
-	$scope.message = 'Should say some shit about up your date';
+    $scope.message = 'Should say some shit about up your date';
 });
 
 kpsApp.controller('updatePriceController', function($scope){
-	$scope.message = 'Should say some shit about privey up your date';
+    $scope.message = 'Should say some shit about privey up your date';
 });
 
 kpsApp.controller('loginController', function($scope){
-	$scope.message = 'Should say some shit about privey up your date';
+    $scope.message = 'Should say some shit about privey up your date';
 });
 
 // Monitor Controller
-kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableParams) {
+kpsApp.controller('monitorController', function($scope, $filter, ngTableParams) {
 
     var data = [
-	    {
-	        id: "1", 
-	        startDate: "1st March 2014", 
-	        endDate: "31st March 2014", 
-	        revenue: "456,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: "2.5"
-	    }, 
-	    {
-	        id: "2", 
-	        startDate: "1st February 2014", 
-	        endDate: "28th February 2014", 
-	        revenue: "567,000",
-	        expenditure: "132,000",
-	        averageDeliveryTimes: 2.2
-	    }, 
-	    {
-	        id: "3", 
-	        startDate: "1st January 2013", 
-	        endDate: "31st January 2013", 
-	        revenue: "356,000",
-	        expenditure: "143,000",
-	        averageDeliveryTimes: 2.7
-	    }, 
-	    {
-	        id: "4", 
-	        startDate: "1st December 2013", 
-	        endDate: "31st December 2013", 
-	        revenue: "436,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    }, 
-	    {
-	        id: "5", 
-	        startDate: "1st November 2013", 
-	        endDate: "30th November 2013", 
-	        revenue: "556,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    }, 
-	    {
-	        id: "6", 
-	        startDate: "1st October 2013", 
-	        endDate: "31st October 2013", 
-	        revenue: "656,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    },
-	    {
-	        id: "7", 
-	        startDate: "1st March 2013", 
-	        endDate: "31st March 2013", 
-	        revenue: "456,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: "2.5"
-	    }, 
-	    {
-	        id: "8", 
-	        startDate: "1st February 2013", 
-	        endDate: "28th February 2013", 
-	        revenue: "567,000",
-	        expenditure: "132,000",
-	        averageDeliveryTimes: 2.2
-	    }, 
-	    {
-	        id: "9", 
-	        startDate: "1st January 2012", 
-	        endDate: "31st January 2012", 
-	        revenue: "356,000",
-	        expenditure: "143,000",
-	        averageDeliveryTimes: 2.7
-	    }, 
-	    {
-	        id: "10", 
-	        startDate: "1st December 2012", 
-	        endDate: "31st December 2012", 
-	        revenue: "436,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    }, 
-	    {
-	        id: "11", 
-	        startDate: "1st November 2012", 
-	        endDate: "30th November 2012", 
-	        revenue: "556,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    }, 
-	    {
-	        id: "12", 
-	        startDate: "1st October 2012", 
-	        endDate: "31st October 2012", 
-	        revenue: "656,000",
-	        expenditure: "123,000",
-	        averageDeliveryTimes: 2.5
-	    }
-	];
+        {
+            id: "1",
+            startDate: "1st March 2014",
+            endDate: "31st March 2014",
+            revenue: "456,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: "2.5"
+        },
+        {
+            id: "2",
+            startDate: "1st February 2014",
+            endDate: "28th February 2014",
+            revenue: "567,000",
+            expenditure: "132,000",
+            averageDeliveryTimes: 2.2
+        },
+        {
+            id: "3",
+            startDate: "1st January 2013",
+            endDate: "31st January 2013",
+            revenue: "356,000",
+            expenditure: "143,000",
+            averageDeliveryTimes: 2.7
+        },
+        {
+            id: "4",
+            startDate: "1st December 2013",
+            endDate: "31st December 2013",
+            revenue: "436,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        },
+        {
+            id: "5",
+            startDate: "1st November 2013",
+            endDate: "30th November 2013",
+            revenue: "556,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        },
+        {
+            id: "6",
+            startDate: "1st October 2013",
+            endDate: "31st October 2013",
+            revenue: "656,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        },
+        {
+            id: "7",
+            startDate: "1st March 2013",
+            endDate: "31st March 2013",
+            revenue: "456,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: "2.5"
+        },
+        {
+            id: "8",
+            startDate: "1st February 2013",
+            endDate: "28th February 2013",
+            revenue: "567,000",
+            expenditure: "132,000",
+            averageDeliveryTimes: 2.2
+        },
+        {
+            id: "9",
+            startDate: "1st January 2012",
+            endDate: "31st January 2012",
+            revenue: "356,000",
+            expenditure: "143,000",
+            averageDeliveryTimes: 2.7
+        },
+        {
+            id: "10",
+            startDate: "1st December 2012",
+            endDate: "31st December 2012",
+            revenue: "436,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        },
+        {
+            id: "11",
+            startDate: "1st November 2012",
+            endDate: "30th November 2012",
+            revenue: "556,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        },
+        {
+            id: "12",
+            startDate: "1st October 2012",
+            endDate: "31st October 2012",
+            revenue: "656,000",
+            expenditure: "123,000",
+            averageDeliveryTimes: 2.5
+        }
+    ];
 
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
@@ -245,8 +222,8 @@ kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableP
         getData: function($defer, params) {
             // use build-in angular filter
             var orderedData = params.sorting() ?
-                                $filter('orderBy')(data, params.orderBy()) :
-                                data;
+                $filter('orderBy')(data, params.orderBy()) :
+                data;
 
             $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
         }
@@ -257,14 +234,29 @@ kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableP
  * Created by Marcus on 5/10/2014.
  */
 
-var routes = []
+kpsApp.controller('addMailItemController', function($scope){
 
-kpsApp.controller('addMailItemController', function($scope,filefetch){
+    var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
 
-    filefetch.fetch().then(function(data){
-        $scope.data = data;
-        routes = data;
-    })
+    $scope.mailItem = {
+      "Volume":"",
+        "To":"",
+        "From":"",
+        "Weight":"",
+        "Price":""
+    };
+
+     $scope.data = r.route;
+
+
+    $scope.submit = function(mailItem){
+
+        //Not working atm
+        //r.route.push(mailItem);
+        //r.businessEvents.push(mailItem);
+        //localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+    }
 });
 
 kpsApp.directive('customValidation', function(){
@@ -287,20 +279,6 @@ kpsApp.directive('customValidation', function(){
     };
 });
 
-kpsApp.factory('filefetch', function($q, $http) {
-    var getFile = {
-        fetch: function(callback) {
-
-            var deferred = $q.defer();
-
-                $http.get('../route.json').success(function(data) {
-                    deferred.resolve(data);
-                });
-            return deferred.promise;
-        }
-    };
-    return getFile;
-});
 Array.prototype.contains = function(obj) {
     var i = this.length;
     while (i--) {
