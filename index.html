@@ -1,81 +1,102 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html ng-app="kpsApp">
-<meta charset="utf-8"> 
+<meta charset="utf-8">
 <head>
-	<!-- SCROLLS -->
-	<!-- load bootstrap and fontawesome via CDN -->
-	<link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="styles/font-awesome/css/font-awesome.css" />
-	<link rel="stylesheet" href="styles/main.css" />
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="styles/main.css" />
 
-	<!-- SPELLS -->
-	<!-- load angular via CDN -->
-	<script src="angular/angular.js"></script>
-	<script src="angular/angular-route.js"></script>
-	<script src="script.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap/dist/css/KPS-theme.css" />
+    <link rel="stylesheet" href="styles/bootstrap/dist/css/KPS-icons.css" />
 
-	<!--<script src="figureCalculations.js"></script>-->
-	<script src="js/numeral/min/numeral.min.js"></script>
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="angular/angular.js"></script>
+    <script src="angular/angular-route.js"></script>
+    <script src="script.js"></script>
+
+    <!--<script src="figureCalculations.js"></script>-->
+    <script src="js/numeral/min/numeral.min.js"></script>
 
 
-	<!-- Monitoring Page Imports -->
-	<link rel="stylesheet" href="styles/main.css" />
-	<script src="angular/ng-table.js"></script>
+    <!-- Monitoring Page Imports -->
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="angular/ng-table.js"></script>
 
 </head>
 <body ng-controller="mainController">
 
-	<!-- HEADER AND NAVBAR -->
-	<header>
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/">KPSmart Mail Provider</a>
-				</div>
+<!-- HEADER AND NAVBAR -->
+<header>
+    <nav class="kph-navbar kph-navbar-default">
+        <div class="kph-container">
+            <div class="kph-navbar-header">
+                <a class="kph-navbar-brand" href="/"><i class="kp kp-mail-M"></i> PSmart Mail Provider</a>
+            </div>
 
-				<ul class="nav navbar-nav navbar-right">
-					<!-- <li><a href="#"><i class="fa fa-home"></i> Home</a>D</li> -->
-					<li><a href="#addMailItem"><i class="fa fa-plus"></i> Add Mail Item</a></li>
-					<li><a href="#addRoute"><i class="fa fa-plus"></i> Add Route</a></li>
-					<li><a href="#updateRoute"><i class="fa fa-exchange"></i> Update Route</a></li>
-					<li><a href="#updatePrice"><i class="fa fa-exchange"></i> Update Price</a></li>
-					<li><a href="#monitoring"><i class="fa fa-comment"></i> Monitoring</a></li>
-					<li><a href="#"><i class></i> Login</a></li>
-				</ul>
-				
-			</div>
-		</nav>
-	</header>
+            <ul class="kph-nav kph-navbar-nav kph-navbar-right">
+                <!-- <li><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
+                <li><a href="#addMailItem"><i class="fa fa-plus"></i> Add Mail Item</a></li>
+                <li><a href="#addRoute"><i class="fa fa-plus"></i> Add Route</a></li>
+                <li><a href="#updateRoute"><i class="fa fa-exchange"></i> Update Route</a></li>
+                <li><a href="#updatePrice"><i class="fa fa-exchange"></i> Update Price</a></li>
+                <li><a href="#monitoring"><i class="fa fa-comment"></i> Monitoring</a></li>
+                <li><a href="#"><i class></i> Login</a></li>
+            </ul>
 
-	<!-- MAIN CONTENT AND INJECTED VIEWS -->
-	<div id="main">
-		{{message}}
-		<!-- angular templating -->
-		<!-- this is where content will be injected -->
-		<div ng-view=""></div>
-	</div>
-	
-	<!-- FOOTER -->
-   	<div class="footer">
-      		<div>
-        		<p ng-controller="mainController">
-				<label class="badge" >
-			Items in System :	{{numItems}}
-				</label>
-				<label class="badge" >
-			Total Revenue :	$ {{totalRevenue}}
-				</label>
-								<label class="badge" >
-			Total Expenditure :	$ {{totalExpenditure}}
-				</label>
-								</label>
-								<label class="badge" >
-			Average Delivery TIme : {{averageTime}} Days
-				</label>
-        		</p>
-		</div>
-	</div>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+
+</div>
+
+<div class ="kpsContainer">
+    <div class = "kpsNavContainer">
+        <nav class = "kpsbar-default">
+            <ul class="kpsNav kpsbar-nav">
+                <li><a href="#"><i class="kp kp-home"></i> Home</a></li>
+                <li><a href="#addMailItem"><i class="kp kp-mail"></i> Add Mail Item</a></li>
+                <li><a href="#addRoute"><i class="kp kp-road"></i> Add Route</a></li>
+                <li><a href="#updateRoute"><i class="kp kp-road-Up"></i> Update Route</a></li>
+                <li><a href="#updatePrice"><i class="kp kp-price"></i> Update Price</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class = "kpsContainerWindow"> 	<div id="main">
+        <!--{{message}} -->
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view=""></div> </div>
+    </div></div>
+
+
+
+<!-- FOOTER -->
+<div class="kpsfooter">
+    <div>
+        <p ng-controller="mainController">
+            <label class="kp-badge" >
+                Items in System :	{{numItems}}
+            </label>
+            <label class="kp-badge" >
+                Total Revenue :	$ {{totalRevenue}}
+            </label>
+            <label class="kp-badge" >
+                Total Expenditure :	$ {{totalExpenditure}}
+            </label>
+            </label>
+            <label class="kp-badge" >
+                Average Delivery TIme : {{averageTime}} Days
+            </label>
+        </p>
+    </div>
+</div>
 
 </body>
 </html>
