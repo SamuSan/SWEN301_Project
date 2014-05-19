@@ -50,8 +50,8 @@ kpsApp.controller('mainController', function ($scope, $http, $location) {
     $scope.loginControl = {
         user: {}
     };
-if(typeof $scope.loginControl.user.Name == 'undefined' ){
-    $scope.loggedIn = false;
+    if(typeof $scope.loginControl.user.Name == 'undefined' ){
+    $scope.loginControl.loggedIn = false;
 }
     $scope.users = {};
     $http.get("data/users.json").success(function (data) {
@@ -63,13 +63,17 @@ if(typeof $scope.loginControl.user.Name == 'undefined' ){
 
 
     $scope.$watch(function(){
-        console.log($location.path());
+//        console.log($location.path());
         return $location.path();
     }, function(newPath, oldPath){
-console.log("New Path"+newPath)
-        console.log("Loggied In"+$scope.loggedIn)
-        if($scope.loggedIn===false && newPath != '/'){
+        console.log("In Wtahc::"+$scope.loginControl.loggedIn)
+        console.log("New Path"+newPath)
+
+        if($scope.loginControl.loggedIn===false && newPath != '/'){
             $location.path('/');
+        }
+        if($scope.loginControl.loggedIn===true && newPath != '/'){
+            $location.path(newPath);
         }
 //        else if($scope.loggedIn===false && newPath == 'pages/login.html'){
 //
@@ -151,13 +155,14 @@ kpsApp.controller('loginController', function ($scope, $location) {
         }
         if(validU != -1){
             $scope.loginControl.user = $scope.user;
-            $scope.loggedIn = true;
-            $location.path('/addMailItem');
+            $scope.loginControl.loggedIn = true;
+//            $location.path('/addMailItem');
         }
 
 //        $scope.loginControl.user = $scope.user;
 //        $scope.loggedIn = true;
         console.log($scope.loginControl.user);
+        console.log("Logged In in Fiunction:: " +$scope.loginControl.loggedIn);
     }
 
 
