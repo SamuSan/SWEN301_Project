@@ -10,7 +10,7 @@ kpsApp.config(function($routeProvider) {
     $routeProvider
 
         // route for the home page
-        .when('/#', {
+        .when('/', {
             templateUrl: 'pages/login.html',
             controller: 'loginController'
         })
@@ -121,7 +121,7 @@ kpsApp.controller('loginController', function($scope){
 // Monitor Controller
 kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableParams) {
 
-    $http.get("http://localhost:8000/data/business_figures.json").success(function(data){
+    $http.get("data/business_figures.json").success(function(data){
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
