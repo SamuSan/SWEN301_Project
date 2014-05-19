@@ -1,12 +1,9 @@
-
-
-
 // script.js
 var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
 
 
 var NZ;
-kpsApp.config(function($routeProvider) {
+kpsApp.config(function ($routeProvider) {
     $routeProvider
 
         // route for the home page
@@ -16,38 +13,77 @@ kpsApp.config(function($routeProvider) {
         })
         .when('/addMailItem', {
             templateUrl: 'pages/addMailItem.html',
-            controller: 'addMailItemController'
+            controller: 'addMailItemController',
+            loginReq: true,
+            adminAccess : false
         })
         .when('/addRoute', {
             templateUrl: 'pages/addRoute.html',
-            controller: 'addRouteController'
+            controller: 'addRouteController',
+            loginReq: true,
+            adminAccess : false
         })
         .when('/updateRoute', {
             templateUrl: 'pages/updateRoute.html',
-            controller: 'updateRouteController'
+            controller: 'updateRouteController',
+            loginReq: true,
+            adminAccess : false
         })
         .when('/updatePrice', {
             templateUrl: 'pages/updatePrice.html',
-            controller: 'updatePriceController'
+            controller: 'updatePriceController',
+            loginReq: true,
+            adminAccess : false
         })
         .when('/monitoring', {
             templateUrl: 'pages/monitoring.html',
-            controller: 'monitorController'
+            controller: 'monitorController',
+            loginReq: true,
+            adminAccess : true
         });
 });
 
 
 
 // create the controller and inject Angular's $scope
-kpsApp.controller('mainController', function($scope, $http) {
-    var cities ={};
+kpsApp.controller('mainController', function ($scope, $http, $location) {
+    $scope.loginControl = {
+        user: {}
+    };
+if(typeof $scope.loginControl.user.Name == 'undefined' ){
+    $scope.loggedIn = false;
+}
+    $scope.users = {};
+    $http.get("data/users.json").success(function (data) {
+        $scope.users = data.users;
+    });
 
-    if(localStorage.getItem("mainSimulation") == "undefined") {
+
+
+
+
+    $scope.$watch(function(){
+        console.log($location.path());
+        return $location.path();
+    }, function(newPath, oldPath){
+console.log("New Path"+newPath)
+        console.log("Loggied In"+$scope.loggedIn)
+        if($scope.loggedIn===false && newPath != '/'){
+            $location.path('/');
+        }
+//        else if($scope.loggedIn===false && newPath == 'pages/login.html'){
+//
+//        }
+    });
+
+    var cities = {};
+
+    if (localStorage.getItem("mainSimulation") == "undefined") {
         $http.get("data/master_simulation.json").success(function (data) {
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
     }
-    $http.get("/data/nationalCities.json").success(function(data){
+    $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
         console.log(data);
@@ -58,7 +94,7 @@ kpsApp.controller('mainController', function($scope, $http) {
 //	$scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function($scope){
+kpsApp.controller('addRouteController', function ($scope) {
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -68,60 +104,69 @@ kpsApp.controller('addRouteController', function($scope){
     $scope.types = types;
     $scope.placeHolder = "*";
     $scope.addRoute = {
-        "company":"" ,
-        "to":"",
-        "type":"",
-        "weightCost":"",
-        "volumeCost":"",
-        "maxWeight":"",
-        "maxVolume":"",
-        "duration":"",
-        "frequency":"",
-        "departs":""
+        "company": "",
+        "to": "",
+        "type": "",
+        "weightCost": "",
+        "volumeCost": "",
+        "maxWeight": "",
+        "maxVolume": "",
+        "duration": "",
+        "frequency": "",
+        "departs": ""
     };
-    $scope.submit = function(){
+    $scope.submit = function () {
         var newRoute = $scope.addRoute;
         console.log(newRoute);
         r.simulation.route.push(newRoute);
 
         console.log(r);
-        localStorage.setItem("mainSimulation",JSON.stringify(r));
+        localStorage.setItem("mainSimulation", JSON.stringify(r));
 
     }
 });
 
-kpsApp.controller('updateRouteController', function($scope){
-
+kpsApp.controller('updateRouteController', function ($scope) {
 
 
     $scope.message = 'Should say some shit about up your date';
 });
 
-kpsApp.controller('updatePriceController', function($scope){
+kpsApp.controller('updatePriceController', function ($scope) {
     $scope.message = 'Should say some shit about privey up your date';
 });
 
-kpsApp.controller('loginController', function($scope){
-    var user = {
+kpsApp.controller('loginController', function ($scope, $location) {
+
+    $scope.user = {
         "Name": "",
         "Password": ""
 
     };
 
+    $scope.logUser = function () {
 
+        for (var x = $scope.users["user"].length-1; x>=0; x--) {
+             var validU = $scope.users["user"][x]["ID"].indexOf($scope.user.Name);
+        }
+        if(validU != -1){
+            $scope.loginControl.user = $scope.user;
+            $scope.loggedIn = true;
+            $location.path('/addMailItem');
+        }
 
-
-
-
-
+//        $scope.loginControl.user = $scope.user;
+//        $scope.loggedIn = true;
+        console.log($scope.loginControl.user);
+    }
 
 
 });
 
 // Monitor Controller
-kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableParams) {
+kpsApp.controller('monitorController', function ($scope, $http, $filter, ngTableParams) {
 
-    $http.get("data/business_figures.json").success(function(data){
+    $http.get("data/business_figures.json").success(function (data) {
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
@@ -131,7 +176,7 @@ kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableP
             }
         }, {
             total: data.length, // length of data
-            getData: function($defer, params) {
+            getData: function ($defer, params) {
                 // use build-in angular filter
                 var orderedData = params.sorting() ?
                     $filter('orderBy')(data, params.orderBy()) :
@@ -147,22 +192,22 @@ kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableP
  * Created by Marcus on 5/10/2014.
  */
 
-kpsApp.controller('addMailItemController', function($scope){
+kpsApp.controller('addMailItemController', function ($scope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
 
     $scope.mailItem = {
-      "Volume":"",
-        "To":"",
-        "From":"",
-        "Weight":"",
-        "Price":""
+        "Volume": "",
+        "To": "",
+        "From": "",
+        "Weight": "",
+        "Price": ""
     };
 
-     $scope.data = r.route;
+    $scope.data = r.route;
 
 
-    $scope.submit = function(mailItem){
+    $scope.submit = function (mailItem) {
 
         //Not working atm
         //r.route.push(mailItem);
@@ -172,16 +217,18 @@ kpsApp.controller('addMailItemController', function($scope){
     }
 });
 
-kpsApp.directive('customValidation', function(){
+kpsApp.directive('customValidation', function () {
     return {
         require: 'ngModel',
-        link: function(scope, element, attrs,    modelCtrl) {
+        link: function (scope, element, attrs, modelCtrl) {
 
             modelCtrl.$parsers.push(function (inputValue) {
 
-                var transformedInput = inputValue.split('').filter(function (s) { return ((!isNaN(s) || s == '.') && s != ' '); }).join('');
+                var transformedInput = inputValue.split('').filter(function (s) {
+                    return ((!isNaN(s) || s == '.') && s != ' ');
+                }).join('');
 
-                if (transformedInput!=inputValue) {
+                if (transformedInput != inputValue) {
                     modelCtrl.$setViewValue(transformedInput);
                     modelCtrl.$render();
                 }
@@ -192,7 +239,7 @@ kpsApp.directive('customValidation', function(){
     };
 });
 
-Array.prototype.contains = function(obj) {
+Array.prototype.contains = function (obj) {
     var i = this.length;
     while (i--) {
         if (this[i].ID === obj) {
@@ -201,61 +248,61 @@ Array.prototype.contains = function(obj) {
     }
     return false;
 }
-function expenditure(data){
+function expenditure(data) {
     var expenditure = 0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
         var item = data.simulation.mail[i];
         var origin = "";
-        if(NZ.contains(item.from)){
+        if (NZ.contains(item.from)) {
             origin = "New Zealand";
         }
-        else{
+        else {
             origin = item.from;
         }
 
         var prices = data.simulation.price;
         for (var x = prices.length - 1; x >= 0; x--) {
             var currPrice = prices[x];
-            if(prices[x].to ===  item.to){
-                if(prices[x].from === origin){
-                    if(prices[x].priority === item.priority){
+            if (prices[x].to === item.to) {
+                if (prices[x].from === origin) {
+                    if (prices[x].priority === item.priority) {
                         price = prices[x];
                         var weightCost = price.weightcost * item.weight;
                         var volumeCost = price.volumecost * item.volume;
-                        expenditure+=(weightCost+volumeCost);
+                        expenditure += (weightCost + volumeCost);
                     }
                 }
             }
 
         }
     }
-    expenditure.toFixed(2).replace(/./g, function(c, i, a) {
+    expenditure.toFixed(2).replace(/./g, function (c, i, a) {
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
     });
     return expenditure;
 }
-function revenue(data, NZ){
+function revenue(data, NZ) {
     var revenue = 0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
         var item = data.simulation.mail[i];
         var origin = "";
-        if(NZ.contains(item.from)){
+        if (NZ.contains(item.from)) {
             origin = "New Zealand";
         }
-        else{
+        else {
             origin = item.from;
         }
 
         var prices = data.simulation.price;
         for (var x = prices.length - 1; x >= 0; x--) {
             var currPrice = prices[x];
-            if(prices[x].to ===  item.to){
-                if(prices[x].from === origin){
-                    if(prices[x].priority === item.priority){
+            if (prices[x].to === item.to) {
+                if (prices[x].from === origin) {
+                    if (prices[x].priority === item.priority) {
                         price = prices[x];
                         var weightCost = price.weightcost * item.weight;
                         var volumeCost = price.volumecost * item.volume;
-                        revenue+=(weightCost+volumeCost);
+                        revenue += (weightCost + volumeCost);
                     }
                 }
             }
@@ -263,66 +310,65 @@ function revenue(data, NZ){
         }
 
 
-
     }
-    revenue.toFixed(2).replace(/./g, function(c, i, a) {
+    revenue.toFixed(2).replace(/./g, function (c, i, a) {
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
     });
     return revenue;
 }
 
-    /* James fat controller
-*/
-    
-    kpsApp.controller('updatePriceController', function($scope,pricefetch){
-    
+/* James fat controller
+ */
 
-    pricefetch.fetch().then(function(data){
+kpsApp.controller('updatePriceController', function ($scope, pricefetch) {
+
+
+    pricefetch.fetch().then(function (data) {
         $scope.data = data;
         $scope.selectBox3 = data[0];
         var weight = selectBox3.weightcost;
 
-       
 
     })
 });
 
-    kpsApp.factory('pricefetch', function($q, $http) {
+kpsApp.factory('pricefetch', function ($q, $http) {
     var getFile = {
-        fetch: function(callback) {
+        fetch: function (callback) {
 
             var deferred = $q.defer();
 
-                $http.get('../data/prices.json').success(function(data) {
-                    deferred.resolve(data);
-                });
+            $http.get('../data/prices.json').success(function (data) {
+                deferred.resolve(data);
+            });
             return deferred.promise;
         }
     };
     return getFile;
 });
-    //########################update route
+//########################update route
 
-        kpsApp.controller('updateRouteController', function($scope,pricefetch){
-    
+kpsApp.controller('updateRouteController', function ($scope, pricefetch) {
 
-    pricefetch.fetch().then(function(data){
+
+    pricefetch.fetch().then(function (data) {
         $scope.data = data;
         $scope.routeSelect = data[0];
     })
 });
 
-    kpsApp.factory('pricefetch', function($q, $http) {
+kpsApp.factory('pricefetch', function ($q, $http) {
     var getFile = {
-        fetch: function(callback) {
+        fetch: function (callback) {
 
             var deferred = $q.defer();
 
-                $http.get('../data/prices.json').success(function(data) {
-                    deferred.resolve(data);
-                });
+            $http.get('../data/prices.json').success(function (data) {
+                deferred.resolve(data);
+            });
             return deferred.promise;
         }
     };
     return getFile;
 });
+

@@ -40,6 +40,7 @@
                         ng-model="user.Name"
                         required>
                 </div>
+                <label>{{user.Name}}</label>
             </td>
         </tr>
         <tr class="span">
@@ -71,7 +72,7 @@
             <td>
                 <button type="submit" class="btn btn-success"
                         ng-disabled="loginForm.$invalid"
-                        ng-click="submit()"
+                        ng-click="logUser()"
                         >Submit
                 </button>
                 <button type="submit" class="btn btn-danger">Cancel</button>
