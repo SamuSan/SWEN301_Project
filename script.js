@@ -11,8 +11,8 @@ kpsApp.config(function($routeProvider) {
 
         // route for the home page
         .when('/#', {
-            templateUrl: 'index.html',
-            controller: 'mainController'
+            templateUrl: 'pages/login.html',
+            controller: 'loginController'
         })
         .when('/addMailItem', {
             templateUrl: 'pages/addMailItem.html',
@@ -29,10 +29,6 @@ kpsApp.config(function($routeProvider) {
         .when('/updatePrice', {
             templateUrl: 'pages/updatePrice.html',
             controller: 'updatePriceController'
-        })
-        .when('/login', {
-            templateUrl: 'pages/login.html',
-            controller: 'loginController'
         })
         .when('/monitoring', {
             templateUrl: 'pages/monitoring.html',
@@ -106,7 +102,20 @@ kpsApp.controller('updatePriceController', function($scope){
 });
 
 kpsApp.controller('loginController', function($scope){
-    $scope.message = 'Should say some shit about privey up your date';
+    var user = {
+        "Name": "",
+        "Password": ""
+
+    };
+
+
+
+
+
+
+
+
+
 });
 
 // Monitor Controller

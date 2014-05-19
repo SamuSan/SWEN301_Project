@@ -1,20 +1,90 @@
 <!-- index.html -->
-	<!DOCTYPE html>
-	<html ng-app="kpsApp">
-<form name="loginForm" ng-submit="login(credentials)"
-      novalidate>
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
 
-  <label for="username">Username:</label>
-  <input type="text" id="username"
-         ng-model="credentials.username">
+<form name="loginForm" action="" class="form-horizontal">
 
-  <label for="password">Password:</label>
-  <input type="password" id="password"
-         ng-model="credentials.password">
 
-  <button class ="btn-login"type="submit">Login</button>
+<div ng-controller="loginController">
 
+    <table>
+        <tr class="span">
+            <td>
+                <div>
+                    <label>
+                        UserName:
+                    </label>
+
+                </div>
+            </td>
+
+            <td>
+                <div>
+                <input
+                        id="userNameInput"
+                        type="text"
+                        name="user"
+                        ng-model="user.Name"
+                        required>
+                </div>
+            </td>
+        </tr>
+        <tr class="span">
+            <td>
+                <div>
+                    <label>
+                        Password:
+                    </label>
+
+                </div>
+
+            </td>
+
+            <td>
+                <div>
+                    <input
+                            id="passwordInput"
+                            type="password"
+                            name="pw"
+                            ng-model="user.Password"
+                            required>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <button type="submit" class="btn btn-success"
+                        ng-disabled="loginForm.$invalid"
+                        ng-click="submit()"
+                        >Submit
+                </button>
+                <button type="submit" class="btn btn-danger">Cancel</button>
+
+            </td>
+        </tr>
+    </table>
+
+
+
+
+</div>
 </form>
+</body>
 
-
-	</html>
+</html>
