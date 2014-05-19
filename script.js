@@ -110,7 +110,7 @@ kpsApp.controller('loginController', function($scope){
 });
 
 // Monitor Controller
-kpsApp.controller('monitorController', function($scope, $filter, ngTableParams) {
+kpsApp.controller('monitorController', function($scope, $http, $filter, ngTableParams) {
 
     $http.get("http://localhost:8000/data/business_figures.json").success(function(data){
 
