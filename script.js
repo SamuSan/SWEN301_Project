@@ -347,30 +347,12 @@ function revenue(data, NZ) {
 
 kpsApp.controller('updatePriceController', function ($scope, pricefetch) {
 
+var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+$scope.data = r.route;
 
-    pricefetch.fetch().then(function (data) {
-        $scope.data = data;
-        $scope.selectBox3 = data[0];
-        var weight = selectBox3.weightcost;
-
-
-    })
 });
 
-kpsApp.factory('pricefetch', function ($q, $http) {
-    var getFile = {
-        fetch: function (callback) {
 
-            var deferred = $q.defer();
-
-            $http.get('../data/prices.json').success(function (data) {
-                deferred.resolve(data);
-            });
-            return deferred.promise;
-        }
-    };
-    return getFile;
-});
 //########################update route
 
 kpsApp.controller('updateRouteController', function ($scope, pricefetch) {

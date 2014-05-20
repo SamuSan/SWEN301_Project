@@ -15,19 +15,39 @@
 </head>
 <body ng-controller="updatePriceController">
 
-    <ul>
+    
 
-        <li> <label>Select route for price update: </label> <select ng-init="selectBox3 = selectBox3 || dataRoute[0].Price" ng-model="selectBox3" ng-options="datum.Price as 'Route : ' + datum.Price.from + ' to ' + datum.Price.to for datum in data"></select>
-        </li>
-        <li><label>Current Weight Cost: $ </label> {{ selectBox3.weightcost }} </li>
-  <li><label>Current Volume Cost: $ </label> {{ selectBox3.volumecost }} </li>
+        <table>
+        <tr>
+        	<td><label>Select route for price update:
+         <select ng-init="selectBox3 = selectBox3 || dataRoute[0]" ng-model="selectBox3" ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
+         </td>
+        </tr>
+
+        <tr>
+        	<td>
+        		<label>Current Weight Cost: $ </label>{{ selectBox3.weightcost }} 
+        	</td></tr>
+  			<tr><td>
+  				<label>Current Volume Cost: $ </label> {{ selectBox3.volumecost }} 
+  			</td>
+		</tr>
+	
 
 
-        <li><label>New Weight Cost: </label> <input ng-model="nCost" ng-trim="false"/> </li>
-        <li><label>New Volume Cost: </label> <input ng-model="nCost" ng-trim="false"/> </li>
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Submit changes</button>
+        <tr><td><label>New Weight Cost: </label> <input ng-model="nCost" ng-trim="false"/> </td></tr>
+        <tr><td><label>New Volume Cost: </label> <input ng-model="nCost" ng-trim="false"/> </td></tr>
+        <tr><td>  <button type="submit" class="btn btn-success"
+                    ng-disabled="addMailItem.$invalid"
+                    ng-click="submit()"
+                    >Submit
+            </button>
+            <button type="submit" class="btn btn-danger">Cancel</button></td>
+            </tr>
+    </table>
 
-</ul>
+
+
 
 
 </body>
