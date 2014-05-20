@@ -147,8 +147,8 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
     $scope.user = {
         "Name": "",
-        "Password": ""
-
+        "Password": "",
+        "Type":""
     };
 
     $scope.logUser = function () {
@@ -175,6 +175,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
         for (var x = 0; x < users.user.length; x++) {
             if (users.user[x].ID === $rootScope.loginControl.user.Name
                 && users.user[x].Password === $rootScope.loginControl.user.Password) {
+                $rootScope.loginControl.user.Type = users.user[x].Type;
                 $rootScope.loginControl.loggedIn = true;
                 $location.path('/addMailItem')
                 break;
