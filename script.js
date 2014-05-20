@@ -15,69 +15,72 @@ kpsApp.config(function ($routeProvider) {
             templateUrl: 'pages/addMailItem.html',
             controller: 'addMailItemController',
             loginReq: true,
-            adminAccess : false
+            adminAccess: false
         })
         .when('/addRoute', {
             templateUrl: 'pages/addRoute.html',
             controller: 'addRouteController',
             loginReq: true,
-            adminAccess : false
+            adminAccess: false
         })
         .when('/updateRoute', {
             templateUrl: 'pages/updateRoute.html',
             controller: 'updateRouteController',
             loginReq: true,
-            adminAccess : false
+            adminAccess: false
         })
         .when('/updatePrice', {
             templateUrl: 'pages/updatePrice.html',
             controller: 'updatePriceController',
             loginReq: true,
-            adminAccess : false
+            adminAccess: false
         })
         .when('/monitoring', {
             templateUrl: 'pages/monitoring.html',
             controller: 'monitorController',
             loginReq: true,
-            adminAccess : true
+            adminAccess: true
         });
 });
 
 
-
 // create the controller and inject Angular's $scope
-kpsApp.controller('mainController', function ($scope, $http, $location) {
-    $scope.loginControl = {
-        user: {}
+kpsApp.controller('mainController', function ($scope, $http, $location, $rootScope) {
+
+    $rootScope.loginControl = {
+        user: {},
+        users: []
     };
-    if(typeof $scope.loginControl.user.Name == 'undefined' ){
-    $scope.loginControl.loggedIn = false;
-}
-    $scope.users = {};
+    $rootScope.loginControl.set = false;
+    if ($rootScope.loginControl.set === false) {
+        $rootScope.loginControl.loggedIn = false;
+        $rootScope.loginControl.set = true;
+    }
+    console.log($rootScope.loginControl.loggedIn)
+    $rootScope.users = {};
     $http.get("data/users.json").success(function (data) {
-        $scope.users = data.users;
+        $rootScope.loginControl.users = data.users;
     });
 
 
-
-
-
-    $scope.$watch(function(){
+    $scope.$watch(function () {
 //        console.log($location.path());
         return $location.path();
-    }, function(newPath, oldPath){
-        console.log("In Wtahc::"+$scope.loginControl.loggedIn)
-        console.log("New Path"+newPath)
-
-        if($scope.loginControl.loggedIn===false && newPath != '/'){
+    }, function (newPath, oldPath) {
+        if ($rootScope.loginControl.loggedIn === false) {
             $location.path('/');
         }
-        if($scope.loginControl.loggedIn===true && newPath != '/'){
+        else if ($rootScope.loginControl.loggedIn === true && newPath !=='/monitoring') {
             $location.path(newPath);
         }
-//        else if($scope.loggedIn===false && newPath == 'pages/login.html'){
-//
-//        }
+        else if($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
+            && $rootScope.loginControl.user.Type === 'Admin'){
+            $location.path(newPath);
+        }
+        else if ($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
+            && $rootScope.loginControl.user.Type !== 'Admin'){
+            $location.path('/');
+        }
     });
 
     var cities = {};
@@ -140,7 +143,7 @@ kpsApp.controller('updatePriceController', function ($scope) {
     $scope.message = 'Should say some shit about privey up your date';
 });
 
-kpsApp.controller('loginController', function ($scope, $location) {
+kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
     $scope.user = {
         "Name": "",
@@ -149,20 +152,36 @@ kpsApp.controller('loginController', function ($scope, $location) {
     };
 
     $scope.logUser = function () {
-
-        for (var x = $scope.users["user"].length-1; x>=0; x--) {
-             var validU = $scope.users["user"][x]["ID"].indexOf($scope.user.Name);
+        var users = {
+            "user": [
+                {
+                    "ID": "Samu",
+                    "Password": "XX",
+                    "Type": "Post"
+                },
+                {
+                    "ID": "James",
+                    "Password": "XX",
+                    "Type": "Admin"
+                }
+            ]
         }
-        if(validU != -1){
-            $scope.loginControl.user = $scope.user;
-            $scope.loginControl.loggedIn = true;
-//            $location.path('/addMailItem');
-        }
 
-//        $scope.loginControl.user = $scope.user;
-//        $scope.loggedIn = true;
-        console.log($scope.loginControl.user);
-        console.log("Logged In in Fiunction:: " +$scope.loginControl.loggedIn);
+
+        $rootScope.loginControl.user = $scope.user;
+        console.log($rootScope.loginControl.user);
+
+
+        for (var x = 0; x < users.user.length; x++) {
+            if (users.user[x].ID === $rootScope.loginControl.user.Name
+                && users.user[x].Password === $rootScope.loginControl.user.Password) {
+                $rootScope.loginControl.loggedIn = true;
+                $location.path('/addMailItem')
+                break;
+            }
+
+        }
+        console.log($rootScope.loginControl.user.Name);
     }
 
 
