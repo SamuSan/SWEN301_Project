@@ -1,8 +1,8 @@
 // script.js
 var kpsApp = angular.module('kpsApp', ['ngRoute', 'ngTable']);
-
-
 var NZ;
+var graph;
+
 kpsApp.config(function ($routeProvider) {
     $routeProvider
 
@@ -56,7 +56,6 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
         $rootScope.loginControl.loggedIn = false;
         $rootScope.loginControl.set = true;
     }
-    console.log($rootScope.loginControl.loggedIn)
     $rootScope.users = {};
     $http.get("data/users.json").success(function (data) {
         $rootScope.loginControl.users = data.users;
@@ -84,8 +83,7 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
     });
 
     var cities = {};
-
-    if (localStorage.getItem("mainSimulation") == "undefined") {
+    if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
         $http.get("data/master_simulation.json").success(function (data) {
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
@@ -231,6 +229,10 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.data = r.route;
 
+    /*
+
+    graph = buildDirGraph($scope.data);
+    var sp = shortestPath(graph,"A","F");*/
 
     $scope.submit = function (mailItem) {
 
@@ -333,8 +335,6 @@ function revenue(data, NZ) {
             }
 
         }
-
-
     }
     revenue.toFixed(2).replace(/./g, function (c, i, a) {
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
@@ -396,4 +396,41 @@ kpsApp.factory('pricefetch', function ($q, $http) {
     };
     return getFile;
 });
+
+function buildDirGraph(data){
+    graph = new DirectedGraph();
+    //console.log("***************", data);
+    /*
+    for (var i = 0; i < data.length; i++) {
+
+        var to = data[i].to;
+        var from = data[i].from;
+        var cost = data[i].weightcost + data[i].volumecost;
+        console.log("cost:" ,cost);
+    }*/
+
+    graph.addNode("A");
+    graph.addNode("B");
+    graph.addNode("C");
+    graph.addNode("D");
+    graph.addNode("E");
+    graph.addNode("F");
+    graph.addEdge("A","B",1);
+    graph.addEdge("B","D",2);
+    graph.addEdge("A","D",3);
+    graph.addEdge("B","C",4);
+
+    graph.addEdge("C","E",4);
+    graph.addEdge("D","F",3);
+    graph.addEdge("E","F",2);
+    graph.addEdge("F","C",1);
+    return graph;
+}
+
+function shortestPath(graph,start,dest){
+    var path = [];
+    var Dijk = new Dijkstra(graph, start);
+    path = Dijk.bestPath(start,dest);
+    return path;
+}
 
