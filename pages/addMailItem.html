@@ -5,8 +5,8 @@
 <head>
     <!-- SCROLLS -->
     <!-- load bootstrap and fontawesome via CDN -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
 
     <!-- SPELLS -->
     <!-- load angular via CDN -->
@@ -19,45 +19,66 @@
 </head>
 
 <div ng-controller="addMailItemController">
-<form name="addMailItem" action="" class="css-form" novalidate>
-        
+    <form name="addMailItem" action="" class="css-form" novalidate>
+
         <table>
-        <tr>
-                    <td>
-            <label>Dimension </label>
+            <tr>
+                <td>
+                    <label>Dimension </label>
                 </td>
-                </tr>
-                        <tr>
-                    <td>
-                    <label>Height(Centimeter): </label>  </td>
-                    <td> <input ng-model="input3" ng-trim="false" custom-validation required/> </td>
-                    </tr>
-                            <tr>
-                    <td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Height(Centimeter): </label></td>
+                <td><input ng-model="input3" ng-trim="false" custom-validation required/></td>
+            </tr>
+            <tr>
+                <td>
                     <label>Width(Centimeter): </label></td>
-                    <td><input ng-model="input4" ng-trim="false" custom-validation required=""/> </td>
-                           </tr> <tr>
-                    <td>
-                    <label>Length(Centimeter): </label> </td>
-                    <td><input ng-model="input5" ng-trim="false" custom-validation required/> </td>
-                </tr>
-<tr>
-            <td><label>Volume(Cubic Centimeter):</label> </td><td> <p ng-model = "mailItem.Volume">{{input3 * input4 * input5}}</p> </td>
- </tr><tr>           <td><label>Weight(Grams): </label> </td><td>  <input ng-model="mailItem.Weight" ng-trim="false" custom-validation required/></td>
- </tr> <tr>            <td><label>To: </label> </td><td> <select ng-init="To = To || dataRoute[0]" ng-model="mailItem.To" ng-options="datum as datum.destination + ' (' + datum.priority + ')' for datum in data" required></select></td>
- </tr> <tr>            <td><label>From: </label> </td><td> <select ng-init="mailItem.From = mailItem.From || dataRoute[0]" ng-model="mailItem.From" ng-options="datum as datum.origin + ' (' + datum.priority + ')' for datum in data" required></select></td>
-            
-</tr> <tr> <td>           <label>Price: </label> </td><td> <p ng-model = "mailItem.Price"> ${{mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5)}} </p></td>
-        
-</tr>
-        <button type="submit" class="btn btn-success"
-                ng-disabled="addMailItem.$invalid"
-                ng-click="submit()"
-                >Submit
-        </button>
-        <button type="submit" class="btn btn-danger">Cancel</button>
-    </table>
-</form>
+                <td><input ng-model="input4" ng-trim="false" custom-validation required=""/></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Length(Centimeter): </label></td>
+                <td><input ng-model="input5" ng-trim="false" custom-validation required/></td>
+            </tr>
+            <tr>
+                <td><label>Volume(Cubic Centimeter):</label></td>
+                <td><p ng-model="mailItem.Volume">{{input3 * input4 * input5}}</p></td>
+            </tr>
+            <tr>
+                <td><label>Weight(Grams): </label></td>
+                <td><input ng-model="mailItem.Weight" ng-trim="false" custom-validation required/></td>
+            </tr>
+            <tr>
+                <td><label>To: </label></td>
+                <td><select ng-init="To = To || dataRoute[0]" ng-model="mailItem.To"
+                            ng-options="datum as datum.destination + ' (' + datum.priority + ')' for datum in data"
+                            required></select></td>
+            </tr>
+            <tr>
+                <td><label>From: </label></td>
+                <td><select ng-init="mailItem.From = mailItem.From || dataRoute[0]" ng-model="mailItem.From"
+                            ng-options="datum as datum.origin + ' (' + datum.priority + ')' for datum in data"
+                            required></select></td>
+
+            </tr>
+            <tr>
+                <td><label>Price: </label></td>
+                <td><p ng-model="mailItem.Price">
+                    ${{mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5)}} </p>
+                </td>
+
+            </tr>
+
+            <button type="submit" class="btn btn-success"
+                    ng-disabled="addMailItem.$invalid"
+                    ng-click="submit()"
+                    >Submit
+            </button>
+            <button type="submit" class="btn btn-danger">Cancel</button>
+        </table>
+    </form>
 </div>
 
 </html>
