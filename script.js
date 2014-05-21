@@ -418,17 +418,17 @@ var routeEvent = $scope.routeEvent;
         routeEvent.origin=$scope.priceBox.origin;
         routeEvent.priority=$scope.priceBox.priority;
         routeEvent.type=$scope.priceBox.type;
-        routeEvent.volumeCost=$scope.priceBox.volumeCost;
+        routeEvent.volumeCost=$scope.priceBox.volumecost;
         routeEvent.volumePrice=$scope.priceBox.volumePrice;
-        routeEvent.weightCost=$scope.priceBox.weightCost;
-        routeEvent.weightPrice=$scope.priceBox.wSeightPrice;
+        routeEvent.weightCost=$scope.priceBox.weightcost;
+        routeEvent.weightPrice=$scope.priceBox.weightPrice;
         routeEvent.eventName = "Price Change";
         r.businessEvent.push(routeEvent);
 
 console.log('LOOK HERE FUCKER########################################');
         console.log(routeEvent);
 
-       // localStorage.setItem("mainSimulation",JSON.stringify(r));
+        localStorage.setItem("mainSimulation",JSON.stringify(r));
 
         $scope.message="saved";
 
