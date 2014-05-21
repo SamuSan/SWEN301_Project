@@ -26,17 +26,17 @@
 
         <tr>
         	<td>
-        		<label>Current Weight Cost: $ </label>{{ selectBox3.weightcost }} 
+        		<label>Current Weight price: $ </label>{{ selectBox3.weightPrice }} 
         	</td></tr>
   			<tr><td>
-  				<label>Current Volume Cost: $ </label> {{ selectBox3.volumecost }} 
+  				<label>Current Volume price: $ </label> {{ selectBox3.volumePrice }} 
   			</td>
 		</tr>
 	
 
 
-        <tr><td><label>New Weight Cost: </label> <input ng-model="nCost" ng-trim="false"/> </td></tr>
-        <tr><td><label>New Volume Cost: </label> <input ng-model="nCost" ng-trim="false"/> </td></tr>
+        <tr><td><label>New Weight price: </label> <input ng-model="wPrice" ng-trim="false"/> </td></tr>
+        <tr><td><label>New Volume price: </label> <input ng-model="vPrice" ng-trim="false"/> </td></tr>
         <tr><td>  <button type="submit" class="btn btn-success"
                     ng-disabled="addMailItem.$invalid"
                     ng-click="submit()"
