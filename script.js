@@ -346,7 +346,7 @@ function revenue(data, NZ) {
 /* James fat controller
  */
 
-kpsApp.controller('updatePriceController', function ($scope, pricefetch) {
+kpsApp.controller('updatePriceController', function ($scope) {
 
 var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
 $scope.data = r.route;
@@ -356,29 +356,14 @@ $scope.data = r.route;
 
 //########################update route
 
-kpsApp.controller('updateRouteController', function ($scope, pricefetch) {
+kpsApp.controller('updateRouteController', function ($scope) {
+var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+$scope.data = r.route;
 
 
-    pricefetch.fetch().then(function (data) {
-        $scope.data = data;
-        $scope.routeSelect = data[0];
-    })
 });
 
-kpsApp.factory('pricefetch', function ($q, $http) {
-    var getFile = {
-        fetch: function (callback) {
 
-            var deferred = $q.defer();
-
-            $http.get('../data/prices.json').success(function (data) {
-                deferred.resolve(data);
-            });
-            return deferred.promise;
-        }
-    };
-    return getFile;
-});
 
 /* Mike : Shortest path finder for the route data*/
 
@@ -388,9 +373,9 @@ function buildDirGraph(data){
 
     for (var i = 0; i < data.length; i++) {
 
-        var to = data[i].to;
-        var from = data[i].from;
-        var cost = data[i].weightcost + data[i].volumecost;
+        var to = data[i].destination;
+        var from = data[i].origin;
+        var cost = data[i].weightPrice + data[i].volumePrice;
         graph.addNode(from);
         graph.addNode(to);
         graph.addEdge(from,to,cost);
