@@ -1,16 +1,25 @@
-(function () {
+/*
+ * Dijkstras Algorithm.
+ * @author: Mohammad Chehab <chehabz@hotmail.com>
+ * @date: April 24, 2013
+ * https://github.com/chehabz/JavaScript-Dijkstra-Class/blob/master/Dijkstra.js
+ */
 
-    //<summary>
-    //  Dijkstra's algorithm to find shortest path from s to all other nodes
-    //</summary>
-    //<params name="graph" type="DirectedGraph"></param>
-    //<params name="start" type="string"></param>
+/*
+ * Edited by Michael Rimmer 21/05/14:
+ * Intended to be used for route finding the shortest route.
+ * Edited to include the lowest cost on the path output. Added a fix for nodes with no neighbors.
+ * Otherwise no changes.
+ */
+
+(function () {
 
     var Dijkstra = function (graph, start) {
         this.Graph = graph;
         this.visited = new Array(graph.size());
         this.distance = new Array(graph.size());
         this.preds = [];
+        this.costs = [];
         this.start = start;
         this.initialize();
     };
@@ -43,12 +52,12 @@
                 this.distance[i] = Number.MAX_VALUE;
                 this.visited[i] = false;
                 this.preds[i] = null;
+                this.costs[i] = null;
             }
 
             this.distance[idxStart] = 0;
 
             for (i = 0 ; i < this.distance.length; i++) {
-                console.log("dist?",this.distance.length);
                 var next = minVertex(this.distance, this.visited);
 
                 this.visited[next] = true;
@@ -56,18 +65,22 @@
                 // The shortest path to next is dist[next] and via pred[next].
 
                 var neighbors = this.Graph.edgesFrom(this.Graph.nodeAt(next));
-                console.log("null?",neighbors);
-                for (j = 0; j < neighbors.length; j++) {
 
-                    var neighborlength = Number(neighbors[j][1]) + Number(this.distance[next]);
-                    var neighbor = neighbors[j][0];
-                    var neighborIdx = this.Graph.indexOf(neighbor);
+                if(neighbors != null){
 
-                    if (this.distance[neighborIdx] > neighborlength) {
-                        this.distance[neighborIdx] = neighborlength;
-                        this.preds[neighborIdx] = next;
-                    }
-                }
+                    for (j = 0; j < neighbors.length; j++) {
+
+                        var neighborlength = Number(neighbors[j][1]) + Number(this.distance[next]);
+                        var neighbor = neighbors[j][0];
+                        var neighborIdx = this.Graph.indexOf(neighbor);
+
+                        if (this.distance[neighborIdx] > neighborlength) {
+                            this.distance[neighborIdx] = neighborlength;
+                            this.preds[neighborIdx] = next;
+                            this.costs[neighborIdx] = this.distance[neighborIdx];
+                        }
+                    }}
+
             }
             return this;
         },
@@ -79,13 +92,17 @@
             var path = [];
             var end = this.Graph.indexOf(destination);
             var idxSource = this.Graph.indexOf(source);
+            var cost;
+
             while (end != idxSource) {
 
                 path.splice(0, 0, this.Graph.nodeAt(end));
+                cost = this.costs[end];
                 end = this.preds[end];
+
             }
             path.splice(0, 0, source);
-
+            path.splice(3, 0, cost);
             return path;
         }
     };

@@ -229,10 +229,11 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.data = r.route;
 
-    /*
-
+    /*############Builds graph and calls shortest path#######*/
     graph = buildDirGraph($scope.data);
-    var sp = shortestPath(graph,"A","F");*/
+    var sp = shortestPath(graph,"Wellington","Sydney");
+    console.log("Lowest Cost",sp);
+    /*###################*/
 
     $scope.submit = function (mailItem) {
 
@@ -379,40 +380,29 @@ kpsApp.factory('pricefetch', function ($q, $http) {
     return getFile;
 });
 
+/* Mike : Shortest path finder for the route data*/
+
+/*Graph builder*/
 function buildDirGraph(data){
     graph = new DirectedGraph();
-    //console.log("***************", data);
-    /*
+
     for (var i = 0; i < data.length; i++) {
 
         var to = data[i].to;
         var from = data[i].from;
         var cost = data[i].weightcost + data[i].volumecost;
-        console.log("cost:" ,cost);
-    }*/
+        graph.addNode(from);
+        graph.addNode(to);
+        graph.addEdge(from,to,cost);
 
-    graph.addNode("A");
-    graph.addNode("B");
-    graph.addNode("C");
-    graph.addNode("D");
-    graph.addNode("E");
-    graph.addNode("F");
-    graph.addEdge("A","B",1);
-    graph.addEdge("B","D",2);
-    graph.addEdge("A","D",3);
-    graph.addEdge("B","C",4);
+    }
 
-    graph.addEdge("C","E",4);
-    graph.addEdge("D","F",3);
-    graph.addEdge("E","F",2);
-    graph.addEdge("F","C",1);
     return graph;
 }
-
+/*Finds Shortest Path on graph.*/
 function shortestPath(graph,start,dest){
     var path = [];
     var Dijk = new Dijkstra(graph, start);
     path = Dijk.bestPath(start,dest);
     return path;
 }
-
