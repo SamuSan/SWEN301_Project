@@ -113,7 +113,10 @@ kpsApp.controller('addRouteController', function ($scope) {
         "day":"",
         "destination": "",
            "duration":"",
-        "frequency":""
+        "frequency":"",
+        "maxVolume":"",
+        "maxVolume":""
+
     };
     $scope.submit = function () {
         var newRoute = $scope.addRoute;
