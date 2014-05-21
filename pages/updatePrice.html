@@ -20,23 +20,23 @@
         <table>
         <tr>
         	<td><label>Select route for price update:
-         <select ng-init="selectBox3 = selectBox3 || dataRoute[0]" ng-model="selectBox3" ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
+         <select ng-init="priceBox = priceBox || dataRoute[0]" ng-model="priceBox" ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
          </td>
         </tr>
 
         <tr>
         	<td>
-        		<label>Current Weight price: $ </label>{{ selectBox3.weightPrice }} 
+        		<label>Current Weight price: $ </label>{{ priceBox.weightPrice }} 
         	</td></tr>
   			<tr><td>
-  				<label>Current Volume price: $ </label> {{ selectBox3.volumePrice }} 
+  				<label>Current Volume price: $ </label> {{ priceBox.volumePrice }} 
   			</td>
 		</tr>
 	
 
 
-        <tr><td><label>New Weight price: </label> <input ng-model="wPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
-        <tr><td><label>New Volume price: </label> <input ng-model="vPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
+        <tr><td><label>New Weight price: </label> <input ng-model="priceBox.weightPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
+        <tr><td><label>New Volume price: </label> <input ng-model="priceBox.volumePrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
         <tr><td>  <button type="submit" class="btn btn-success"
                     
                     ng-click="submit()"

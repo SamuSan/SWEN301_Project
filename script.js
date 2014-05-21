@@ -350,7 +350,20 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
 var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
 $scope.data = r.route;
+var new_weightPrice = 0;
+var new_volumePrice = 0;
 
+
+    $scope.submit = function () {
+
+        new_volumePrice = $scope.priceBox.volumePrice;
+        new_weightPrice = $scope.priceBox.weightPrice;
+
+        //r.route.push(mailItem);
+        //r.businessEvents.push(mailItem);
+        //localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+    }
 });
 
 
