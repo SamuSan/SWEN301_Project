@@ -193,27 +193,27 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 });
 
 // Monitor Controller
-kpsApp.controller('monitorController', function ($scope, $http, $filter, ngTableParams) {
+kpsApp.controller('monitorController', function ($scope, $filter, ngTableParams) {
 
-    $http.get("data/business_figures.json").success(function (data) {
+    var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    var route = data.route;
 
-        $scope.tableParams = new ngTableParams({
-            page: 1,            // show first page
-            count: 10,          // count per page
-            sorting: {
-                id: 'asc'     // initial sorting
-            }
-        }, {
-            total: data.length, // length of data
-            getData: function ($defer, params) {
-                // use build-in angular filter
-                var orderedData = params.sorting() ?
-                    $filter('orderBy')(data, params.orderBy()) :
-                    data;
+    $scope.tableParamsRoute = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,          // count per page
+        sorting: {
+            company: 'asc'     // initial sorting
+        }
+    }, {
+        total: route.length, // length of route
+        getData: function ($defer, params) {
+            // use build-in angular filter
+            var orderedData = params.sorting() ?
+                $filter('orderBy')(route, params.orderBy()) :
+                route;
 
-                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            }
-        });
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
     });
 });
 

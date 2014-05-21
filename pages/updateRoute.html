@@ -3,31 +3,83 @@
 <html>
 <meta charset="utf-8">
 <head>
-<!-- SCROLLS -->
-<!-- load bootstrap and fontawesome via CDN -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
 
-<!-- SPELLS -->
-<!-- load angular via CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-<script src="script.js"></script>
+    <!-- SPELLS -->
+    <!-- load angular via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="script.js"></script>
 </head>
-<body ng-controller="updatePriceController">
+<body ng-controller="updateRouteController">
 
-    <ul>
+<table>
+    <tr>
+        <td><label>Select route to update:
+            <select ng-init="routeBox = routeBox || dataRoute[0]" ng-model="routeBox"
+                    ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
+        </td>
+    </tr>
 
-        <li> <label>Select route for price update: </label> <select ng-init="routeSelect = routeSelect || dataRoute[0].Price" ng-model="routeSelect" ng-options="datum.Price as 'Route : ' + datum.Price.from + ' to ' + datum.Price.to for datum in data"></select>
-        </li>
-        <li><label>Current Weight Cost: $ </label> {{ routeSelect.weightcost }} </li>
-  <li><label>Current Volume Cost: $ </label> {{ routeSelect.volumecost }} </li>
+    <tr>
+        <td>
+            <label>Type: </label> {{ routeBox.type }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current Weight Cost: $ </label> {{ routeBox.weightcost }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current Volume cost: $ </label> {{ routeBox.volumecost }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current Max Weight: </label> {{ routeBox.maxWeight }} <label> kgs</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current Max Volume: </label> {{ routeBox.maxVolume }} <label> cubic meters</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current duration </label> {{ routeBox.duration }} <label> hours</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current frequency of route: </label> {{ routeBox.frequency }} <label> hours</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Current shipping day: </label> {{ routeBox.day }}
+        </td>
+    </tr>
 
 
-        <li><label>New Weight Cost: </label> <input ng-model="nCost" ng-trim="false"/> </li>
-        <li><label>New Volume Cost: </label> <input ng-model="nCost" ng-trim="false"/> </li>
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Submit changes</button>
-
-</ul>
+    <!--<tr>
+        <td><label>New Weight price: </label> <input ng-model="routeBox.weightPrice" ng-trim="false" type="text"
+                                                     ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td>
+    </tr>
+    <tr>
+        <td><label>New Volume price: </label> <input ng-model="routeBox.volumePrice" ng-trim="false" type="text"
+                                                     ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td>
+    </tr>-->
+    <tr>
+        <td>
+            <button type="submit" class="btn btn-success" ng-click="submit()">Submit</button>
+            <button type="submit" class="btn btn-danger">Cancel</button>
+        </td>
+    </tr>
+</table>
 
 
 </body>

@@ -7,28 +7,36 @@
 </head>
 <body>
 	<div ng-controller="monitorController">
-		<table ng-table="tableParams" class="table">
-	        <tr ng-repeat="user in $data">
-	            <td data-title="'ID'" sortable="'id'">
-	                {{user.id}}
+		<h2>Route Summary</h2>
+		<table ng-table="tableParamsRoute" class="table">
+	        <tr ng-repeat="route in $data"> 
+	            <td data-title="'Company'" sortable="'company'">
+	                {{route.company}}
 	            </td>
-	            <td data-title="'Start Date'" sortable="'startDate'">
-	                {{user.startDate}}
+	            <td data-title="'Origin'" sortable="'origin'">
+	                {{route.origin}}
 	            </td>
-	            <td data-title="'End Date'" sortable="'endDate'">
-	                {{user.endDate}}
+	            <td data-title="'Destination'" sortable="'destination'">
+	                {{route.destination}}
 	            </td>
-	            <td data-title="'Revenue'" sortable="'revenue'">
-	                {{user.revenue}}
+	            <td data-title="'Type'" sortable="'type'">
+	                {{route.type}}
 	            </td>
-	            <td data-title="'Expenditure'" sortable="'Expenditure'">
-	                {{user.expenditure}}
+	            <td data-title="'Shipped Items'" sortable="'volumePrice'">
+	                
 	            </td>
-	            <td data-title="'Average Delivery Times'" sortable="'averageDeliveryTimes'">
-	                {{user.averageDeliveryTimes}}
+	            <td data-title="'Cost of Shipped Items'" sortable="'volumePrice'">
+	                
+	            </td>
+	            <td data-title="'Price for Shipped Items'" sortable="'volumePrice'">
+	                
+	            </td>
+	            <td data-title="'Total Revenue from Items'" sortable="'volumePrice'">
+	                
 	            </td>
 	        </tr>
 	    </table>
+	    <h2>Business Event Log</h2>
 	</div>
 </body>
 </html>
