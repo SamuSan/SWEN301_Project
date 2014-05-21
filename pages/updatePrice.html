@@ -35,10 +35,10 @@
 	
 
 
-        <tr><td><label>New Weight price: </label> <input ng-model="wPrice" ng-trim="false"/> </td></tr>
-        <tr><td><label>New Volume price: </label> <input ng-model="vPrice" ng-trim="false"/> </td></tr>
+        <tr><td><label>New Weight price: </label> <input ng-model="wPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
+        <tr><td><label>New Volume price: </label> <input ng-model="vPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
         <tr><td>  <button type="submit" class="btn btn-success"
-                    ng-disabled="addMailItem.$invalid"
+                    
                     ng-click="submit()"
                     >Submit
             </button>
