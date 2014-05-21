@@ -115,7 +115,15 @@ kpsApp.controller('addRouteController', function ($scope) {
            "duration":"",
         "frequency":"",
         "maxVolume":"",
-        "maxVolume":""
+        "maxVolume":"",
+        "origin":"",
+        "priority":"",
+        "type":"",
+        "volumeCost":"",
+        "volumePrice":"",
+        "weightCost":"",
+        "weightPrice":""
+
 
     };
     $scope.submit = function () {
