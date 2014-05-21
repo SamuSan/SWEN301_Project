@@ -3,10 +3,10 @@
 <html>
 <meta charset="utf-8"> 
 <head>
-	<title>Monitoring</title>
+	<title>Route Summary</title>
 </head>
 <body>
-	<div ng-controller="monitorController">
+	<div ng-controller="routeSummaryController">
 		<h2>Route Summary</h2>
 		<table ng-table="tableParamsRoute" class="table">
 	        <tr ng-repeat="route in $data"> 
@@ -36,7 +36,6 @@
 	            </td>
 	        </tr>
 	    </table>
-	    <h2>Business Event Log</h2>
 	</div>
 </body>
 </html>

@@ -35,9 +35,15 @@ kpsApp.config(function ($routeProvider) {
             loginReq: true,
             adminAccess: false
         })
-        .when('/monitoring', {
-            templateUrl: 'pages/monitoring.html',
-            controller: 'monitorController',
+        .when('/routeSummary', {
+            templateUrl: 'pages/routeSummary.html',
+            controller: 'routeSummaryController',
+            loginReq: true,
+            adminAccess: true
+        })
+        .when('/eventLog', {
+            templateUrl: 'pages/eventLog.html',
+            controller: 'eventLogController',
             loginReq: true,
             adminAccess: true
         });
@@ -69,14 +75,14 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
         if ($rootScope.loginControl.loggedIn === false) {
             $location.path('/');
         }
-        else if ($rootScope.loginControl.loggedIn === true && newPath !=='/monitoring') {
+        else if ($rootScope.loginControl.loggedIn === true && (newPath !=='/routeSummary' || newPath !=='/eventLog')) {
             $location.path(newPath);
         }
-        else if($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
+        else if($rootScope.loginControl.loggedIn === true && (newPath ==='/routeSummary' || newPath ==='/eventLog')
             && $rootScope.loginControl.user.Type === 'Admin'){
             $location.path(newPath);
         }
-        else if ($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
+        else if ($rootScope.loginControl.loggedIn === true && (newPath ==='/routeSummary' || newPath ==='/eventLog')
             && $rootScope.loginControl.user.Type !== 'Admin'){
             $location.path('/');
         }
@@ -192,8 +198,8 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
 });
 
-// Monitor Controller
-kpsApp.controller('monitorController', function ($scope, $filter, ngTableParams) {
+// Route Summary Controller
+kpsApp.controller('routeSummaryController', function ($scope, $filter, ngTableParams) {
 
     var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
     var route = data.route;
@@ -211,6 +217,33 @@ kpsApp.controller('monitorController', function ($scope, $filter, ngTableParams)
             var orderedData = params.sorting() ?
                 $filter('orderBy')(route, params.orderBy()) :
                 route;
+
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
+});
+
+// Event Log Controller
+kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams) {
+
+    var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    // !!!
+    // !!!
+    var businessEvent = data.mail; // It is currently mail as using data.businessEvent causes an error
+
+    $scope.tableParamsEvent = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,          // count per page
+        sorting: {
+            company: 'asc'     // initial sorting
+        }
+    }, {
+        total: businessEvent.length, // length of businessEvent
+        getData: function ($defer, params) {
+            // use build-in angular filter
+            var orderedData = params.sorting() ?
+                $filter('orderBy')(businessEvent, params.orderBy()) :
+                businessEvent;
 
             $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
         }
