@@ -83,11 +83,11 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
     });
 
     var cities = {};
-    if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
+    //if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
         $http.get("data/master_simulation.json").success(function (data) {
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
-    }
+    //}
     $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
@@ -243,10 +243,15 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.submit = function (mailItem) {
 
-        //Not working atm
-        //r.route.push(mailItem);
-        //r.businessEvents.push(mailItem);
-        //localStorage.setItem("mainSimulation",JSON.stringify(r));
+        mailItem.priority = mailItem.From.priority;
+
+        r.route.push(mailItem);
+
+
+        mailItem.eventName = "Add Mail";
+        r.businessEvent.push(mailItem);
+
+        localStorage.setItem("mainSimulation",JSON.stringify(r));
 
     }
 });
