@@ -83,11 +83,11 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
     });
 
     var cities = {};
-    //if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
+    if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
         $http.get("data/master_simulation.json").success(function (data) {
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
-    //}
+    }
     $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
@@ -223,34 +223,56 @@ kpsApp.controller('monitorController', function ($scope, $http, $filter, ngTable
 
 kpsApp.controller('addMailItemController', function ($scope) {
 
-    var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    var r = JSON.parse(localStorage.getItem("mainSimulation"));
 
     $scope.mailItem = {
-        "Volume": "",
+        "Volume": 0,
         "To": "",
         "From": "",
         "Weight": "",
-        "Price": ""
+        "Price": 0
     };
 
-    $scope.data = r.route;
+    $scope.cost;
+
+    $scope.data = r.simulation.route;
+
+
+    $scope.getRoute = function(mailItem){
+        $scope.fromRoute = [];
+        //will need to set fromRoute to empty
+        if(mailItem.From == ""
+        || mailItem.From == undefined){
+
+        }
+        else {
+            graph = buildDirGraph($scope.data);
+
+            for (var i = 0; i < r.simulation.route.length; i++) {
+                if (shortestPath(graph, mailItem.From.origin, r.simulation.route[i].destination) != null) {
+                    $scope.fromRoute.push(r.simulation.route[i]);
+                }
+            }
+        }
+
+
+
+    };
 
     /*############Builds graph and calls shortest path#######*/
-    graph = buildDirGraph($scope.data);
-    var sp = shortestPath(graph,"Wellington","Sydney");
-    console.log("Lowest Cost",sp);
+
     /*###################*/
 
     $scope.submit = function (mailItem) {
 
         mailItem.priority = mailItem.From.priority;
 
-        r.route.push(mailItem);
+        r.simulation.route.push(mailItem);
 
 
-        mailItem.eventName = "Add Mail";
-        r.businessEvent.push(mailItem);
-
+        mailItem.eventName = "Add Mailzzzz";
+        r.simulation.businessEvent.push(mailItem);
+        console.log(r);
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
     }

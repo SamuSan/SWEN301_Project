@@ -66,7 +66,7 @@
 
                 var neighbors = this.Graph.edgesFrom(this.Graph.nodeAt(next));
 
-                if(neighbors != null){
+                if(neighbors != null && neighbors[0] != void(0)){
 
                     for (j = 0; j < neighbors.length; j++) {
 
@@ -94,12 +94,20 @@
             var idxSource = this.Graph.indexOf(source);
             var cost;
 
-            while (end != idxSource) {
+            if(void(0) == end){
+                return null;
+            }
 
+            var i = 0;
+
+            while (end != idxSource) {
+                i++;
                 path.splice(0, 0, this.Graph.nodeAt(end));
                 cost = this.costs[end];
                 end = this.preds[end];
-
+                if(i > 100) {
+                    return null;
+                }
             }
             path.splice(0, 0, source);
             path.splice(3, 0, cost);
