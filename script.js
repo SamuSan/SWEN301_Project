@@ -110,15 +110,9 @@ kpsApp.controller('addRouteController', function ($scope) {
     $scope.placeHolder = "*";
     $scope.addRoute = {
         "company": "",
+        "day":"",
         "destination": "",
-        "type": "",
-        "weightCost": "",
-        "volumeCost": "",
-        "maxWeight": "",
-        "maxVolume": "",
-        "duration": "",
-        "frequency": "",
-        "departs": ""
+           "duration":""
     };
     $scope.submit = function () {
         var newRoute = $scope.addRoute;
