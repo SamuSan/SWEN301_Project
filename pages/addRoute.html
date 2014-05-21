@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="script.js"></script>
 </head>
-<form name="addRouteFrom" action="" class="form-horizontal">
+<form name="addRouteFrom" action="">
     <h3>Add Route</h3>
 
     <div ng-controller="addRouteController">
@@ -23,19 +23,26 @@
 
                 <tr>
                     <td>
-                        <div>
                             <label>Company :</label>
-                        </div>
                     </td>
                     <td>
-                        <div>
+
                             <input placeholder="{{placeHolder}}"
                                    id="companyInput"
                                    type="text"
                                    name="company"
                                    ng-model="addRoute.company"
                                    required>
-                        </div>
+
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success"
+                                ng-disabled="addRouteFrom.$invalid"
+                                ng-click="submit()"
+                                >Submit
+                        </button>
+                        <button type="submit" class="btn btn-danger">Cancel</button>
+
                     </td>
                 </tr>
                 <tr>
@@ -192,22 +199,22 @@
                     <td></td>
                     <td>
 
-                        <button type="submit" class="btn btn-success"
-                                ng-disabled="addRouteFrom.$invalid"
-                                ng-click="submit()"
-                                >Submit
-                        </button>
-                        <button type="submit" class="btn btn-danger">Cancel</button>
+                        <!--<button type="submit" class="btn btn-success"-->
+                                <!--ng-disabled="addRouteFrom.$invalid"-->
+                                <!--ng-click="submit()"-->
+                                <!--Submit-->
+                        <!--</button>-->
+                        <!--<button type="submit" class="btn btn-danger">Cancel</button>-->
 
                     </td>
 
                 </tr>
 
             </table>
-            <label>{{addRoute.company}} {{addRoute.to}} {{addRoute.type}} {{addRoute.weightCost}}
-                {{addRoute.volumeCost}} </label>
-            <label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}}
-                {{addRoute.departs}}</label>
+            <!--<label>{{addRoute.company}} {{addRoute.to}} {{addRoute.type}} {{addRoute.weightCost}}-->
+                <!--{{addRoute.volumeCost}} </label>-->
+            <!--<label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}}-->
+                <!--{{addRoute.departs}}</label>-->
         </div>
 
     </div>

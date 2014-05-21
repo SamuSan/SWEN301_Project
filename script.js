@@ -69,15 +69,15 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
         if ($rootScope.loginControl.loggedIn === false) {
             $location.path('/');
         }
-        else if ($rootScope.loginControl.loggedIn === true && newPath !=='/monitoring') {
+        else if ($rootScope.loginControl.loggedIn === true && newPath !== '/monitoring') {
             $location.path(newPath);
         }
-        else if($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
-            && $rootScope.loginControl.user.Type === 'Admin'){
+        else if ($rootScope.loginControl.loggedIn === true && newPath === '/monitoring'
+            && $rootScope.loginControl.user.Type === 'Admin') {
             $location.path(newPath);
         }
-        else if ($rootScope.loginControl.loggedIn === true && newPath ==='/monitoring'
-            && $rootScope.loginControl.user.Type !== 'Admin'){
+        else if ($rootScope.loginControl.loggedIn === true && newPath === '/monitoring'
+            && $rootScope.loginControl.user.Type !== 'Admin') {
             $location.path('/');
         }
     });
@@ -110,15 +110,22 @@ kpsApp.controller('addRouteController', function ($scope) {
     $scope.placeHolder = "*";
     $scope.addRoute = {
         "company": "",
-        "to": "",
-        "type": "",
-        "weightCost": "",
-        "volumeCost": "",
-        "maxWeight": "",
-        "maxVolume": "",
+        "day": "",
+        "destination": "",
         "duration": "",
         "frequency": "",
-        "departs": ""
+        "maxVolume": "",
+        "maxWeight": "",
+        "origin": "",
+        "priority": "",
+        "type": "",
+        "volumeCost": "",
+        "weightCost": "",
+        "volumePrice": "",
+        "weightPrice": ""
+
+
+
     };
     $scope.submit = function () {
         var newRoute = $scope.addRoute;
@@ -146,7 +153,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
     $scope.user = {
         "Name": "",
         "Password": "",
-        "Type":""
+        "Type": ""
     };
 
     $scope.logUser = function () {
@@ -231,8 +238,8 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     /*############Builds graph and calls shortest path#######*/
     graph = buildDirGraph($scope.data);
-    var sp = shortestPath(graph,"Wellington","Sydney");
-    console.log("Lowest Cost",sp);
+    var sp = shortestPath(graph, "Wellington", "Sydney");
+    console.log("Lowest Cost", sp);
     /*###################*/
 
     $scope.submit = function (mailItem) {
@@ -348,8 +355,8 @@ function revenue(data, NZ) {
 
 kpsApp.controller('updatePriceController', function ($scope) {
 
-var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
-$scope.data = r.route;
+    var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    $scope.data = r.route;
 
 });
 
@@ -357,18 +364,17 @@ $scope.data = r.route;
 //########################update route
 
 kpsApp.controller('updateRouteController', function ($scope) {
-var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
-$scope.data = r.route;
+    var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    $scope.data = r.route;
 
 
 });
 
 
-
 /* Mike : Shortest path finder for the route data*/
 
 /*Graph builder*/
-function buildDirGraph(data){
+function buildDirGraph(data) {
     graph = new DirectedGraph();
 
     for (var i = 0; i < data.length; i++) {
@@ -378,16 +384,16 @@ function buildDirGraph(data){
         var cost = data[i].weightPrice + data[i].volumePrice;
         graph.addNode(from);
         graph.addNode(to);
-        graph.addEdge(from,to,cost);
+        graph.addEdge(from, to, cost);
 
     }
 
     return graph;
 }
 /*Finds Shortest Path on graph.*/
-function shortestPath(graph,start,dest){
+function shortestPath(graph, start, dest) {
     var path = [];
     var Dijk = new Dijkstra(graph, start);
-    path = Dijk.bestPath(start,dest);
+    path = Dijk.bestPath(start, dest);
     return path;
 }
