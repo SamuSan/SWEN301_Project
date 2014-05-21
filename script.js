@@ -83,11 +83,11 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
     });
 
     var cities = {};
-    //if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
+    if (localStorage.getItem("mainSimulation") == null || localStorage.getItem("mainSimulation") == 'undefined') {
         $http.get("data/master_simulation.json").success(function (data) {
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
-    //}
+    }
     $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
