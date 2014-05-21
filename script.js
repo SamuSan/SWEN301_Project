@@ -383,7 +383,56 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
 var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
 $scope.data = r.route;
+$scope.routeEvent = {
+        "company": "",
+        "day":"",
+        "destination": "",
+        "duration":"",
+        "frequency":"",
+        "maxVolume":"",
+        "maxVolume":"",
+        "origin":"",
+        "priority":"",
+        "type":"",
+        "volumeCost":"",
+        "volumePrice":"",
+        "weightCost":"",
+        "weightPrice":""
 
+
+    };
+
+    $scope.submit = function () {
+
+var routeEvent = $scope.routeEvent;
+        //r.route.push(routeEvent);
+
+/*yeah shut up i know its ugly*/
+        routeEvent.company=$scope.priceBox.company;
+        routeEvent.day=$scope.priceBox.day;
+        routeEvent.destination=$scope.priceBox.destination;
+        routeEvent.duration=$scope.priceBox.duration;
+        routeEvent.frequency=$scope.priceBox.frequency;
+        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.origin=$scope.priceBox.origin;
+        routeEvent.priority=$scope.priceBox.priority;
+        routeEvent.type=$scope.priceBox.type;
+        routeEvent.volumeCost=$scope.priceBox.volumeCost;
+        routeEvent.volumePrice=$scope.priceBox.volumePrice;
+        routeEvent.weightCost=$scope.priceBox.weightCost;
+        routeEvent.weightPrice=$scope.priceBox.wSeightPrice;
+        routeEvent.eventName = "Price Change";
+        r.businessEvent.push(routeEvent);
+
+console.log('LOOK HERE FUCKER########################################');
+        console.log(routeEvent);
+
+       // localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+        $scope.message="saved";
+
+    }
 });
 
 
