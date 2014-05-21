@@ -270,7 +270,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
         r.simulation.route.push(mailItem);
 
 
-        mailItem.eventName = "Add Mailzzzz";
+        mailItem.eventName = "Add Mail";
         r.simulation.businessEvent.push(mailItem);
         console.log(r);
         localStorage.setItem("mainSimulation",JSON.stringify(r));
