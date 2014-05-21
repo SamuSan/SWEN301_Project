@@ -265,14 +265,24 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.submit = function (mailItem) {
 
+        var currentdate = new Date();
+
+        var datetime = currentdate.getDate() + "/"+(currentdate.getMonth()+1)
+            + "/" + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+
         mailItem.priority = mailItem.From.priority;
 
         r.simulation.route.push(mailItem);
 
 
         mailItem.eventName = "Add Mail";
+        mailItem.time = datetime;
         r.simulation.businessEvent.push(mailItem);
-        console.log(r);
+
+
+
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
     }

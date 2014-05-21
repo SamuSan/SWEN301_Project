@@ -38,7 +38,7 @@
             <tr>
                 <td>
                     <label>Width(Centimeter): </label></td>
-                <td><input ng-model="input4" ng-trim="false" custom-validation required=""/></td>
+                <td><input  ng-model="input4" ng-trim="false" custom-validation required=""/></td>
             </tr>
             <tr>
                 <td>
@@ -47,7 +47,7 @@
             </tr>
             <tr>
                 <td><label>Volume(Cubic Centimeter):</label></td>
-                <td><p ng-model="mailItem.Volume">{{input3 * input4 * input5}}</p></td>
+                <td><p ng-model="mailItem.Volume">{{mailItem.Volume = input3 * input4 * input5; mailItem.Volume}}</p></td>
             </tr>
             <tr>
                 <td><label>Weight(Grams): </label></td>
@@ -55,21 +55,21 @@
             </tr>
             <tr>
                 <td><label>From: </label></td>
-                <td><select ng-init="mailItem.From = mailItem.From || dataRoute[0]" ng-model="mailItem.From"
+                <td><select ng-init="mailItem.From = mailItem.From || data[0]" ng-model="mailItem.From"
                             ng-options="datum as datum.origin + ' (' + datum.priority + ')' for datum in data"
                             ng-click="getRoute(mailItem)"
                             required></select></td>
             </tr>
             <tr>
                 <td><label>To: </label></td>
-                <td><select ng-init="To = To || dataRoute[0]" ng-model="mailItem.To"
+                <td><select ng-init="To = To || fromRoute[0]" ng-model="mailItem.To"
                             ng-options="datum as datum.destination + ' (' + datum.priority + ')' for datum in fromRoute"
                             required></select></td>
             </tr>
             <tr>
-                <td><label>Price: </label></td>
-                <td><p ng-model="mailItem.Price">
-                    ${{mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5)}} </p>
+                <td><label >Price: </label></td>
+                <td><label>
+                    ${{mailItem.Price = mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5); mailItem.Price}} </label>
                 </td>
 
             </tr>
