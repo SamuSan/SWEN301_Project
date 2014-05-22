@@ -280,6 +280,7 @@ kpsApp.controller('addRouteController', function ($scope) {
         localStorage.setItem("mainSimulation", JSON.stringify(r));
         $window.location.href = '/addMailItem'
 
+        
     }
 });
 
