@@ -1,41 +1,41 @@
 
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8"> 
+<meta charset="utf-8">
 <head>
-	<title>Route Summary</title>
+    <title>Route Summary</title>
 </head>
 <body>
-	<div ng-controller="routeSummaryController">
-		<h2>Route Summary</h2>
-		<table ng-table="tableParamsRoute" class="table">
-	        <tr ng-repeat="route in $data"> 
-	            <td data-title="'Company'" sortable="'company'">
-	                {{route.company}}
-	            </td>
-	            <td data-title="'Origin'" sortable="'origin'">
-	                {{route.origin}}
-	            </td>
-	            <td data-title="'Destination'" sortable="'destination'">
-	                {{route.destination}}
-	            </td>
-	            <td data-title="'Type'" sortable="'type'">
-	                {{route.type}}
-	            </td>
-	            <td data-title="'Shipped Items'" sortable="'volumePrice'">
-	                
-	            </td>
-	            <td data-title="'Cost of Shipped Items'" sortable="'volumePrice'">
-	                
-	            </td>
-	            <td data-title="'Price for Shipped Items'" sortable="'volumePrice'">
-	                
-	            </td>
-	            <td data-title="'Total Revenue from Items'" sortable="'volumePrice'">
-	                
-	            </td>
-	        </tr>
-	    </table>
-	</div>
+<div ng-controller="routeSummaryController">
+    <h2>Route Summary</h2>
+    <table ng-table="tableParamsRoute" class="table">
+        <tr ng-repeat="route in $data">
+            <td data-title="'Company'" sortable="'company'">
+                {{route.company}}
+            </td>
+            <td data-title="'Origin'" sortable="'origin'">
+                {{route.origin}}
+            </td>
+            <td data-title="'Destination'" sortable="'destination'">
+                {{route.destination}}
+            </td>
+            <td data-title="'Type'" sortable="'type'">
+                {{route.type}}
+            </td>
+            <td data-title="'Shipped Items'" sortable="'volumePrice'">
+                {{route.shippedItems}}
+            </td>
+            <td data-title="'Cost of Shipped Items'" sortable="'volumePrice'">
+                {{route.costShippedItems}}
+            </td>
+            <td data-title="'Price for Shipped Items'" sortable="'volumePrice'">
+                {{route.priceShippedItems}}
+            </td>
+            <td data-title="'Total Revenue from Items'" sortable="'volumePrice'">
+                {{route.revenue}}
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

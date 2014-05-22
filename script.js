@@ -303,7 +303,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 kpsApp.controller('routeSummaryController', function ($scope, $filter, ngTableParams) {
 
     var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
-    var route = data.route;
+    var route = summaryData(data);
 
     $scope.tableParamsRoute = new ngTableParams({
         page: 1,            // show first page
@@ -645,3 +645,47 @@ if(Route2 == undefined){return false;}
     if(Route1.weightCost != Route2.weightCost){ return false; }
     if(Route1.weightroute != Route2.weightroute){ return false; }
     return true; }
+
+function summaryData(data){
+    var tableData = [];
+    var route = data.route;
+    var mail = data.mail;
+
+    for (var i = 0; i < route.length; i++) {
+        var summary = {
+            "company": route[i].company,
+            "origin": route[i].origin,
+            "destination": route[i].destination,
+            "type":route[i].type,
+            "shippedItems":0,
+            "costShippedItems":0,
+            "priceShippedItems":0,
+            "revenue":0,
+            "volumeCost": route[i].volumecost,
+            "volumePrice": route[i].volumePrice,
+            "weightCost": route[i].weightcost,
+            "weightPrice": route[i].weightPrice
+
+        }
+        tableData[i] = summary;
+    }
+    /* iterate the mail array, and iterate through the table routes for each mail. If c,o,d match
+     * add to the values.
+     * */
+    for (var j = 0; j < mail.length; j++) {
+
+        var item = mail[j];
+        for (var k = 0; k < tableData.length; k++) {
+            if(item.from == tableData[k].origin && item.to == tableData[k].destination /*&& item.priority == tableData[k].priority*/){
+                var temp =  tableData[k];
+                var cost = (temp.volumeCost * item.volume + temp.weightCost * item.weight);
+                var price = (temp.volumePrice * item.volume + temp.weightPrice * item.weight);
+                temp.shippedItems += 1;
+                temp.costShippedItems += cost;
+                temp.priceShippedItems += price;
+                temp.revenue += price - cost;
+            }
+        }
+    }
+    return tableData;
+}
