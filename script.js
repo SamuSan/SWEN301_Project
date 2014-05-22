@@ -29,9 +29,9 @@ kpsApp.config(function ($routeProvider) {
             loginReq: true,
             adminAccess: false
         })
-        .when('/updateroute', {
-            templateUrl: 'pages/updateroute.html',
-            controller: 'updaterouteController',
+        .when('/updatePrice', {
+            templateUrl: 'pages/updatePrice.html',
+            controller: 'updatePriceController',
             loginReq: true,
             adminAccess: false
         })
@@ -422,7 +422,7 @@ kpsApp.directive('customValidation', function () {
 /* James fat controller
  */
 
-kpsApp.controller('updaterouteController', function ($scope) {
+kpsApp.controller('updatePriceController', function ($scope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
@@ -452,20 +452,20 @@ kpsApp.controller('updaterouteController', function ($scope) {
         //r.route.push(routeEvent);
 
         /*yeah shut up i know its ugly*/
-        routeEvent.company=$scope.routeBox.company;
-        routeEvent.day=$scope.routeBox.day;
-        routeEvent.destination=$scope.routeBox.destination;
-        routeEvent.duration=$scope.routeBox.duration;
-        routeEvent.frequency=$scope.routeBox.frequency;
-        routeEvent.maxVolume=$scope.routeBox.maxVolume;
-        routeEvent.maxWeight=$scope.routeBox.maxWeight;
-        routeEvent.origin=$scope.routeBox.origin;
-        routeEvent.priority=$scope.routeBox.priority;
-        routeEvent.type=$scope.routeBox.type;
-        routeEvent.volumeCost=$scope.routeBox.volumecost;
-        routeEvent.volumeroute=$scope.routeBox.volumeroute;
-        routeEvent.weightCost=$scope.routeBox.weightcost;
-        routeEvent.weightroute=$scope.routeBox.weightroute;
+        routeEvent.company=$scope.priceBox.company;
+        routeEvent.day=$scope.priceBox.day;
+        routeEvent.destination=$scope.priceBox.destination;
+        routeEvent.duration=$scope.priceBox.duration;
+        routeEvent.frequency=$scope.priceBox.frequency;
+        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.maxWeight=$scope.priceBox.maxWeight;
+        routeEvent.origin=$scope.priceBox.origin;
+        routeEvent.priority=$scope.priceBox.priority;
+        routeEvent.type=$scope.priceBox.type;
+        routeEvent.volumeCost=$scope.priceBox.volumecost;
+        routeEvent.volumeroute=$scope.priceBox.volumeroute;
+        routeEvent.weightCost=$scope.priceBox.weightcost;
+        routeEvent.weightroute=$scope.priceBox.weightroute;
         routeEvent.eventName = "route Change";
         r.simulation.businessEvent.push(routeEvent);
 
@@ -474,8 +474,8 @@ kpsApp.controller('updaterouteController', function ($scope) {
         { if(compare(routeEvent,r.simulation.route[i]) == true){
 
          //update here       
-            r.simulation.route[i].volumeroute = $scope.routeBox.volumeroute;
-            r.simulation.route[i].weightroute = $scope.routeBox.weightroute;
+            r.simulation.route[i].volumeroute = $scope.priceBox.volumeroute;
+            r.simulation.route[i].weightroute = $scope.priceBox.weightroute;
              } 
          }
 
@@ -483,17 +483,18 @@ kpsApp.controller('updaterouteController', function ($scope) {
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
-        $scope.routeBox = null;
+        $scope.priceBox = null;
         $scope.updateMessage = 'Successfully Updated';
     }
     $scope.cancel = function(){
-        $scope.routeBox = null;
+        $scope.priceBox = null;
         $scope.updateMessage = 'Cancelled Changes';
     }
     $scope.pend =function(){
         $scope.updateMessage = 'Changes Pending'
     }
 });
+
 
 
 //########################update route
