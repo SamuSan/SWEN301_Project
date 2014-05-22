@@ -226,10 +226,10 @@ kpsApp.controller('routeSummaryController', function ($scope, $filter, ngTablePa
 // Event Log Controller
 kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams) {
 
-    var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
+    var data = JSON.parse(localStorage.getItem("mainSimulation"));
     // !!!
     // !!!
-    var businessEvent = data.mail; // It is currently mail as using data.businessEvent causes an error
+    var businessEvent = data.simulation.businessEvent;//data.mail; // It is currently mail as using data.businessEvent causes an error
 
     $scope.tableParamsEvent = new ngTableParams({
         page: 1,            // show first page
@@ -424,8 +424,8 @@ function revenue(data, NZ) {
 
 kpsApp.controller('updatePriceController', function ($scope) {
 
-var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
-$scope.data = r.route;
+var r = JSON.parse(localStorage.getItem("mainSimulation"));
+$scope.data = r.simulation.route;
 $scope.routeEvent = {
         "company": "",
         "day":"",
@@ -466,7 +466,7 @@ var routeEvent = $scope.routeEvent;
         routeEvent.weightCost=$scope.priceBox.weightcost;
         routeEvent.weightPrice=$scope.priceBox.weightPrice;
         routeEvent.eventName = "Price Change";
-        r.businessEvent.push(routeEvent);
+        r.simulation.businessEvent.push(routeEvent);
 
 console.log('LOOK HERE FUCKER########################################');
         console.log(routeEvent);
@@ -482,8 +482,58 @@ console.log('LOOK HERE FUCKER########################################');
 //########################update route
 
 kpsApp.controller('updateRouteController', function ($scope) {
-var r = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
-$scope.data = r.route;
+var r = JSON.parse(localStorage.getItem("mainSimulation"));
+$scope.data = r.simulation.route;
+$scope.routeEvent = {
+        "company": "",
+        "day":"",
+        "destination": "",
+        "duration":"",
+        "frequency":"",
+        "maxVolume":"",
+        "maxVolume":"",
+        "origin":"",
+        "priority":"",
+        "type":"",
+        "volumeCost":"",
+        "volumePrice":"",
+        "weightCost":"",
+        "weightPrice":""
+
+
+    };
+
+    $scope.submit = function () {
+
+var routeEvent = $scope.routeEvent;
+        //r.route.push(routeEvent);
+
+/*yeah shut up i know its ugly*/
+        routeEvent.company=$scope.priceBox.company;
+        routeEvent.day=$scope.priceBox.day;
+        routeEvent.destination=$scope.priceBox.destination;
+        routeEvent.duration=$scope.priceBox.duration;
+        routeEvent.frequency=$scope.priceBox.frequency;
+        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.origin=$scope.priceBox.origin;
+        routeEvent.priority=$scope.priceBox.priority;
+        routeEvent.type=$scope.priceBox.type;
+        routeEvent.volumeCost=$scope.priceBox.volumecost;
+        routeEvent.volumePrice=$scope.priceBox.volumePrice;
+        routeEvent.weightCost=$scope.priceBox.weightcost;
+        routeEvent.weightPrice=$scope.priceBox.weightPrice;
+        routeEvent.eventName = "Price Change";
+        r.simulation.businessEvent.push(routeEvent);
+
+console.log('LOOK HERE FUCKER########################################');
+        console.log(routeEvent);
+
+        localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+        $scope.message="saved";
+
+    }
 
 
 });
