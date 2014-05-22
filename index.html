@@ -86,7 +86,10 @@
     <div>
         <p ng-controller="mainController">
             <label class="kp-badge" >
-                Items in System :   {{figures.numItems}}
+                Events Processed :   {{figures.events}}
+            </label>
+                        <label class="kp-badge" >
+                Items Processed :   {{figures.sysItems}} Total Weight : {{figures.sysItemsWeight}} gms Total Volume: {{figures.sysItemsVolume}} cm^3
             </label>
             <label class="kp-badge" >
                 Total Revenue : $ {{figures.totalRevenue}}
@@ -94,10 +97,10 @@
             <label class="kp-badge" >
                 Total Expenditure : $ {{figures.totalExpenditure}}
             </label>
-            </label>
             <label class="kp-badge" >
                 Average Delivery Time :  {{figures.averageTime}} Days
             </label>
+
         </p>
     </div>
 </div>

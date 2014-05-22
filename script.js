@@ -106,7 +106,11 @@ var NZ = [
 
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
-$scope.figures.numItems = numberItems();
+$scope.figures.events = numberEvents();
+$scope.figures.sysItems = numItems();
+$scope.figures.sysItemsWeight = itemsWeightInSys();
+$scope.figures.sysItemsVolume = itemsVolumeInSys();
+
 $scope.figures.totalRevenue = revenue();
 $scope.figures.totalExpenditure = expenditure();
 $scope.figures.averageTime = averTimeDelivery();
@@ -117,11 +121,34 @@ $scope.figures.averageTime = averTimeDelivery();
 
 
 
-
-
-
-function numberItems(){
+function numItems(){
     return data.simulation.mail.length;
+}
+function itemsWeightInSys() {
+     var weight=0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
+
+        weight =  weight + +item.weight;
+    }
+    return weight;
+}
+function itemsVolumeInSys() {
+
+     var volume=0;
+         console.log(volume);
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
+
+        volume =  volume + +item.volume;
+    }
+    console.log(volume);
+    return volume;
+}
+function numberEvents(){
+    return data.simulation.businessEvent.length;
 }
 function averTimeDelivery() {
      var time=0;
