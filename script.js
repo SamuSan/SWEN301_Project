@@ -29,9 +29,9 @@ kpsApp.config(function ($routeProvider) {
             loginReq: true,
             adminAccess: false
         })
-        .when('/updatePrice', {
-            templateUrl: 'pages/updatePrice.html',
-            controller: 'updatePriceController',
+        .when('/updateroute', {
+            templateUrl: 'pages/updateroute.html',
+            controller: 'updaterouteController',
             loginReq: true,
             adminAccess: false
         })
@@ -63,9 +63,9 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
         $rootScope.loginControl.set = true;
     }
     $rootScope.users = {};
-    $http.get("data/users.json").success(function (data) {
-        $rootScope.loginControl.users = data.users;
-    });
+    // $http.get("data/users.json").success(function (data) {
+    //     $rootScope.loginControl.users = data.users;
+    // });
 
 
     $scope.$watch(function () {
@@ -94,6 +94,105 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
             localStorage.setItem("mainSimulation", JSON.stringify(data));
         });
     }
+
+
+var NZ = [
+    "Wellington",
+    "Auckland",
+    "Christchurch",
+    "Hamilton",
+     "Dunedin"
+];
+
+  var data = JSON.parse(localStorage.getItem("mainSimulation"));
+$scope.figures = {};
+$scope.figures.numItems = 0;
+$scope.figures.totalRevenue = 0;
+$scope.figures.totalExpenditure = expenditure(data, $scope);
+$scope.figures.averageTime = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+function expenditure(data, $scope) {
+  
+    var expenditure = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+        var origin = "";
+        if (NZ.indexOf(item.from) !== -1) {
+            origin = "New Zealand";
+        }
+        else {
+            origin = item.from;
+        }
+
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        console.log(route.weightcost);
+                          console.log(route.volumecost);
+                        var weightCost = route.weightcost * item.weight;
+                        var volumeCost = route.volumecost * item.volume;
+                        expenditure += (weightCost + volumeCost);
+                    }
+                }
+            }
+
+        }
+    }
+    expenditure.toFixed(2).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+
+    return expenditure;
+}
+function revenue(data, NZ, $scope) {
+    var revenue = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+        var origin = "";
+        if (NZ.contains(item.from)) {
+            origin = "New Zealand";
+        }
+        else {
+            origin = item.from;
+        }
+
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].to === item.to) {
+                if (routes[x].from === origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        var weightCost = route.weightcost * item.weight;
+                        var volumeCost = route.volumecost * item.volume;
+                        revenue += (weightCost + volumeCost);
+                    }
+                }
+            }
+
+        }
+    }
+    revenue.toFixed(2).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+    return revenue;
+}
     $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
@@ -126,9 +225,9 @@ kpsApp.controller('addRouteController', function ($scope) {
         "priority":"",
         "type":"",
         "volumeCost":"",
-        "volumePrice":"",
+        "volumeroute":"",
         "weightCost":"",
-        "weightPrice":""
+        "weightroute":""
 
 
     };
@@ -149,7 +248,7 @@ kpsApp.controller('updateRouteController', function ($scope) {
     $scope.message = 'Should say some shit about up your date';
 });
 
-kpsApp.controller('updatePriceController', function ($scope) {
+kpsApp.controller('updaterouteController', function ($scope) {
     $scope.message = 'Should say some shit about privey up your date';
 });
 
@@ -257,7 +356,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
         "To": "",
         "From": "",
         "Weight": "",
-        "Price": 0
+        "route": 0
     };
 
     $scope.cost;
@@ -337,86 +436,11 @@ kpsApp.directive('customValidation', function () {
     };
 });
 
-Array.prototype.contains = function (obj) {
-    var i = this.length;
-    while (i--) {
-        if (this[i].ID === obj) {
-            return true;
-        }
-    }
-    return false;
-}
-function expenditure(data) {
-    var expenditure = 0;
-    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
-        var item = data.simulation.mail[i];
-        var origin = "";
-        if (NZ.contains(item.from)) {
-            origin = "New Zealand";
-        }
-        else {
-            origin = item.from;
-        }
-
-        var prices = data.simulation.price;
-        for (var x = prices.length - 1; x >= 0; x--) {
-            var currPrice = prices[x];
-            if (prices[x].to === item.to) {
-                if (prices[x].from === origin) {
-                    if (prices[x].priority === item.priority) {
-                        price = prices[x];
-                        var weightCost = price.weightcost * item.weight;
-                        var volumeCost = price.volumecost * item.volume;
-                        expenditure += (weightCost + volumeCost);
-                    }
-                }
-            }
-
-        }
-    }
-    expenditure.toFixed(2).replace(/./g, function (c, i, a) {
-        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
-    });
-    return expenditure;
-}
-function revenue(data, NZ) {
-    var revenue = 0;
-    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
-        var item = data.simulation.mail[i];
-        var origin = "";
-        if (NZ.contains(item.from)) {
-            origin = "New Zealand";
-        }
-        else {
-            origin = item.from;
-        }
-
-        var prices = data.simulation.price;
-        for (var x = prices.length - 1; x >= 0; x--) {
-            var currPrice = prices[x];
-            if (prices[x].to === item.to) {
-                if (prices[x].from === origin) {
-                    if (prices[x].priority === item.priority) {
-                        price = prices[x];
-                        var weightCost = price.weightcost * item.weight;
-                        var volumeCost = price.volumecost * item.volume;
-                        revenue += (weightCost + volumeCost);
-                    }
-                }
-            }
-
-        }
-    }
-    revenue.toFixed(2).replace(/./g, function (c, i, a) {
-        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
-    });
-    return revenue;
-}
 
 /* James fat controller
  */
 
-kpsApp.controller('updatePriceController', function ($scope) {
+kpsApp.controller('updaterouteController', function ($scope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
@@ -433,9 +457,9 @@ kpsApp.controller('updatePriceController', function ($scope) {
         "priority":"",
         "type":"",
         "volumeCost":"",
-        "volumePrice":"",
+        "volumeroute":"",
         "weightCost":"",
-        "weightPrice":""
+        "weightroute":""
 
 
     };
@@ -446,21 +470,21 @@ kpsApp.controller('updatePriceController', function ($scope) {
         //r.route.push(routeEvent);
 
         /*yeah shut up i know its ugly*/
-        routeEvent.company=$scope.priceBox.company;
-        routeEvent.day=$scope.priceBox.day;
-        routeEvent.destination=$scope.priceBox.destination;
-        routeEvent.duration=$scope.priceBox.duration;
-        routeEvent.frequency=$scope.priceBox.frequency;
-        routeEvent.maxVolume=$scope.priceBox.maxVolume;
-        routeEvent.maxWeight=$scope.priceBox.maxWeight;
-        routeEvent.origin=$scope.priceBox.origin;
-        routeEvent.priority=$scope.priceBox.priority;
-        routeEvent.type=$scope.priceBox.type;
-        routeEvent.volumeCost=$scope.priceBox.volumecost;
-        routeEvent.volumePrice=$scope.priceBox.volumePrice;
-        routeEvent.weightCost=$scope.priceBox.weightcost;
-        routeEvent.weightPrice=$scope.priceBox.weightPrice;
-        routeEvent.eventName = "Price Change";
+        routeEvent.company=$scope.routeBox.company;
+        routeEvent.day=$scope.routeBox.day;
+        routeEvent.destination=$scope.routeBox.destination;
+        routeEvent.duration=$scope.routeBox.duration;
+        routeEvent.frequency=$scope.routeBox.frequency;
+        routeEvent.maxVolume=$scope.routeBox.maxVolume;
+        routeEvent.maxWeight=$scope.routeBox.maxWeight;
+        routeEvent.origin=$scope.routeBox.origin;
+        routeEvent.priority=$scope.routeBox.priority;
+        routeEvent.type=$scope.routeBox.type;
+        routeEvent.volumeCost=$scope.routeBox.volumecost;
+        routeEvent.volumeroute=$scope.routeBox.volumeroute;
+        routeEvent.weightCost=$scope.routeBox.weightcost;
+        routeEvent.weightroute=$scope.routeBox.weightroute;
+        routeEvent.eventName = "route Change";
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
@@ -468,8 +492,8 @@ kpsApp.controller('updatePriceController', function ($scope) {
         { if(compare(routeEvent,r.simulation.route[i]) == true){
 
          //update here       
-            r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
-            r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice;
+            r.simulation.route[i].volumeroute = $scope.routeBox.volumeroute;
+            r.simulation.route[i].weightroute = $scope.routeBox.weightroute;
              } 
          }
 
@@ -477,11 +501,11 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
-        $scope.priceBox = null;
+        $scope.routeBox = null;
         $scope.updateMessage = 'Successfully Updated';
     }
     $scope.cancel = function(){
-        $scope.priceBox = null;
+        $scope.routeBox = null;
         $scope.updateMessage = 'Cancelled Changes';
     }
     $scope.pend =function(){
@@ -507,9 +531,9 @@ kpsApp.controller('updateRouteController', function ($scope) {
         "priority":"",
         "type":"",
         "volumeCost":"",
-        "volumePrice":"",
+        "volumeroute":"",
         "weightCost":"",
-        "weightPrice":""
+        "weightroute":""
 
 
     };
@@ -526,14 +550,14 @@ kpsApp.controller('updateRouteController', function ($scope) {
         routeEvent.duration=$scope.routeBox.duration;
         routeEvent.frequency=$scope.routeBox.frequency;
         routeEvent.maxVolume=$scope.routeBox.maxVolume;
-        routeEvent.maxWeight=$scope.priceBox.maxWeight;
+        routeEvent.maxWeight=$scope.routeBox.maxWeight;
         routeEvent.origin=$scope.routeBox.origin;
         routeEvent.priority=$scope.routeBox.priority;
         routeEvent.type=$scope.routeBox.type;
         routeEvent.volumeCost=$scope.routeBox.volumecost;
-        routeEvent.volumePrice=$scope.routeBox.volumePrice;
+        routeEvent.volumeroute=$scope.routeBox.volumeroute;
         routeEvent.weightCost=$scope.routeBox.weightcost;
-        routeEvent.weightPrice=$scope.routeBox.weightPrice;
+        routeEvent.weightroute=$scope.routeBox.weightroute;
         routeEvent.eventName = "Route update";
         r.simulation.businessEvent.push(routeEvent);
 
@@ -561,7 +585,7 @@ function buildDirGraph(data){
 
         var to = data[i].destination;
         var from = data[i].origin;
-        var cost = data[i].weightPrice + data[i].volumePrice;
+        var cost = data[i].weightroute + data[i].volumeroute;
         graph.addNode(from);
         graph.addNode(to);
         graph.addEdge(from,to,cost);
@@ -590,7 +614,7 @@ if(Route2 == undefined){return false;}
     if(Route1.priority != Route2.priority){ return false; }
     if(Route1.volumeCost != Route2.volumeCost){ return false; }
     if(Route1.type != Route2.type){ return false; }
-    if(Route1.volumePrice != Route2.volumePrice){ return false; }
+    if(Route1.volumeroute != Route2.volumeroute){ return false; }
     if(Route1.weightCost != Route2.weightCost){ return false; }
-    if(Route1.weightPrice != Route2.weightPrice){ return false; }
+    if(Route1.weightroute != Route2.weightroute){ return false; }
     return true; }
