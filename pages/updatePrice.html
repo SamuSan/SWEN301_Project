@@ -35,8 +35,8 @@
 	
 
 
-        <tr><td><label>New Weight price: </label> <input ng-model="priceBox.weightPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
-        <tr><td><label>New Volume price: </label> <input ng-model="priceBox.volumePrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
+        <tr><td><label>New Weight price: </label> <input name = "wIn" ng-model="priceBox.weightPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
+        <tr><td><label>New Volume price: </label> <input name = "vIn" ng-model="priceBox.volumePrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
         <tr><td>  <button type="submit" class="btn btn-success"
                     
                     ng-click="submit()"

@@ -433,7 +433,7 @@ $scope.routeEvent = {
         "duration":"",
         "frequency":"",
         "maxVolume":"",
-        "maxVolume":"",
+        "maxWeight":"",
         "origin":"",
         "priority":"",
         "type":"",
@@ -457,7 +457,7 @@ var routeEvent = $scope.routeEvent;
         routeEvent.duration=$scope.priceBox.duration;
         routeEvent.frequency=$scope.priceBox.frequency;
         routeEvent.maxVolume=$scope.priceBox.maxVolume;
-        routeEvent.maxVolume=$scope.priceBox.maxVolume;
+        routeEvent.maxWeight=$scope.priceBox.maxWeight;
         routeEvent.origin=$scope.priceBox.origin;
         routeEvent.priority=$scope.priceBox.priority;
         routeEvent.type=$scope.priceBox.type;
@@ -474,6 +474,7 @@ console.log('LOOK HERE FUCKER########################################');
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
         $scope.message="saved";
+        $scope.priceBox = null;
 
     }
 });
@@ -491,7 +492,7 @@ $scope.routeEvent = {
         "duration":"",
         "frequency":"",
         "maxVolume":"",
-        "maxVolume":"",
+        "maxWeight":"",
         "origin":"",
         "priority":"",
         "type":"",
@@ -509,29 +510,29 @@ var routeEvent = $scope.routeEvent;
         //r.route.push(routeEvent);
 
 /*yeah shut up i know its ugly*/
-        routeEvent.company=$scope.priceBox.company;
-        routeEvent.day=$scope.priceBox.day;
-        routeEvent.destination=$scope.priceBox.destination;
-        routeEvent.duration=$scope.priceBox.duration;
-        routeEvent.frequency=$scope.priceBox.frequency;
-        routeEvent.maxVolume=$scope.priceBox.maxVolume;
-        routeEvent.maxVolume=$scope.priceBox.maxVolume;
-        routeEvent.origin=$scope.priceBox.origin;
-        routeEvent.priority=$scope.priceBox.priority;
-        routeEvent.type=$scope.priceBox.type;
-        routeEvent.volumeCost=$scope.priceBox.volumecost;
-        routeEvent.volumePrice=$scope.priceBox.volumePrice;
-        routeEvent.weightCost=$scope.priceBox.weightcost;
-        routeEvent.weightPrice=$scope.priceBox.weightPrice;
-        routeEvent.eventName = "Price Change";
+        routeEvent.company=$scope.routeBox.company;
+        routeEvent.day=$scope.routeBox.day;
+        routeEvent.destination=$scope.routeBox.destination;
+        routeEvent.duration=$scope.routeBox.duration;
+        routeEvent.frequency=$scope.routeBox.frequency;
+        routeEvent.maxVolume=$scope.routeBox.maxVolume;
+        routeEvent.maxWeight=$scope.priceBox.maxWeight;
+        routeEvent.origin=$scope.routeBox.origin;
+        routeEvent.priority=$scope.routeBox.priority;
+        routeEvent.type=$scope.routeBox.type;
+        routeEvent.volumeCost=$scope.routeBox.volumecost;
+        routeEvent.volumePrice=$scope.routeBox.volumePrice;
+        routeEvent.weightCost=$scope.routeBox.weightcost;
+        routeEvent.weightPrice=$scope.routeBox.weightPrice;
+        routeEvent.eventName = "Route update";
         r.simulation.businessEvent.push(routeEvent);
 
-console.log('LOOK HERE FUCKER########################################');
         console.log(routeEvent);
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
         $scope.message="saved";
+        $scope.routeBox = null;
 
     }
 
@@ -566,3 +567,20 @@ function shortestPath(graph,start,dest){
     path = Dijk.bestPath(start,dest);
     return path;
 }
+
+function compare(Route1, Route2){
+
+if(Route1.company != Route2.company){ return false; }
+ if(Route1.day != Route2.day){ return false; } 
+ if(Route1.destination != Route2.destination){ return false; }
+  if(Route1.frequency != Route2.frequency){ return false; } 
+  if(Route1.maxVolume != Route2.maxVolume){ return false; }
+   if(Route1.maxWeight != Route2.maxWeight){ return false; } 
+   if(Route1.origin != Route2.origin){ return false; } 
+   if(Route1.priority != Route2.priority){ return false; }
+if(Route1.volumeCost != Route2.volumeCost){ return false; }
+ if(Route1.type != Route2.type){ return false; }
+  if(Route1.volumePrice != Route2.volumePrice){ return false; } 
+  if(Route1.weightCost != Route2.weightCost){ return false; }
+   if(Route1.weightPrice != Route2.weightPrice){ return false; } 
+   return true; }
