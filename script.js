@@ -198,7 +198,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
 });
 
-// Route Summary Controller
+// ----------------------------Route Summary Controller
 kpsApp.controller('routeSummaryController', function ($scope, $filter, ngTableParams) {
 
     var data = JSON.parse(localStorage.getItem("mainSimulation")).simulation;
@@ -223,31 +223,25 @@ kpsApp.controller('routeSummaryController', function ($scope, $filter, ngTablePa
     });
 });
 
-// Event Log Controller
+// ------------------------------Event Log Controller
 kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams) {
-
+    var i = 0;
     var data = JSON.parse(localStorage.getItem("mainSimulation"));
-    // !!!
-    // !!!
-    var businessEvent = data.simulation.businessEvent;//data.mail; // It is currently mail as using data.businessEvent causes an error
+    var businessEvent = data.simulation.businessEvent;
+    $scope.current = businessEvent[i];
+    console.log("businessEvent", $scope.current);
 
-    $scope.tableParamsEvent = new ngTableParams({
-        page: 1,            // show first page
-        count: 10,          // count per page
-        sorting: {
-            company: 'asc'     // initial sorting
-        }
-    }, {
-        total: businessEvent.length, // length of businessEvent
-        getData: function ($defer, params) {
-            // use build-in angular filter
-            var orderedData = params.sorting() ?
-                $filter('orderBy')(businessEvent, params.orderBy()) :
-                businessEvent;
+    $scope.next = function () {
+        i++;
+        $scope.current = businessEvent[i];
+        console.log("businessEvent", $scope.current);
+    }
 
-            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-        }
-    });
+    $scope.previous = function () {
+        i--;
+        $scope.current = businessEvent[i];
+        console.log("businessEvent", $scope.current);
+    }
 });
 
 /**
