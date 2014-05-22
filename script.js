@@ -106,7 +106,7 @@ var NZ = [
 
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
-$scope.figures.critRoutes=["a","y","e","o"];
+$scope.figures.critRoutes=getRoutesAtALoss();
 $scope.figures.events = numberEvents();
 $scope.figures.sysItems = numItems();
 $scope.figures.sysItemsWeight = itemsWeightInSys();
@@ -240,7 +240,46 @@ function revenue() {
         // console.log(data);
         // console.log(NZ);
     });
+function getRoutesAtALoss(){
+            var routes = data.simulation.route;
+    var crRoutes = [];
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var routePrice= 0;
+            var routeCost =0;
+            var totalItems = 0;
+            for(var i = data.simulation.mail.length - 1; i >= 0; i--){
+                        var item = data.simulation.mail[i];
 
+
+                if (routes[x].destination === item.destination) {
+                    if (routes[x].origin === item.origin) {
+                        if (routes[x].priority === item.priority) {
+                            totalItems +=1;
+                            route = routes[x];
+                            var weightPrice = route.weightPrice * item.weight;
+                            var volumePrice = route.volumePrice * item.volume;
+
+                            var weightCost = route.weightcost * item.weight;
+                            var volumeCost = route.volumecost * item.volume;
+                            routeCost += (weightCost + volumeCost);
+                            routePrice +=(weightPrice + volumePrice);
+                        }
+                    }
+                }
+            }
+            routeCost = (routeCost / totalItems);
+            routePrice = (routePrice / totalItems);
+            if(routeCost > routePrice){
+                var diff = routeCost - routePrice;
+                console.log(diff);
+                crRoutes.push({"Destination" :routes[x].destination, "Origin": routes[x].origin, "Priority":routes[x].priority, "Difference": diff});
+            }
+
+        }
+
+return crRoutes;
+//Cost > Price
+}
     // create a message to displa in our view
 //  $scope.message = 'Should say some shit about KPSmart';
 });
