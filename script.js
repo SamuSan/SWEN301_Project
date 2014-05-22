@@ -69,7 +69,7 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
 
 
     $scope.$watch(function () {
-//        console.log($location.path());
+
         return $location.path();
     }, function (newPath, oldPath) {
         if ($rootScope.loginControl.loggedIn === false) {
@@ -104,11 +104,11 @@ var NZ = [
      "Dunedin"
 ];
 
-  var data = JSON.parse(localStorage.getItem("mainSimulation"));
+var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
 $scope.figures.numItems = 0;
 $scope.figures.totalRevenue = 0;
-$scope.figures.totalExpenditure = expenditure(data, $scope);
+$scope.figures.totalExpenditure = expenditure();
 $scope.figures.averageTime = 0;
 
 
@@ -123,18 +123,18 @@ $scope.figures.averageTime = 0;
 
 
 
-function expenditure(data, $scope) {
+function expenditure() {
   
     var expenditure = 0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
         var item = data.simulation.mail[i];
         var origin = "";
-        if (NZ.indexOf(item.from) !== -1) {
-            origin = "New Zealand";
-        }
-        else {
-            origin = item.from;
-        }
+        // if (NZ.indexOf(item.from) !== -1) {
+        //     origin = "New Zealand";
+        // }
+        // else {
+        //     origin = item.from;
+        // }
 
         var routes = data.simulation.route;
         for (var x = routes.length - 1; x >= 0; x--) {
@@ -143,8 +143,7 @@ function expenditure(data, $scope) {
                 if (routes[x].origin === origin) {
                     if (routes[x].priority === item.priority) {
                         route = routes[x];
-                        console.log(route.weightcost);
-                          console.log(route.volumecost);
+console.log(route.weightcost+"ROUTE COST")
                         var weightCost = route.weightcost * item.weight;
                         var volumeCost = route.volumecost * item.volume;
                         expenditure += (weightCost + volumeCost);
@@ -158,7 +157,7 @@ function expenditure(data, $scope) {
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
     });
 
-    return expenditure;
+    return 100;
 }
 function revenue(data, NZ, $scope) {
     var revenue = 0;
@@ -196,8 +195,8 @@ function revenue(data, NZ, $scope) {
     $http.get("/data/nationalCities.json").success(function (data) {
 
         cities.NZ = data.NewZealand.cities;
-        console.log(data);
-        console.log(NZ);
+        // console.log(data);
+        // console.log(NZ);
     });
 
     // create a message to displa in our view
@@ -233,10 +232,10 @@ kpsApp.controller('addRouteController', function ($scope) {
     };
     $scope.submit = function () {
         var newRoute = $scope.addRoute;
-        console.log(newRoute);
+
         r.simulation.route.push(newRoute);
 
-        console.log(r);
+
         localStorage.setItem("mainSimulation", JSON.stringify(r));
 
     }
@@ -278,8 +277,6 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
 
         $rootScope.loginControl.user = $scope.user;
-        console.log($rootScope.loginControl.user);
-
 
         for (var x = 0; x < users.user.length; x++) {
             if (users.user[x].ID === $rootScope.loginControl.user.Name
@@ -291,7 +288,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
             }
 
         }
-        console.log($rootScope.loginControl.user.Name);
+
     }
 
 
@@ -328,18 +325,18 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
     var data = JSON.parse(localStorage.getItem("mainSimulation"));
     var businessEvent = data.simulation.businessEvent;
     $scope.current = businessEvent[i];
-    console.log("businessEvent", $scope.current);
+
 
     $scope.next = function () {
         i++;
         $scope.current = businessEvent[i];
-        console.log("businessEvent", $scope.current);
+
     }
 
     $scope.previous = function () {
         i--;
         $scope.current = businessEvent[i];
-        console.log("businessEvent", $scope.current);
+
     }
 });
 
@@ -497,7 +494,7 @@ kpsApp.controller('updaterouteController', function ($scope) {
              } 
          }
 
-        console.log(routeEvent);
+
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
@@ -561,7 +558,7 @@ kpsApp.controller('updateRouteController', function ($scope) {
         routeEvent.eventName = "Route update";
         r.simulation.businessEvent.push(routeEvent);
 
-        console.log(routeEvent);
+
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 

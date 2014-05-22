@@ -165,72 +165,72 @@
         "mail": [
             {
                 "day": "Monday",
-                "to": "Rome",
-                "from": "Wellington",
+                "destination": "Rome",
+                "origin": "Wellingdestinationn",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
             },
             {
                 "day": "Monday",
-                "to": "Sydney",
-                "from": "Wellington",
+                "destination": "Sydney",
+                "origin": "Wellingdestinationn",
                 "weight": "1000",
                 "volume": "120",
                 "priority": "International Air"
             },
             {
                 "day": "Tuesday",
-                "to": "Rome",
-                "from": "Wellington",
+                "destination": "Rome",
+                "origin": "Wellingdestinationn",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
             },
             {
                 "day": "Thursday",
-                "to": "Suva",
-                "from": "Wellington",
+                "destination": "Suva",
+                "origin": "Wellingdestinationn",
                 "weight": "2000",
                 "volume": "120",
                 "priority": "International Standard"
             },
             {
                 "day": "Thursday",
-                "to": "Wellington",
-                "from": "Auckland",
+                "destination": "Wellingdestinationn",
+                "origin": "Auckland",
                 "weight": "100",
                 "volume": "3",
                 "priority": "Domestic Standard"
             },
             {
                 "day": "Friday",
-                "to": "Rome",
-                "from": "Hamilton",
+                "destination": "Rome",
+                "origin": "Hamildestinationn",
                 "weight": "400",
                 "volume": "50",
                 "priority": "International Air"
             },
             {
                 "day": "Wednesday",
-                "to": "Rome",
-                "from": "Hamilton",
+                "destination": "Rome",
+                "origin": "Hamildestinationn",
                 "weight": "400",
                 "volume": "25",
                 "priority": "International Standard"
             },
             {
                 "day": "Wednesday",
-                "to": "Sydney",
-                "from": "Auckland",
+                "destination": "Sydney",
+                "origin": "Auckland",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Standard"
             },
             {
                 "day": "Friday",
-                "to": "Rome",
-                "from": "Wellington",
+                "destination": "Rome",
+                "origin": "Wellingdestinationn",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
