@@ -128,19 +128,12 @@ function expenditure() {
     var expenditure = 0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
         var item = data.simulation.mail[i];
-        var origin = "";
-        // if (NZ.indexOf(item.from) !== -1) {
-        //     origin = "New Zealand";
-        // }
-        // else {
-        //     origin = item.from;
-        // }
 
         var routes = data.simulation.route;
         for (var x = routes.length - 1; x >= 0; x--) {
             var currroute = routes[x];
             if (routes[x].destination === item.destination) {
-                if (routes[x].origin === origin) {
+                if (routes[x].origin === item.origin) {
                     if (routes[x].priority === item.priority) {
                         route = routes[x];
 console.log(route.weightcost+"ROUTE COST")
@@ -157,7 +150,7 @@ console.log(route.weightcost+"ROUTE COST")
         return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
     });
 
-    return 100;
+    return expenditure;
 }
 function revenue(data, NZ, $scope) {
     var revenue = 0;
