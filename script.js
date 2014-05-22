@@ -118,7 +118,7 @@ kpsApp.controller('addRouteController', function ($scope) {
         "company": "",
         "day":"",
         "destination": "",
-           "duration":"",
+        "duration":"",
         "frequency":"",
         "maxVolume":"",
         "maxVolume":"",
@@ -275,7 +275,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
         $scope.fromRoute = [];
         //will need to set fromRoute to empty
         if(mailItem.From == ""
-        || mailItem.From == undefined){
+            || mailItem.From == undefined){
 
         }
         else {
@@ -424,9 +424,9 @@ function revenue(data, NZ) {
 
 kpsApp.controller('updatePriceController', function ($scope) {
 
-var r = JSON.parse(localStorage.getItem("mainSimulation"));
-$scope.data = r.simulation.route;
-$scope.routeEvent = {
+    var r = JSON.parse(localStorage.getItem("mainSimulation"));
+    $scope.data = r.simulation.route;
+    $scope.routeEvent = {
         "company": "",
         "day":"",
         "destination": "",
@@ -447,10 +447,10 @@ $scope.routeEvent = {
 
     $scope.submit = function () {
 
-var routeEvent = $scope.routeEvent;
+        var routeEvent = $scope.routeEvent;
         //r.route.push(routeEvent);
 
-/*yeah shut up i know its ugly*/
+        /*yeah shut up i know its ugly*/
         routeEvent.company=$scope.priceBox.company;
         routeEvent.day=$scope.priceBox.day;
         routeEvent.destination=$scope.priceBox.destination;
@@ -468,7 +468,17 @@ var routeEvent = $scope.routeEvent;
         routeEvent.eventName = "Price Change";
         r.simulation.businessEvent.push(routeEvent);
 
-console.log('LOOK HERE FUCKER########################################');
+        for(var i = 0 ; i < r.simulation.route.length ; i ++)
+            console.log(r.simulation.route);
+            console.log("in the loop");
+        { if(compare(routeEvent,r.simulation.route[i]) == true)
+        { //update here
+            console.log(r.simulation.route[i].volumePrice);
+            r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
+            console.log(r.simulation.route[i].volumePrice);
+            r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice; } }
+
+        console.log('LOOK HERE FUCKER########################################');
         console.log(routeEvent);
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
@@ -483,9 +493,9 @@ console.log('LOOK HERE FUCKER########################################');
 //########################update route
 
 kpsApp.controller('updateRouteController', function ($scope) {
-var r = JSON.parse(localStorage.getItem("mainSimulation"));
-$scope.data = r.simulation.route;
-$scope.routeEvent = {
+    var r = JSON.parse(localStorage.getItem("mainSimulation"));
+    $scope.data = r.simulation.route;
+    $scope.routeEvent = {
         "company": "",
         "day":"",
         "destination": "",
@@ -506,10 +516,10 @@ $scope.routeEvent = {
 
     $scope.submit = function () {
 
-var routeEvent = $scope.routeEvent;
+        var routeEvent = $scope.routeEvent;
         //r.route.push(routeEvent);
 
-/*yeah shut up i know its ugly*/
+        /*yeah shut up i know its ugly*/
         routeEvent.company=$scope.routeBox.company;
         routeEvent.day=$scope.routeBox.day;
         routeEvent.destination=$scope.routeBox.destination;
@@ -570,17 +580,17 @@ function shortestPath(graph,start,dest){
 
 function compare(Route1, Route2){
 
-if(Route1.company != Route2.company){ return false; }
- if(Route1.day != Route2.day){ return false; } 
- if(Route1.destination != Route2.destination){ return false; }
-  if(Route1.frequency != Route2.frequency){ return false; } 
-  if(Route1.maxVolume != Route2.maxVolume){ return false; }
-   if(Route1.maxWeight != Route2.maxWeight){ return false; } 
-   if(Route1.origin != Route2.origin){ return false; } 
-   if(Route1.priority != Route2.priority){ return false; }
-if(Route1.volumeCost != Route2.volumeCost){ return false; }
- if(Route1.type != Route2.type){ return false; }
-  if(Route1.volumePrice != Route2.volumePrice){ return false; } 
-  if(Route1.weightCost != Route2.weightCost){ return false; }
-   if(Route1.weightPrice != Route2.weightPrice){ return false; } 
-   return true; }
+    if(Route1.company != Route2.company){ return false; }
+    if(Route1.day != Route2.day){ return false; }
+    if(Route1.destination != Route2.destination){ return false; }
+    if(Route1.frequency != Route2.frequency){ return false; }
+    if(Route1.maxVolume != Route2.maxVolume){ return false; }
+    if(Route1.maxWeight != Route2.maxWeight){ return false; }
+    if(Route1.origin != Route2.origin){ return false; }
+    if(Route1.priority != Route2.priority){ return false; }
+    if(Route1.volumeCost != Route2.volumeCost){ return false; }
+    if(Route1.type != Route2.type){ return false; }
+    if(Route1.volumePrice != Route2.volumePrice){ return false; }
+    if(Route1.weightCost != Route2.weightCost){ return false; }
+    if(Route1.weightPrice != Route2.weightPrice){ return false; }
+    return true; }
