@@ -2,15 +2,38 @@
 <html>
 <meta charset="utf-8"> 
 <head>
-	<title>Event Log</title>
+    <title>Event Log</title>
 </head>
 <body>
-	<div ng-controller="eventLogController" ng-repeat="current in $data">
-		<h2>Event Log</h2>
-
-		{{current}}
-		<button type="previous" class="btn btn-danger" ng-click="previous()">Previous</button>
-		<button type="next" class="btn btn-danger" ng-click="next()">Next</button>
-	</div>
+    <table>
+    <div ng-controller="eventLogController">
+        <tr>
+            <td>
+        		<label>Business Data </label>
+    		</td>
+		</tr>
+        <tr>
+            <td>
+        		<label>Event Type:</label> {{current.event}}
+    		</td>
+		</tr>
+        <tr>
+            <td>
+        		<label>Company:</label> {{current.company}}
+    		</td>
+		</tr>
+		<tr>
+    		<td>
+				{{current}}
+    		</td>
+    	</tr>
+	    <tr>
+	    	<td>
+	        	<button type="previous" class="btn btn-danger" ng-click="previous()">Previous</button>
+	        	<button type="next" class="btn btn-danger" ng-click="next()">Next</button>
+	    	</td>
+	    </tr>
+    </div>
+</table>
 </body>
 </html>
