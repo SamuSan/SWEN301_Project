@@ -238,9 +238,9 @@ kpsApp.controller('addRouteController', function ($scope) {
         "priority":"",
         "type":"",
         "volumeCost":"",
-        "volumeroute":"",
+        "volumePrice":"",
         "weightCost":"",
-        "weightroute":""
+        "weightPrice":""
 
 
     };
@@ -255,15 +255,6 @@ kpsApp.controller('addRouteController', function ($scope) {
     }
 });
 
-kpsApp.controller('updateRouteController', function ($scope) {
-
-
-    $scope.message = 'Should say some shit about up your date';
-});
-
-kpsApp.controller('updaterouteController', function ($scope) {
-    $scope.message = 'Should say some shit about privey up your date';
-});
 
 kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
 
@@ -368,7 +359,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
         "To": "",
         "From": "",
         "Weight": "",
-        "route": 0
+        "Price": 0
     };
 
     $scope.cost;
