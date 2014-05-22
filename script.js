@@ -393,6 +393,8 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.data = r.simulation.route;
 
+    $scope.points = ["Auckland","Hamilton","Rotorua","Palmerston North","Wellington","Christchurch","Dunedin"];
+
 
     $scope.getRoute = function(mailItem){
         $scope.fromRoute = [];
@@ -405,8 +407,10 @@ kpsApp.controller('addMailItemController', function ($scope) {
             graph = buildDirGraph($scope.data);
 
             for (var i = 0; i < r.simulation.route.length; i++) {
-                if (shortestPath(graph, mailItem.From.origin, r.simulation.route[i].destination) != null) {
+                var dk = shortestPath(graph, mailItem.From.origin, r.simulation.route[i].destination)
+                if (dk != null) {
                     $scope.fromRoute.push(r.simulation.route[i]);
+
                 }
             }
         }
@@ -414,6 +418,39 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
 
     };
+
+    $scope.getPrice = function(mailItem){
+
+
+        var dk = shortestPath(graph, mailItem.From,mailItem.To.destination);
+
+        if(dk.path == null){
+            return;
+        }
+        for(var i  = 1 ; i < dk.path.length ; i++){
+            var found = false;
+            for (var j = 0; j < r.simulation.route.length; j++) {
+                if(found == false
+                    && dk.path[i-1] == r.simulation.route[j].origin
+                    && dk.path[i] == r.simulation.route[j].destination){
+                    found = true;
+                    dk.volumeCost = parseInt(dk.volumeCost) + parseInt(r.simulation.route[j].volumecost);
+                    dk.weightCost = parseInt(dk.weightCost) + parseInt(r.simulation.route[j].weightcost);
+                }
+            }
+            if(found == false){
+                console.log("Error");
+            }
+
+        }
+
+        $scope.newWeightPrice = dk.volumeCost;
+        $scope.newVolumePrice = dk.weightCost;
+
+
+    }
+
+
 
     /*############Builds graph and calls shortest path#######*/
 
@@ -430,7 +467,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
         mailItem.priority = mailItem.From.priority;
 
-        r.simulation.route.push(mailItem);
+        r.simulation.mail.push(mailItem);
 
 
         mailItem.eventName = "Add Mail";
@@ -650,10 +687,13 @@ function buildDirGraph(data){
 }
 /*Finds Shortest Path on graph.*/
 function shortestPath(graph,start,dest){
-    var path = [];
+    var pathData = {};
     var Dijk = new Dijkstra(graph, start);
-    path = Dijk.bestPath(start,dest);
-    return path;
+    pathData.path = Dijk.bestPath(start,dest);
+    pathData.volumeCost = 0;
+    pathData.weightCost = 0;
+
+    return pathData;
 }
 
 function compare(Route1, Route2){
