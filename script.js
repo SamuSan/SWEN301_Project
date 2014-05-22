@@ -102,10 +102,10 @@ kpsApp.controller('mainController', function ($scope, $http, $location, $rootSco
     });
 
     // create a message to displa in our view
-//	$scope.message = 'Should say some shit about KPSmart';
+//  $scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function ($scope, $location) {
+kpsApp.controller('addRouteController', function ($scope) {
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -139,7 +139,7 @@ kpsApp.controller('addRouteController', function ($scope, $location) {
 
         console.log(r);
         localStorage.setItem("mainSimulation", JSON.stringify(r));
-$location.path("/addRoute")
+
     }
 });
 
@@ -166,7 +166,7 @@ kpsApp.controller('loginController', function ($scope, $rootScope, $location) {
             "user": [
                 {
                     "ID": "Samu",
-                    "Password": "W",
+                    "Password": "XX",
                     "Type": "Post"
                 },
                 {
