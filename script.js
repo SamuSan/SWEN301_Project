@@ -787,7 +787,7 @@ function summaryData(data){
 
         var item = mail[j];
         for (var k = 0; k < tableData.length; k++) {
-            if(item.from == tableData[k].origin && item.to == tableData[k].destination /*&& item.priority == tableData[k].priority*/){
+            if(item.origin == tableData[k].origin && item.destination == tableData[k].destination /*&& item.priority == tableData[k].priority*/){
                 var temp =  tableData[k];
                 var cost = (temp.volumeCost * item.volume + temp.weightCost * item.weight);
                 var price = (temp.volumePrice * item.volume + temp.weightPrice * item.weight);
