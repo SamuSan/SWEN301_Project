@@ -13,6 +13,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="script.js"></script>
 </head>
+<style>
+table,th,td
+{
+border:1px solid green;
+}
+</style>
 <body ng-controller="updateRouteController">
 
 <table>
@@ -30,32 +36,52 @@
     </tr>
     <tr>
         <td>
-            <label>Current Weight Cost: $ </label> {{ routeBox.weightcost }}
+            <label>Current Weight Cost: $ </label> {{ routeBox.weightcost }}</td><td>
+            <label>Update weight cost   : </label> <input ng-model="routeBox.weightcost" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
         <td>
-            <label>Current Volume cost: $ </label> {{ routeBox.volumecost }}
+            <label>Current Volume cost: $ </label> {{ routeBox.volumecost }}</td><td>
+            <label>Update volume cost: </label> <input ng-model="routeBox.volumecost" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
         <td>
-            <label>Current Max Weight: </label> {{ routeBox.maxWeight }} <label> kgs</label>
+            <label>Current Max Weight: </label> {{ routeBox.maxWeight }} <label> kgs</label></td><td>
+            <label>Update Max Weight : </label> <input ng-model="routeBox.maxWeight" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
         <td>
             <label>Current Max Volume: </label> {{ routeBox.maxVolume }} <label> cubic meters</label>
+            </td><td>
+            <label>Update max volume : </label> <input ng-model="routeBox.maxVolume" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
         <td>
             <label>Current duration </label> {{ routeBox.duration }} <label> hours</label>
+        </td><td>
+            <label>Update Duration___ : </label> <input ng-model="routeBox.duration" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
         <td>
-            <label>Current frequency of route: </label> {{ routeBox.frequency }} <label> hours</label>
+             <label>Current frequency of route: </label> {{ routeBox.frequency }} <label> hours </label></td><td>
+            <label>Update frequency__: </label> <input ng-model="routeBox.frequency" ng-trim ="false" type = "text"
+            ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/>
+
         </td>
     </tr>
     <tr>
@@ -75,7 +101,7 @@
     </tr>-->
     <tr>
         <td>
-            <button type="submit" class="btn btn-success" ng-click="submit()">Submit</button>
+            <button type="submit" class="btn btn-success" ng-click="submit()" ng-disabled="updateRouteForm.$invalid">Submit</button>
             <button type="submit" class="btn btn-danger">Cancel</button>
         </td>
     </tr>
