@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="script.js"></script>
 </head>
-<form name="addRouteFrom" action="">
+<form name="addRouteFrom">
     <h3>Add Route</h3>
 
     <div ng-controller="addRouteController">
@@ -35,7 +35,7 @@
                                    required="true"/>
 
                     </td>
-                    <td>
+<!--                     <td>
                         <button type="submit" class="btn btn-success"
                                 ng-disabled="addRouteFrom.$invalid"
                                 ng-click="submit()"
@@ -43,7 +43,7 @@
                         </button>
                         <button type="submit" class="btn btn-danger">Cancel</button>
 
-                    </td>
+                    </td> -->
                 </tr>
                 <tr>
                     <td>
@@ -75,6 +75,7 @@
                     </div>
 
                 </td>
+                <tr>
                 <td>
                     <div>
                         <label>Weight Cost : </label>
@@ -90,6 +91,7 @@
                                required="true"/>
                     </div>
                 </td>
+                <tr/>
                 <tr>
                     <td>
                         <div>
@@ -194,15 +196,15 @@
 
                 </tr>
                 <tr>
-
+                    <td></td>
                     <td>
 
-                        <!--<button type="submit" class="btn btn-success"-->
-                                <!--ng-disabled="addRouteFrom.$invalid"-->
-                                <!--ng-click="submit()"-->
-                                <!--Submit-->
-                        <!--</button>-->
-                        <!--<button type="submit" class="btn btn-danger">Cancel</button>-->
+                 <button type="submit" class="btn btn-success"
+                              ng-disabled="addRouteFrom.$invalid"
+                               ng-click="submit()"
+                                 >Submit
+                        </button>
+                        <button type="submit" class="btn btn-danger">Cancel</button>
 
                     </td>
 

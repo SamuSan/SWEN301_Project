@@ -244,7 +244,7 @@ function revenue() {
 //  $scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function ($scope) {
+kpsApp.controller('addRouteController', function ($scope, $route) {
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -276,6 +276,7 @@ kpsApp.controller('addRouteController', function ($scope) {
         r.simulation.route.push(newRoute);
         localStorage.setItem("mainSimulation", JSON.stringify(r));
     }
+    // $route.reload();
 });
 
 
