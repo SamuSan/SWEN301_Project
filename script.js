@@ -106,6 +106,7 @@ var NZ = [
 
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
+$scope.figures.critRoutes=[];
 $scope.figures.events = numberEvents();
 $scope.figures.sysItems = numItems();
 $scope.figures.sysItemsWeight = itemsWeightInSys();
