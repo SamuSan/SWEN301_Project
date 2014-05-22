@@ -5,8 +5,8 @@
     <title>Event Log</title>
 </head>
 <body>
+<div ng-controller="eventLogController">
     <table>
-    <div ng-controller="eventLogController">
         <tr>
             <td>
         		<label>Business Data </label>
@@ -14,9 +14,45 @@
 		</tr>
         <tr>
             <td>
+                <button type="previous" class="btn btn-success" ng-click="previous()">Previous</button>
+                <button type="next" class="btn btn-success" ng-click="next()">Next</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
         		<label>Event Type:</label> {{current.event}}
     		</td>
 		</tr>
+        <tr>
+            <td>
+                <label>Day:</label> {{current.day}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>To:</label> {{current.to}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>From:</label> {{current.from}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Weight:</label> {{current.weight}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Volume:</label> {{current.volume}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Priority:</label> {{current.priority}}
+            </td>
+        </tr>
         <tr>
             <td>
         		<label>Company:</label> {{current.company}}
@@ -24,16 +60,60 @@
 		</tr>
 		<tr>
     		<td>
-				{{current}}
-    		</td>
+                <label>Destination:</label> {{current.destination}}
+            </td>
     	</tr>
-	    <tr>
-	    	<td>
-	        	<button type="previous" class="btn btn-danger" ng-click="previous()">Previous</button>
-	        	<button type="next" class="btn btn-danger" ng-click="next()">Next</button>
-	    	</td>
-	    </tr>
-    </div>
-</table>
+        <tr>
+            <td>
+                <label>Origin:</label> {{current.origin}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Type:</label> {{current.type}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Weight Cost:</label> {{current.weightcost}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Volume Cost:</label> {{current.volumecost}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Max Weight:</label> {{current.maxWeight}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Max Volume:</label> {{current.maxVolume}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Duration:</label> {{current.duration}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Frequency:</label> {{current.frequency}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Weight Price:</label> {{current.weightPrice}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Volume Price:</label> {{current.volumePrice}}
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
