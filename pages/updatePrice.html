@@ -13,6 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 <script src="script.js"></script>
 </head>
+<form name="updatePriceForm" action="" >
 <body ng-controller="updatePriceController">
 
     
@@ -38,7 +39,7 @@
         <tr><td><label>New Weight price: </label> <input name = "wIn" ng-model="priceBox.weightPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
         <tr><td><label>New Volume price: </label> <input name = "vIn" ng-model="priceBox.volumePrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
         <tr><td>  
-          <button type="submit" class="btn btn-success" ng-click="submit()" ng-model = "updateMessage">Submit</button>
+          <button type="submit" class="btn btn-success" ng-click="submit()" ng-model = "updateMessage" ng-disabled="updatePriceForm.$invalid">Submit</button>
           <button type="cancel" class="btn btn-danger" ng-click="cancel()" ng-model = "updateMessage">Cancel</button></td>
             </tr>
 
@@ -53,5 +54,5 @@
 
 
 </body>
-
+</form>
 </html>
