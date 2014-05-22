@@ -110,7 +110,6 @@
                 }
             }
             path.splice(0, 0, source);
-            path.splice(3, 0, cost);
             return path;
         }
     };
