@@ -106,7 +106,7 @@ var NZ = [
 
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
-$scope.figures.numItems = 0;
+$scope.figures.numItems = numberItems();
 $scope.figures.totalRevenue = revenue();
 $scope.figures.totalExpenditure = expenditure();
 $scope.figures.averageTime = 0;
@@ -120,7 +120,9 @@ $scope.figures.averageTime = 0;
 
 
 
-
+function numberItems(){
+    return data.simulation.mail.length;
+}
 
 
 function expenditure() {
