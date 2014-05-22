@@ -319,17 +319,18 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
     var businessEvent = data.simulation.businessEvent;
     $scope.current = businessEvent[i];
 
-
     $scope.next = function () {
-        i++;
+        if(i < data.simulation.businessEvent.length){
+            i++;
+        }
         $scope.current = businessEvent[i];
-
     }
 
     $scope.previous = function () {
-        i--;
+        if(i > 0){
+            i--;
+        }
         $scope.current = businessEvent[i];
-
     }
 });
 
