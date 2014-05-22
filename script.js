@@ -275,8 +275,9 @@ kpsApp.controller('addRouteController', function ($scope, $route) {
         var newRoute = $scope.addRoute;
         r.simulation.route.push(newRoute);
         localStorage.setItem("mainSimulation", JSON.stringify(r));
+            $route.reload();
     }
-    // $route.reload();
+
 });
 
 
