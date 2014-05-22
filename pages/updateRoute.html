@@ -13,12 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src="script.js"></script>
 </head>
-<style>
-table,th,td
-{
-border:1px solid green;
-}
-</style>
+
 <body ng-controller="updateRouteController">
 
 <table>
@@ -90,21 +85,15 @@ border:1px solid green;
         </td>
     </tr>
 
+        <tr><td>  
+          <button type="submit" class="btn btn-success" ng-click="submit()" ng-model = "updateMessage" ng-disabled="updateRouteForm.$invalid">Submit</button>
+          <button type="cancel" class="btn btn-danger" ng-click="cancel()" ng-model = "updateMessage">Cancel</button></td>
+            </tr>
 
-    <!--<tr>
-        <td><label>New Weight price: </label> <input ng-model="routeBox.weightPrice" ng-trim="false" type="text"
-                                                     ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td>
-    </tr>
-    <tr>
-        <td><label>New Volume price: </label> <input ng-model="routeBox.volumePrice" ng-trim="false" type="text"
-                                                     ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td>
-    </tr>-->
-    <tr>
-        <td>
-            <button type="submit" class="btn btn-success" ng-click="submit()" ng-disabled="updateRouteForm.$invalid">Submit</button>
-            <button type="submit" class="btn btn-danger">Cancel</button>
-        </td>
-    </tr>
+            <tr><td>
+              <label> Update Status:</label> {{updateMessage}}
+
+            </td></tr>
 </table>
 
 

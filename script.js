@@ -636,8 +636,12 @@ kpsApp.controller('updateRouteController', function ($scope) {
         { if(compare(routeEvent,r.simulation.route[i]) == true){
 
          //update here       
-            r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
-           r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice;
+            r.simulation.route[i].volumecost = $scope.routeBox.volumecost;
+           r.simulation.route[i].weightcost = $scope.routeBox.weightcost;
+             r.simulation.route[i].maxWeight  = $scope.routeBox.maxWeight ;
+           r.simulation.route[i].maxVolume = $scope.routeBox.maxVolume;
+             r.simulation.route[i].duration = $scope.routeBox.duration;
+           r.simulation.route[i].frequency  = $scope.routeBox.frequency ;
              } 
          }
 
@@ -646,7 +650,7 @@ kpsApp.controller('updateRouteController', function ($scope) {
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
       
-        $scope.priceBox = null;
+        $scope.routeBox = null;
         $scope.updateMessage = 'Successfully Updated';
 
     }
@@ -661,6 +665,7 @@ kpsApp.controller('updateRouteController', function ($scope) {
 
 
 });
+
 
 
 
