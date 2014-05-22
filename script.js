@@ -426,6 +426,7 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
+    $scope.updateMessage = '';
     $scope.routeEvent = {
         "company": "",
         "day":"",
@@ -469,23 +470,29 @@ kpsApp.controller('updatePriceController', function ($scope) {
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
-            console.log(r.simulation.route[i]);
-            console.log("in the loop" + i);
-        { if(compare(routeEvent,r.simulation.route[i]) == true)
-        { //update here
-            console.log(r.simulation.route[i].volumePrice);
-            r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
-            console.log(r.simulation.route[i].volumePrice);
-            r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice; } }
 
-        console.log('LOOK HERE FUCKER########################################');
+        { if(compare(routeEvent,r.simulation.route[i]) == true){
+
+         //update here      
+            r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
+            r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice;
+             } 
+         }
+
         console.log(routeEvent);
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
-        $scope.message="saved";
         $scope.priceBox = null;
-
+        console.log($scope.updateMessage);
+        $scope.updateMessage = 'Successfully Updated';
+        console.log($scope.updateMessage);
+    }
+    $scope.cancel = function(){
+        $scop.priceBox = null;
+        console.log($scope.updateMessage);
+        $scope.updateMessage = 'Cancelled Changes';
+        console.log($scope.updateMessage);
     }
 });
 
@@ -517,7 +524,7 @@ kpsApp.controller('updateRouteController', function ($scope) {
     $scope.submit = function () {
 
         var routeEvent = $scope.routeEvent;
-        //r.route.push(routeEvent);
+       
 
         /*yeah shut up i know its ugly*/
         routeEvent.company=$scope.routeBox.company;
