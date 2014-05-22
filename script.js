@@ -469,8 +469,8 @@ kpsApp.controller('updatePriceController', function ($scope) {
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
-            console.log(r.simulation.route);
-            console.log("in the loop");
+            console.log(r.simulation.route[i]);
+            console.log("in the loop" + i);
         { if(compare(routeEvent,r.simulation.route[i]) == true)
         { //update here
             console.log(r.simulation.route[i].volumePrice);
@@ -579,7 +579,7 @@ function shortestPath(graph,start,dest){
 }
 
 function compare(Route1, Route2){
-
+if(Route2 == undefined){return false;}
     if(Route1.company != Route2.company){ return false; }
     if(Route1.day != Route2.day){ return false; }
     if(Route1.destination != Route2.destination){ return false; }
