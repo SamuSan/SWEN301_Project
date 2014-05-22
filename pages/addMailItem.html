@@ -22,54 +22,50 @@
 </head>
 
 <div ng-controller="addMailItemController">
-    <form name="addMailItem" action="" class="css-form" novalidate="true">
+    <form name="addMailItem" class="css-form" >
 
         <table>
             <tr>
                 <td>
-                    <label>Dimension </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label>Height(Centimeter): </label></td>
-                <td><input ng-model="input3" ng-trim="false" custom-validation required/></td>
+                <td><input name="input3" type="number" ng-model="input3" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Width(Centimeter): </label></td>
-                <td><input  ng-model="input4" ng-trim="false" custom-validation required=""/></td>
+                <td><input name="input4" type="number" ng-model="input4" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Length(Centimeter): </label></td>
-                <td><input ng-model="input5" ng-trim="false" custom-validation required/></td>
+                <td><input name="input5" type="number" ng-model="input5" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td><label>Volume(Cubic Centimeter):</label></td>
-                <td><p ng-model="mailItem.Volume">{{mailItem.Volume = input3 * input4 * input5; mailItem.Volume}}</p></td>
+                <td><label ng-model="mailItem.Volume"> {{input3 * input4 * input5}}</label>
             </tr>
             <tr>
                 <td><label>Weight(Grams): </label></td>
-                <td><input ng-model="mailItem.Weight" ng-trim="false" custom-validation required/></td>
+                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-trim="false" min="1" max="{{mailItem.To.maxWeight}}"  required/></td>
             </tr>
             <tr>
                 <td><label>From: </label></td>
-                <td><select ng-init="mailItem.From = mailItem.From || data[0]" ng-model="mailItem.From"
-                            ng-options="datum as datum.origin + ' (' + datum.priority + ')' for datum in data"
+                <td><select ng-init="" ng-model="mailItem.From"
+                            ng-options="datum as datum for datum in points"
                             ng-click="getRoute(mailItem)"
                             required></select></td>
             </tr>
             <tr>
                 <td><label>To: </label></td>
-                <td><select ng-init="To = To || fromRoute[0]" ng-model="mailItem.To"
-                            ng-options="datum as datum.destination + ' (' + datum.priority + ')' for datum in fromRoute"
+                <td><select ng-init="" ng-model="mailItem.To"
+                            ng-options="datum as 'Route : ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in fromRoute"
+                            ng-click="getPrice(mailItem)"
                             required></select></td>
             </tr>
             <tr>
                 <td><label >Price: </label></td>
                 <td><label>
-                    ${{mailItem.Price = mailItem.From.weightPrice * mailItem.Weight + mailItem.From.volumePrice * (input3 * input4 * input5); mailItem.Price}} </label>
+                    ${{mailItem.Price = newWeightPrice * mailItem.Weight + newVolumePrice * (input3 * input4 * input5); mailItem.Price || ""}} </label>
                 </td>
 
             </tr>
