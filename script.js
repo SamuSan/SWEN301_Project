@@ -107,7 +107,7 @@ var NZ = [
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
 $scope.figures = {};
 $scope.figures.numItems = 0;
-$scope.figures.totalRevenue = 0;
+$scope.figures.totalRevenue = revenue();
 $scope.figures.totalExpenditure = expenditure();
 $scope.figures.averageTime = 0;
 
@@ -136,7 +136,6 @@ function expenditure() {
                 if (routes[x].origin === item.origin) {
                     if (routes[x].priority === item.priority) {
                         route = routes[x];
-console.log(route.weightcost+"ROUTE COST")
                         var weightCost = route.weightcost * item.weight;
                         var volumeCost = route.volumecost * item.volume;
                         expenditure += (weightCost + volumeCost);
@@ -152,27 +151,19 @@ console.log(route.weightcost+"ROUTE COST")
 
     return expenditure;
 }
-function revenue(data, NZ, $scope) {
+function revenue() {
     var revenue = 0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
         var item = data.simulation.mail[i];
-        var origin = "";
-        if (NZ.contains(item.from)) {
-            origin = "New Zealand";
-        }
-        else {
-            origin = item.from;
-        }
-
         var routes = data.simulation.route;
         for (var x = routes.length - 1; x >= 0; x--) {
             var currroute = routes[x];
-            if (routes[x].to === item.to) {
-                if (routes[x].from === origin) {
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === item.origin) {
                     if (routes[x].priority === item.priority) {
                         route = routes[x];
-                        var weightCost = route.weightcost * item.weight;
-                        var volumeCost = route.volumecost * item.volume;
+                        var weightCost = route.weightPrice * item.weight;
+                        var volumeCost = route.volumePrice * item.volume;
                         revenue += (weightCost + volumeCost);
                     }
                 }
