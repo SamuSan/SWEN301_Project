@@ -171,6 +171,54 @@
                 "volume": "5",
                 "priority": "International Air"
             },
+                        {
+                "day": "Sunday",
+                "destination": "Hamilton",
+                "origin": "Wellington",
+                "weight": "10",
+                "volume": "6",
+                "priority": "Domestic Standard"
+            },
+                        {
+                "day": "Wednesday",
+                "destination": "Sydney",
+                "origin": "Auckland",
+                "weight": "100",
+                "volume": "5",
+                "priority": "International Standard"
+            },
+                        {
+                "day": "Thursday",
+                "destination": "Tokyo",
+                "origin": "Wellington",
+                "weight": "50",
+                "volume": "8",
+                "priority": "International Standard"
+            },
+                        {
+                "day": "Friday",
+                "destination": "Beijing",
+                "origin": "Wellington",
+                "weight": "20",
+                "volume": "9",
+                "priority": "International Air"
+            },
+                        {
+                "day": "Monday",
+                "destination": "Osaka",
+                "origin": "Auckland",
+                "weight": "90",
+                "volume": "1",
+                "priority": "International Standard"
+            },
+                        {
+                "day": "Monday",
+                "destination": "Hamilton",
+                "origin": "Auckland",
+                "weight": "23",
+                "volume": "6",
+                "priority": "Domestic Standard"
+            },
             {
                 "day": "Monday",
                 "destination": "Sydney",
