@@ -82,7 +82,7 @@
             
             <p ng-controller="mainController">
             <ul> Routes Running At A Loss:
-                <li ng-repeat="crits in figures.critRoutes">{{crits.Destination}} : {{crits.Origin}} : {{crits.Priority}} : {{crits.Difference}}</li>
+                <li ng-repeat="crits in figures.critRoutes">Dest: {{crits.Destination}}  Orig: {{crits.Origin}}  Priority: {{crits.Priority}} Avg Loss: ${{crits.Difference}}</li>
             </ul>
             </p>
          </div>

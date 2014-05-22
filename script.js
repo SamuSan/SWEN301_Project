@@ -270,7 +270,7 @@ function getRoutesAtALoss(){
             routeCost = (routeCost / totalItems);
             routePrice = (routePrice / totalItems);
             if(routeCost > routePrice){
-                var diff = routeCost - routePrice;
+                var diff = routeCost  -routePrice;
                 console.log(diff);
                 crRoutes.push({"Destination" :routes[x].destination, "Origin": routes[x].origin, "Priority":routes[x].priority, "Difference": diff});
             }
