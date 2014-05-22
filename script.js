@@ -426,7 +426,7 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
-    $scope.updateMessage = '';
+    $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
         "company": "",
         "day":"",
@@ -473,7 +473,7 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
         { if(compare(routeEvent,r.simulation.route[i]) == true){
 
-         //update here      
+         //update here       
             r.simulation.route[i].volumePrice = $scope.priceBox.volumePrice;
             r.simulation.route[i].weightPrice = $scope.priceBox.weightPrice;
              } 
@@ -484,15 +484,14 @@ kpsApp.controller('updatePriceController', function ($scope) {
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
         $scope.priceBox = null;
-        console.log($scope.updateMessage);
         $scope.updateMessage = 'Successfully Updated';
-        console.log($scope.updateMessage);
     }
     $scope.cancel = function(){
-        $scop.priceBox = null;
-        console.log($scope.updateMessage);
+        $scope.priceBox = null;
         $scope.updateMessage = 'Cancelled Changes';
-        console.log($scope.updateMessage);
+    }
+    $scope.pend =function(){
+        $scope.updateMessage = 'Changes Pending'
     }
 });
 

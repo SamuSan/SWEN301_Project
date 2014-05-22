@@ -20,7 +20,7 @@
         <table>
         <tr>
         	<td><label>Select route for price update:
-         <select ng-init="priceBox = priceBox || dataRoute[0]" ng-model="priceBox" ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
+         <select ng-init="priceBox = priceBox || dataRoute[0]" ng-model="priceBox" ng-click="pend()" ng-options="datum as 'Route : ' + datum.origin + ' to ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in data"></select>
          </td>
         </tr>
 
@@ -37,15 +37,13 @@
 
         <tr><td><label>New Weight price: </label> <input name = "wIn" ng-model="priceBox.weightPrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/></td></tr>
         <tr><td><label>New Volume price: </label> <input name = "vIn" ng-model="priceBox.volumePrice" ng-trim="false" type="text" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/" required/> </td></tr>
-        <tr><td>  <button type="submit" class="btn btn-success"
-                    
-                    ng-click="submit()" ng-model = "updateMessage"
-                    >Submit
-            </button>
-            <button type="cancel" class="btn btn-danger" ng-click = "cancel()" ng-model = "updateMessage">Cancel</button></td>
+        <tr><td>  
+          <button type="submit" class="btn btn-success" ng-click="submit()" ng-model = "updateMessage">Submit</button>
+          <button type="cancel" class="btn btn-danger" ng-click="cancel()" ng-model = "updateMessage">Cancel</button></td>
             </tr>
 
-            <tr><td><label>{{updateMessage}}</label>
+            <tr><td>
+              <label> Update Status:</label> {{updateMessage}}
 
             </td></tr>
     </table>
