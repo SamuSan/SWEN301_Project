@@ -166,7 +166,7 @@
             {
                 "day": "Monday",
                 "destination": "Rome",
-                "origin": "Wellingdestinationn",
+                "origin": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
@@ -174,7 +174,7 @@
             {
                 "day": "Monday",
                 "destination": "Sydney",
-                "origin": "Wellingdestinationn",
+                "origin": "Wellington",
                 "weight": "1000",
                 "volume": "120",
                 "priority": "International Air"
@@ -182,7 +182,7 @@
             {
                 "day": "Tuesday",
                 "destination": "Rome",
-                "origin": "Wellingdestinationn",
+                "origin": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
@@ -190,14 +190,14 @@
             {
                 "day": "Thursday",
                 "destination": "Suva",
-                "origin": "Wellingdestinationn",
+                "origin": "Wellington",
                 "weight": "2000",
                 "volume": "120",
                 "priority": "International Standard"
             },
             {
                 "day": "Thursday",
-                "destination": "Wellingdestinationn",
+                "destination": "Wellington",
                 "origin": "Auckland",
                 "weight": "100",
                 "volume": "3",
@@ -206,7 +206,7 @@
             {
                 "day": "Friday",
                 "destination": "Rome",
-                "origin": "Hamildestinationn",
+                "origin": "Hamilton",
                 "weight": "400",
                 "volume": "50",
                 "priority": "International Air"
@@ -214,7 +214,7 @@
             {
                 "day": "Wednesday",
                 "destination": "Rome",
-                "origin": "Hamildestinationn",
+                "origin": "Hamilton",
                 "weight": "400",
                 "volume": "25",
                 "priority": "International Standard"
@@ -230,7 +230,7 @@
             {
                 "day": "Friday",
                 "destination": "Rome",
-                "origin": "Wellingdestinationn",
+                "origin": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
