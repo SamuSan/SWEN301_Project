@@ -109,7 +109,7 @@ $scope.figures = {};
 $scope.figures.numItems = numberItems();
 $scope.figures.totalRevenue = revenue();
 $scope.figures.totalExpenditure = expenditure();
-$scope.figures.averageTime = 0;
+$scope.figures.averageTime = averTimeDelivery();
 
 
 
@@ -123,7 +123,35 @@ $scope.figures.averageTime = 0;
 function numberItems(){
     return data.simulation.mail.length;
 }
+function averTimeDelivery() {
+     var time=0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
 
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === item.origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        time = time + +route.duration;
+
+                  
+                    }
+                }
+            }
+
+        }
+    }
+    time = (time / data.simulation.mail.length);
+   time = time.toFixed(1).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+                        console.log("TIME" + time);
+    return time;
+}
 
 function expenditure() {
   
