@@ -422,12 +422,18 @@ kpsApp.controller('addMailItemController', function ($scope) {
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
 
     $scope.mailItem = {
-        "Volume": 0,
-        "To": "",
-        "From": "",
+        "Width": 0,
+        "Height":0,
+        "Length":0,
+        //Having this throws error
+        //"Volume": $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length,
+        "destination": "",
+        "origin": "",
         "Weight": "",
         "Price": 0
     };
+
+    $scope.mailItem.Volume = $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length;
 
     $scope.cost;
 
@@ -439,15 +445,16 @@ kpsApp.controller('addMailItemController', function ($scope) {
     $scope.getRoute = function(mailItem){
         $scope.fromRoute = [];
         //will need to set fromRoute to empty
-        if(mailItem.From == ""
-            || mailItem.From == undefined){
+        if(mailItem.origin == ""
+            || mailItem.origin == undefined){
 
         }
         else {
             graph = buildDirGraph($scope.data);
 
+
             for (var i = 0; i < r.simulation.route.length; i++) {
-                var dk = shortestPath(graph, mailItem.From.origin, r.simulation.route[i].destination)
+                var dk = shortestPath(graph, mailItem.origin, r.simulation.route[i].destination)
                 if (dk != null) {
                     $scope.fromRoute.push(r.simulation.route[i]);
 
@@ -461,8 +468,11 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.getPrice = function(mailItem){
 
+        var graph = buildDirGraph($scope.data);
 
-        var dk = shortestPath(graph, mailItem.From,mailItem.To.destination);
+        var dk = shortestPath(graph, mailItem.origin,mailItem.destination.destination);
+
+        
 
         if(dk.path == null){
             return;
@@ -505,7 +515,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
             + currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-        mailItem.priority = mailItem.From.priority;
+        mailItem.priority = mailItem.destination.priority;
 
         r.simulation.mail.push(mailItem);
 
