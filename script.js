@@ -457,6 +457,8 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
     $scope.current = businessEvent[i];
 
     $scope.next = function () {
+        data = JSON.parse(localStorage.getItem("mainSimulation"));
+        businessEvent = data.simulation.businessEvent;
         if(i < data.simulation.businessEvent.length-1){
             i++;
         }
@@ -464,6 +466,8 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
     }
 
     $scope.previous = function () {
+        data = JSON.parse(localStorage.getItem("mainSimulation"));
+        businessEvent = data.simulation.businessEvent;
         if(i > 0){
             i--;
         }
@@ -661,6 +665,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
+         "eventName":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -671,9 +676,9 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
         "origin":"",
         "priority":"",
         "type":"",
-        "volumeCost":"",
+        "volumecost":"",
         "volumePrice":"",
-        "weightCost":"",
+        "weightcost":"",
         "weightPrice":""
 
 
@@ -695,11 +700,11 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
         routeEvent.origin=$scope.priceBox.origin;
         routeEvent.priority=$scope.priceBox.priority;
         routeEvent.type=$scope.priceBox.type;
-        routeEvent.volumeCost=$scope.priceBox.volumecost;
+        routeEvent.volumecost=$scope.priceBox.volumecost;
         routeEvent.volumePrice=$scope.priceBox.volumePrice;
-        routeEvent.weightCost=$scope.priceBox.weightcost;
+        routeEvent.weightcost=$scope.priceBox.weightcost;
         routeEvent.weightPrice=$scope.priceBox.weightPrice;
-        routeEvent.eventName = "route Change";
+        routeEvent.eventName = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
@@ -757,6 +762,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
+        "eventName":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -767,9 +773,9 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
         "origin":"",
         "priority":"",
         "type":"",
-        "volumeCost":"",
+        "volumecost":"",
         "volumePrice":"",
-        "weightCost":"",
+        "weightcost":"",
         "weightPrice":""
 
 
@@ -791,11 +797,11 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
         routeEvent.origin=$scope.routeBox.origin;
         routeEvent.priority=$scope.routeBox.priority;
         routeEvent.type=$scope.routeBox.type;
-        routeEvent.volumeCost=$scope.routeBox.volumecost;
+        routeEvent.volumecost=$scope.routeBox.volumecost;
         routeEvent.volumePrice=$scope.routeBox.volumePrice;
-        routeEvent.weightCost=$scope.routeBox.weightcost;
+        routeEvent.weightcost=$scope.routeBox.weightcost;
         routeEvent.weightPrice=$scope.routeBox.weightPrice;
-        routeEvent.eventName = "Route update";
+        routeEvent.eventName = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         //#####modifying the route data
