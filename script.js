@@ -284,7 +284,7 @@ return crRoutes;
 //  $scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function ($scope, $route, $location) {
+kpsApp.controller('addRouteController', function ($scope, $route, $location, $window) {
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -316,6 +316,7 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location) {
         r.simulation.route.push(newRoute);
         localStorage.setItem("mainSimulation", JSON.stringify(r));
         $location.path('/addMailItem');
+
             $route.reload();
     }
 
