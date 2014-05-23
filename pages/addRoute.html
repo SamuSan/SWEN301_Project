@@ -216,8 +216,33 @@
             <!--<label>{{addRoute.maxWeight}} {{addRoute.maxVolume }} {{addRoute.duration}}{{addRoute.frequency}}-->
                 <!--{{addRoute.departs}}</label>-->
         </div>
-
+    <div class="kpsfooter">
+    <div>
+        <p ng-controller="addRouteController">
+            <label class="kp-badge" >
+                Events Processed :   {{figures.events}}
+            </label>
+                        <label class="kp-badge" >
+                Items Processed :   {{figures.sysItems}} Total Weight : {{figures.sysItemsWeight}} gms Total Volume: {{figures.sysItemsVolume}} cm^3
+            </label>
+            <label class="kp-badge" >
+                Total Revenue : $ {{figures.totalRevenue}}
+            </label>
+            <label class="kp-badge" >
+                Total Expenditure : $ {{figures.totalExpenditure}}
+            </label>
+            <label class="kp-badge" >
+                Average Delivery Time :  {{figures.averageTime}} Days
+            </label>
+            <div class = "kp-red-badge"> Routes Running At A Loss:
+            <li ng-repeat="crits in figures.critRoutes">{{crits.Destination}} : {{crits.Origin}} : {{crits.Priority}} : {{crits.Difference}}
+            </li>
+        </div>
+        </p>
     </div>
+</div>
+    </div>
+
 </form>
 
 </html>

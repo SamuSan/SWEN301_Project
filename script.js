@@ -105,16 +105,16 @@ var NZ = [
 ];
 
 var data = JSON.parse(localStorage.getItem("mainSimulation"));
-$scope.figures = {};
-$scope.figures.critRoutes=getRoutesAtALoss();
-$scope.figures.events = numberEvents();
-$scope.figures.sysItems = numItems();
-$scope.figures.sysItemsWeight = itemsWeightInSys();
-$scope.figures.sysItemsVolume = itemsVolumeInSys();
+// $scope.figures = {};
+// $scope.figures.critRoutes=getRoutesAtALoss();
+// $scope.figures.events = numberEvents();
+// $scope.figures.sysItems = numItems();
+// $scope.figures.sysItemsWeight = itemsWeightInSys();
+// $scope.figures.sysItemsVolume = itemsVolumeInSys();
 
-$scope.figures.totalRevenue = revenue();
-$scope.figures.totalExpenditure = expenditure();
-$scope.figures.averageTime = averTimeDelivery();
+// $scope.figures.totalRevenue = revenue();
+// $scope.figures.totalExpenditure = expenditure();
+// $scope.figures.averageTime = averTimeDelivery();
 
 
 
@@ -125,32 +125,32 @@ $scope.figures.averageTime = averTimeDelivery();
 function numItems(){
     return data.simulation.mail.length;
 }
-function itemsWeightInSys() {
-     var weight=0;
-    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+// function itemsWeightInSys() {
+//      var weight=0;
+//     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
        
-        var item = data.simulation.mail[i];
+//         var item = data.simulation.mail[i];
 
-        weight =  weight + +item.weight;
-    }
-    return weight;
-}
-function itemsVolumeInSys() {
+//         weight =  weight + +item.weight;
+//     }
+//     return weight;
+// }
+// function itemsVolumeInSys() {
 
-     var volume=0;
-         console.log(volume);
-    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+//      var volume=0;
+//          console.log(volume);
+//     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
        
-        var item = data.simulation.mail[i];
+//         var item = data.simulation.mail[i];
 
-        volume =  volume + +item.volume;
-    }
-    console.log(volume);
-    return volume;
-}
-function numberEvents(){
-    return data.simulation.businessEvent.length;
-}
+//         volume =  volume + +item.volume;
+//     }
+//     console.log(volume);
+//     return volume;
+// }
+// function numberEvents(){
+//     return data.simulation.businessEvent.length;
+// }
 function averTimeDelivery() {
      var time=0;
     for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
@@ -240,51 +240,62 @@ function revenue() {
         // console.log(data);
         // console.log(NZ);
     });
-function getRoutesAtALoss(){
-            var routes = data.simulation.route;
-    var crRoutes = [];
-        for (var x = routes.length - 1; x >= 0; x--) {
-            var routePrice= 0;
-            var routeCost =0;
-            var totalItems = 0;
-            for(var i = data.simulation.mail.length - 1; i >= 0; i--){
-                        var item = data.simulation.mail[i];
+// function getRoutesAtALoss(){
+//             var routes = data.simulation.route;
+//     var crRoutes = [];
+//         for (var x = routes.length - 1; x >= 0; x--) {
+//             var routePrice= 0;
+//             var routeCost =0;
+//             var totalItems = 0;
+//             for(var i = data.simulation.mail.length - 1; i >= 0; i--){
+//                         var item = data.simulation.mail[i];
 
 
-                if (routes[x].destination === item.destination) {
-                    if (routes[x].origin === item.origin) {
-                        if (routes[x].priority === item.priority) {
-                            totalItems +=1;
-                            route = routes[x];
-                            var weightPrice = route.weightPrice * item.weight;
-                            var volumePrice = route.volumePrice * item.volume;
+//                 if (routes[x].destination === item.destination) {
+//                     if (routes[x].origin === item.origin) {
+//                         if (routes[x].priority === item.priority) {
+//                             totalItems +=1;
+//                             route = routes[x];
+//                             var weightPrice = route.weightPrice * item.weight;
+//                             var volumePrice = route.volumePrice * item.volume;
 
-                            var weightCost = route.weightcost * item.weight;
-                            var volumeCost = route.volumecost * item.volume;
-                            routeCost += (weightCost + volumeCost);
-                            routePrice +=(weightPrice + volumePrice);
-                        }
-                    }
-                }
-            }
-            routeCost = (routeCost / totalItems);
-            routePrice = (routePrice / totalItems);
-            if(routeCost > routePrice){
-                var diff = routeCost  -routePrice;
-                console.log(diff);
-                crRoutes.push({"Destination" :routes[x].destination, "Origin": routes[x].origin, "Priority":routes[x].priority, "Difference": diff});
-            }
+//                             var weightCost = route.weightcost * item.weight;
+//                             var volumeCost = route.volumecost * item.volume;
+//                             routeCost += (weightCost + volumeCost);
+//                             routePrice +=(weightPrice + volumePrice);
+//                         }
+//                     }
+//                 }
+//             }
+//             routeCost = (routeCost / totalItems);
+//             routePrice = (routePrice / totalItems);
+//             if(routeCost > routePrice){
+//                 var diff = routeCost  -routePrice;
+//                 console.log(diff);
+//                 crRoutes.push({"Destination" :routes[x].destination, "Origin": routes[x].origin, "Priority":routes[x].priority, "Difference": diff});
+//             }
 
-        }
+//         }
 
-return crRoutes;
-//Cost > Price
-}
+// return crRoutes;
+// //Cost > Price
+// }
     // create a message to displa in our view
 //  $scope.message = 'Should say some shit about KPSmart';
 });
 
 kpsApp.controller('addRouteController', function ($scope, $route, $location, $window) {
+    $scope.figures = {};
+    $scope.figures.critRoutes=getRoutesAtALoss();
+    $scope.figures.events = numberEvents();
+    $scope.figures.sysItems = numItems();
+    $scope.figures.sysItemsWeight = itemsWeightInSys();
+    $scope.figures.sysItemsVolume = itemsVolumeInSys();
+    $scope.figures.totalRevenue = revenue();
+    $scope.figures.totalExpenditure = expenditure();
+    $scope.figures.averageTime = averTimeDelivery();
+
+    // getFigs($scope);/
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -813,4 +824,184 @@ function summaryData(data){
         }
     }
     return tableData;
+}
+// function getFigs($scope){
+
+// var data = JSON.parse(localStorage.getItem("mainSimulation"));
+
+// $scope.figures.sysItems = 
+
+
+
+
+
+
+
+
+
+
+// }
+function numItems(){
+    var data = JSON.parse(localStorage.getItem("mainSimulation"));
+    return data.simulation.mail.length;
+};
+
+
+function getRoutesAtALoss(){
+        var data = JSON.parse(localStorage.getItem("mainSimulation"));
+            var routes = data.simulation.route;
+    var crRoutes = [];
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var routePrice= 0;
+            var routeCost =0;
+            var totalItems = 0;
+            for(var i = data.simulation.mail.length - 1; i >= 0; i--){
+                        var item = data.simulation.mail[i];
+
+
+                if (routes[x].destination === item.destination) {
+                    if (routes[x].origin === item.origin) {
+                        if (routes[x].priority === item.priority) {
+                            totalItems +=1;
+                            route = routes[x];
+                            var weightPrice = route.weightPrice * item.weight;
+                            var volumePrice = route.volumePrice * item.volume;
+
+                            var weightCost = route.weightcost * item.weight;
+                            var volumeCost = route.volumecost * item.volume;
+                            routeCost += (weightCost + volumeCost);
+                            routePrice +=(weightPrice + volumePrice);
+                        }
+                    }
+                }
+            }
+            routeCost = (routeCost / totalItems);
+            routePrice = (routePrice / totalItems);
+            if(routeCost > routePrice){
+                var diff = routeCost  -routePrice;
+                console.log(diff);
+                crRoutes.push({"Destination" :routes[x].destination, "Origin": routes[x].origin, "Priority":routes[x].priority, "Difference": diff});
+            }
+
+        }
+
+return crRoutes;
+//Cost > Price
+}
+
+function numberEvents(){
+            var data = JSON.parse(localStorage.getItem("mainSimulation"));
+    return data.simulation.businessEvent.length;
+}
+
+function itemsVolumeInSys() {
+            var data = JSON.parse(localStorage.getItem("mainSimulation"));
+     var volume=0;
+         console.log(volume);
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
+
+        volume =  volume + +item.volume;
+    }
+    console.log(volume);
+    return volume;
+}
+function itemsWeightInSys() {
+                var data = JSON.parse(localStorage.getItem("mainSimulation"));
+     var weight=0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
+
+        weight =  weight + +item.weight;
+    }
+    return weight;
+}
+
+function averTimeDelivery() {
+                    var data = JSON.parse(localStorage.getItem("mainSimulation"));
+     var time=0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+       
+        var item = data.simulation.mail[i];
+
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === item.origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        time = time + +route.duration;
+
+                  
+                    }
+                }
+            }
+
+        }
+    }
+    time = (time / data.simulation.mail.length);
+   time = time.toFixed(1).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+                        console.log("TIME" + time);
+    return time;
+}
+
+function expenditure() {
+                    var data = JSON.parse(localStorage.getItem("mainSimulation"));
+  
+    var expenditure = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === item.origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        var weightCost = route.weightcost * item.weight;
+                        var volumeCost = route.volumecost * item.volume;
+                        expenditure += (weightCost + volumeCost);
+                    }
+                }
+            }
+
+        }
+    }
+    expenditure.toFixed(2).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+
+    return expenditure;
+}
+function revenue() {
+                    var data = JSON.parse(localStorage.getItem("mainSimulation"));
+    var revenue = 0;
+    for (var i = data.simulation.mail.length - 1; i >= 0; i--) {
+        var item = data.simulation.mail[i];
+        var routes = data.simulation.route;
+        for (var x = routes.length - 1; x >= 0; x--) {
+            var currroute = routes[x];
+            if (routes[x].destination === item.destination) {
+                if (routes[x].origin === item.origin) {
+                    if (routes[x].priority === item.priority) {
+                        route = routes[x];
+                        var weightCost = route.weightPrice * item.weight;
+                        var volumeCost = route.volumePrice * item.volume;
+                        revenue += (weightCost + volumeCost);
+                    }
+                }
+            }
+
+        }
+    }
+    revenue.toFixed(2).replace(/./g, function (c, i, a) {
+        return i && c !== "." && !((a.length - i) % 3) ? ',' + c : c;
+    });
+    return revenue;
 }
