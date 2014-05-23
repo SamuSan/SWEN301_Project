@@ -284,25 +284,26 @@ var NZ = [
 //  $scope.message = 'Should say some shit about KPSmart';
 });
 
-kpsApp.controller('addRouteController', function ($scope, $route, $location, $window) {
-    $scope.figures = {};
-    $scope.figures.critRoutes=getRoutesAtALoss();
-    $scope.figures.events = numberEvents();
-    $scope.figures.sysItems = numItems();
-    $scope.figures.sysItemsWeight = itemsWeightInSys();
-    $scope.figures.sysItemsVolume = itemsVolumeInSys();
-    $scope.figures.totalRevenue = revenue();
-    $scope.figures.totalExpenditure = expenditure();
-    $scope.figures.averageTime = averTimeDelivery();
+kpsApp.controller('addRouteController', function ($scope, $route, $location, $window, $rootScope) {
+    $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
 
     // getFigs($scope);/
     var r;
     r = JSON.parse(localStorage.getItem("mainSimulation"));
-
+ var priors = ["International Air", "International Standard", "Domestic Standard", "Domestic Air"];
     var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     var types = ["Land", "Air", "Sea"];
     $scope.days = days;
     $scope.types = types;
+    $scope.priors = priors;
     $scope.placeHolder = "*";
     $scope.addRoute = {
         "company": "",
@@ -325,15 +326,53 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
     $scope.submit = function () {
         var newRoute = $scope.addRoute;
         r.simulation.route.push(newRoute);
+    $scope.routeEvent = {
+        "company": "",
+        "day":"",
+        "destination": "",
+        "duration":"",
+        "frequency":"",
+        "maxVolume":"",
+        "maxWeight":"",
+        "origin":"",
+        "priority":"",
+        "type":"",
+        "volumeCost":"",
+        "volumePrice":"",
+        "weightCost":"",
+        "weightPrice":""
+
+
+    };
+var routeEvent = $scope.routeEvent;
+        routeEvent.company=newRoute.company;
+        routeEvent.day=newRoute.day;
+        routeEvent.destination=newRoute.destination;
+        routeEvent.duration=newRoute.duration;
+        routeEvent.frequency=newRoute.frequency;
+        routeEvent.maxVolume=newRoute.maxVolume;
+        routeEvent.maxWeight=newRoute.maxWeight;
+        routeEvent.origin=newRoute.origin;
+        routeEvent.priority=newRoute.priority;
+        routeEvent.type=newRoute.type;
+        routeEvent.volumeCost=newRoute.volumecost;
+        routeEvent.volumePrice=newRoute.volumePrice;
+        routeEvent.weightCost=newRoute.weightcost;
+        routeEvent.weightPrice=newRoute.weightPrice;
+        routeEvent.eventName = "Route Addition";
+        r.simulation.businessEvent.push(routeEvent);
+
         localStorage.setItem("mainSimulation", JSON.stringify(r));
-            $scope.figures.critRoutes=getRoutesAtALoss();
-    $scope.figures.events = numberEvents();
-    $scope.figures.sysItems = numItems();
-    $scope.figures.sysItemsWeight = itemsWeightInSys();
-    $scope.figures.sysItemsVolume = itemsVolumeInSys();
-    $scope.figures.totalRevenue = revenue();
-    $scope.figures.totalExpenditure = expenditure();
-    $scope.figures.averageTime = averTimeDelivery();
+
+    $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
         $location.path('/addMailItem');
         
             $route.reload();

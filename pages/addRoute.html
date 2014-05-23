@@ -75,6 +75,21 @@
                     </div>
 
                 </td>
+                                <td>
+                    <div>
+                        <label>Priority: </label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <select id="typeSelection"
+                                ng-model="addRoute.priority"
+                                required="true" ng-options="prior for prior in priors">
+
+                        </select>
+                    </div>
+
+                </td>
                 <tr>
                 <td>
                     <div>
@@ -91,7 +106,7 @@
                                required="true"/>
                     </div>
                 </td>
-                <tr/>
+                </tr>
                 <tr>
                     <td>
                         <div>
@@ -103,6 +118,39 @@
                             <input placeholder="{{placeHolder}}" id="volumeCost"
                                    type="text"
                                    ng-model="addRoute.volumeCost"
+                                   ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                                   required="true"/>
+                        </div>
+                    </td>
+                </tr>
+                                <tr>
+                <td>
+                    <div>
+                        <label>Weight Price : </label>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <input placeholder="{{placeHolder}}"
+                               id="weightCost"
+                               type="text"
+                               ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
+                               ng-model="addRoute.weightPrice"
+                               required="true"/>
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label>Volume Price : </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input placeholder="{{placeHolder}}" id="volumeCost"
+                                   type="text"
+                                   ng-model="addRoute.volumePrice"
                                    ng-pattern="/^\d{0,9}(\.\d{1,9})?$/"
                                    required="true"/>
                         </div>
