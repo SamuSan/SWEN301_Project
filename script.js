@@ -540,6 +540,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
                 }
             }
             $scope.updateVol(mailItem);
+            $scope.getPrice(mailItem);
         }
 
 
