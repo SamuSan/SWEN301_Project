@@ -611,8 +611,9 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
 
             r.simulation.mail.push(mailItem);
 
-            mailItem.eventName = "Add Mail";
+            mailItem.event = "Add Mail";
             mailItem.day = n;
+            mailItem.destination = mailItem.destination.destination;
             r.simulation.businessEvent.push(mailItem);
 
 
