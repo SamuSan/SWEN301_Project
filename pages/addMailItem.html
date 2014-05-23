@@ -28,25 +28,24 @@
             <tr>
                 <td>
                     <label>Height(Centimeter): </label></td>
-                <td><input name="input3" type="number" ng-model="input3" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
+                <td><input name="input3" type="number" ng-model="mailItem.Height" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Width(Centimeter): </label></td>
-                <td><input name="input4" type="number" ng-model="input4" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
+                <td><input name="input4" type="number" ng-model="mailItem.Width" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Length(Centimeter): </label></td>
-                <td><input name="input5" type="number" ng-model="input5" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
-            </tr>
+                <td><input name="input5" type="number" ng-model="mailItem.Length" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxVolume}}" required/></td>   </tr>
             <tr>
                 <td><label>Volume(Cubic Centimeter):</label></td>
-                <td><label ng-model="mailItem.Volume"> {{input3 * input4 * input5}}</label>
+                <td><label ng-model="mailItem.Volume"> {{mailItem.Volume || ""}}</label>
             </tr>
             <tr>
                 <td><label>Weight(Grams): </label></td>
-                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxWeight}}"  required/></td>
+                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxWeight}}"  required/></td>
             </tr>
             <tr>
                 <td><label>From: </label></td>
@@ -65,7 +64,7 @@
             <tr>
                 <td><label >Price: </label></td>
                 <td><label>
-                    ${{mailItem.Price = newWeightPrice * mailItem.Weight + newVolumePrice * (input3 * input4 * input5); mailItem.Price || ""}} </label>
+                    ${{mailItem.Price || ""}} </label>
                 </td>
 
             </tr>
@@ -78,6 +77,10 @@
             </button>
             <button type="submit" class="btn btn-danger">Cancel</button></td>
             </tr>
+            <tr><td></td><td>
+                <label> Update Status:</label> {{updateMessage}}
+
+            </td></tr>
         </table>
       <div class="kpsfooter">
     <div>
