@@ -480,7 +480,7 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
  * Created by Marcus on 5/10/2014.
  */
 
-kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
+kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
 
@@ -588,10 +588,10 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
 
 
         if(mailItem.destination.maxVolume < mailItem.Volume){
-            $scope.updateMessage = "ERROR: Volume to high. Max Volume: " + mailItem.destination.destination.maxVolume;
+            $scope.updateMessage = "ERROR: Volume to high. Max Volume: " + mailItem.destination.maxVolume;
         }
         else if(mailItem.destination.destination.maxWeight < mailItem.Weight){
-            $scope.updateMessage = "ERROR: Weight to high. Max Weight: " + mailItem.destination.destination.maxWeight;
+            $scope.updateMessage = "ERROR: Weight to high. Max Weight: " + mailItem.destination.maxWeight;
         }
         else{
             var currentdate = new Date();
