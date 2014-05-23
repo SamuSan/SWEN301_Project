@@ -316,7 +316,7 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         r.simulation.route.push(newRoute);
         localStorage.setItem("mainSimulation", JSON.stringify(r));
         $location.path('/addMailItem');
-
+        
             $route.reload();
     }
 
