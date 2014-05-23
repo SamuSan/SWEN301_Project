@@ -3,11 +3,17 @@
 <meta charset="utf-8"> 
 <head>
     <title>Event Log</title>
+    <style>
+        th, td{
+            padding: 0px 5px 10px 5px;
+        }
+    </style>
+
 </head>
 <body>
 <div ng-controller="eventLogController">
     <h2>Business Data</h2>
-    <table ng-switch="current.event" style="width:400px">
+    <table ng-switch="current.event" style="width:400px, padding: 0px 5px 10px 5px;">
         <tr>
             <td>
                 <button type="previous" class="btn btn-success" ng-click="previous()">Previous</button>
@@ -16,7 +22,7 @@
         </tr>
         <tr>
             <td>
-                <label>Event Type:</label> {{current.event}}
+                <h3>{{current.event}}</h3>
             </td>
         </tr>
         <tr ng-switch-when="Add Route">
