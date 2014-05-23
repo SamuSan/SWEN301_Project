@@ -161,7 +161,7 @@
                 "weightPrice": "4",
                 "volumePrice": "3"
             },
-                        {
+            {
                 "company": "Davy Jones Ltd",
                 "destination": "Osaka",
                 "origin": "Auckland",
@@ -177,7 +177,7 @@
                 "weightPrice": "4",
                 "volumePrice": "3"
             },
-                        {
+            {
                 "company": "Davy Jones Ltd",
                 "destination": "Beijing",
                 "origin": "Wellington",
@@ -208,7 +208,187 @@
                 "priority": "International Air",
                 "weightPrice": "3",
                 "volumePrice": "3"
-            }
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Auckland",
+                "origin": "Hamilton",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Hamilton",
+                "origin": "Auckland",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Rotorua",
+                "origin": "Hamilton",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Hamilton",
+                "origin": "Rotorua",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Palmerston North",
+                "origin": "Rotorua",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Rotorua",
+                "origin": "Palmerston North",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Wellington",
+                "origin": "Palmerston North",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Palmerston North",
+                "origin": "Wellington",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Wellington",
+                "origin": "Christchurch",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Christchurch",
+                "origin": "Wellington",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Christchurch",
+                "origin": "Dunedin",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"
+            },            {
+                "company": "Rodney's Longhaul",
+                "destination": "Dunedin",
+                "origin": "Christchurch",
+                "type": "Land",
+                "weightcost": "0",
+                "volumecost": "1",
+                "maxWeight": "8000",
+                "maxVolume": "260",
+                "duration": "2",
+                "frequency": "12",
+                "day": "Monday",
+                "priority": "Domestic Standard",
+                "weightPrice": "1",
+                "volumePrice": "1"}
+
         ],
         "mail": [
             {
@@ -219,7 +399,7 @@
                 "volume": "5",
                 "priority": "International Air"
             },
-                        {
+            {
                 "day": "Sunday",
                 "destination": "Hamilton",
                 "origin": "Wellington",
@@ -227,7 +407,7 @@
                 "volume": "6",
                 "priority": "Domestic Standard"
             },
-                        {
+            {
                 "day": "Wednesday",
                 "destination": "Sydney",
                 "origin": "Auckland",
@@ -235,7 +415,7 @@
                 "volume": "5",
                 "priority": "International Standard"
             },
-                        {
+            {
                 "day": "Thursday",
                 "destination": "Tokyo",
                 "origin": "Wellington",
@@ -243,7 +423,7 @@
                 "volume": "8",
                 "priority": "International Standard"
             },
-                        {
+            {
                 "day": "Friday",
                 "destination": "Beijing",
                 "origin": "Wellington",
@@ -251,7 +431,7 @@
                 "volume": "9",
                 "priority": "International Air"
             },
-                        {
+            {
                 "day": "Monday",
                 "destination": "Osaka",
                 "origin": "Auckland",
@@ -259,7 +439,7 @@
                 "volume": "1",
                 "priority": "International Standard"
             },
-                        {
+            {
                 "day": "Monday",
                 "destination": "Hamilton",
                 "origin": "Auckland",
@@ -517,8 +697,8 @@
                 "weightPrice": "3",
                 "volumePrice": "3"
             },
-                        {
-                            "event":"Add Mail",
+            {
+                "event":"Add Mail",
                 "day": "Monday",
                 "to": "Rome",
                 "from": "Wellington",
@@ -598,7 +778,7 @@
                 "volume": "5",
                 "priority": "International Air"
             }
-            
-            ]
+
+        ]
     }
 }

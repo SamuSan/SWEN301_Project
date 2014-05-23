@@ -65,15 +65,11 @@
                 // The shortest path to next is dist[next] and via pred[next].
 
                 var neighbors = this.Graph.edgesFrom(this.Graph.nodeAt(next));
-
                 if(neighbors != null && neighbors[0] != void(0)){
-
                     for (j = 0; j < neighbors.length; j++) {
-
-                        var neighborlength = Number(neighbors[j][1]) + Number(this.distance[next]);
-                        var neighbor = neighbors[j][0];
+                        var neighborlength =  Number(this.distance[next]);
+                        var neighbor = neighbors[j];
                         var neighborIdx = this.Graph.indexOf(neighbor);
-
                         if (this.distance[neighborIdx] > neighborlength) {
                             this.distance[neighborIdx] = neighborlength;
                             this.preds[neighborIdx] = next;

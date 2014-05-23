@@ -28,17 +28,17 @@
             <tr>
                 <td>
                     <label>Height(Centimeter): </label></td>
-                <td><input name="input3" type="number" ng-model="input3" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
+                <td><input name="input3" type="number" ng-model="input3" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Width(Centimeter): </label></td>
-                <td><input name="input4" type="number" ng-model="input4" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
+                <td><input name="input4" type="number" ng-model="input4" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td>
                     <label>Length(Centimeter): </label></td>
-                <td><input name="input5" type="number" ng-model="input5" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
+                <td><input name="input5" type="number" ng-model="input5" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxVolume}}" required/></td>
             </tr>
             <tr>
                 <td><label>Volume(Cubic Centimeter):</label></td>
@@ -46,18 +46,18 @@
             </tr>
             <tr>
                 <td><label>Weight(Grams): </label></td>
-                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-trim="false" min="1" max="{{mailItem.To.maxWeight}}"  required/></td>
+                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.To.maxWeight}}"  required/></td>
             </tr>
             <tr>
                 <td><label>From: </label></td>
-                <td><select ng-init="" ng-model="mailItem.From"
+                <td><select ng-init="" ng-model="mailItem.origin"
                             ng-options="datum as datum for datum in points"
                             ng-click="getRoute(mailItem)"
                             required></select></td>
             </tr>
             <tr>
                 <td><label>To: </label></td>
-                <td><select ng-init="" ng-model="mailItem.To"
+                <td><select ng-init="" ng-model="mailItem.destination"
                             ng-options="datum as 'Route : ' + datum.destination + ' - ' + datum.company +' : ' + datum.priority for datum in fromRoute"
                             ng-click="getPrice(mailItem)"
                             required></select></td>

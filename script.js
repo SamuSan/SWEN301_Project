@@ -458,13 +458,22 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.points = ["Auckland","Hamilton","Rotorua","Palmerston North","Wellington","Christchurch","Dunedin"];
 
-  
+
+    $scope.updateVol = function(mailItem){
+        $scope.mailItem.Volume = $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length;
+
+        $scope.updatePri(mailItem);
+    }
+
+    $scope.updatePri = function(mailItem){
+        $scope.mailItem.Price =  $scope.newWeightPrice * $scope.mailItem.Weight + $scope.newVolumePrice * $scope.mailItem.Volume;
+    }
 
 
 
 
 
-  $scope.getRoute = function(mailItem){
+    $scope.getRoute = function(mailItem){
         $scope.fromRoute = [];
         //will need to set fromRoute to empty
         if(mailItem.origin == ""
@@ -489,12 +498,8 @@ kpsApp.controller('addMailItemController', function ($scope) {
     };
 
     $scope.getPrice = function(mailItem){
-
-        var graph = buildDirGraph($scope.data);
-
         var dk = shortestPath(graph, mailItem.origin,mailItem.destination.destination);
 
-        
 
         if(dk.path == null){
             return;
@@ -519,6 +524,7 @@ kpsApp.controller('addMailItemController', function ($scope) {
         $scope.newWeightPrice = dk.volumeCost;
         $scope.newVolumePrice = dk.weightCost;
 
+        $scope.updatePri(mailItem);
 
     }
 
