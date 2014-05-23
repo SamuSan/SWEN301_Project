@@ -505,7 +505,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
         "Weight": "",
         "Price": 0
     };
-
+    $scope.updateMessage = "Currently Pending";
     $scope.cost;
 
     $scope.data = r.simulation.route;
@@ -514,15 +514,9 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
 
 
     $scope.updateVol = function(mailItem){
-        $scope.mailItem.Volume = $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length;
-
-        $scope.updatePri(mailItem);
+        $scope.mailItem.Volume = mailItem.Width * mailItem.Height*mailItem.Length;
+        $scope.mailItem.Price =  $scope.newWeightPrice * mailItem.Weight + $scope.newVolumePrice * mailItem.Volume;
     }
-
-    $scope.updatePri = function(mailItem){
-        $scope.mailItem.Price =  $scope.newWeightPrice * $scope.mailItem.Weight + $scope.newVolumePrice * $scope.mailItem.Volume;
-    }
-
 
 
 
@@ -545,6 +539,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
 
                 }
             }
+            $scope.updateVol(mailItem);
         }
 
 
@@ -578,7 +573,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
         $scope.newWeightPrice = dk.volumeCost;
         $scope.newVolumePrice = dk.weightCost;
 
-        $scope.updatePri(mailItem);
+        $scope.updateVol(mailItem);
 
     }
 
@@ -590,37 +585,46 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
 
     $scope.submit = function (mailItem) {
 
-        var currentdate = new Date();
 
-        var datetime = currentdate.getDate() + "/"+(currentdate.getMonth()+1)
-            + "/" + currentdate.getFullYear() + " @ "
-            + currentdate.getHours() + ":"
-            + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+        if(mailItem.destination.maxVolume < mailItem.Volume){
+            $scope.updateMessage = "ERROR: Volume to high. Max Volume: " + mailItem.destination.destination.maxVolume;
+        }
+        else if(mailItem.destination.destination.maxWeight < mailItem.Weight){
+            $scope.updateMessage = "ERROR: Weight to high. Max Weight: " + mailItem.destination.destination.maxWeight;
+        }
+        else{
+            var currentdate = new Date();
 
-        mailItem.priority = mailItem.destination.priority;
+            var datetime = currentdate.getDate() + "/"+(currentdate.getMonth()+1)
+                + "/" + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-        r.simulation.mail.push(mailItem);
+            mailItem.priority = mailItem.destination.priority;
+
+            r.simulation.mail.push(mailItem);
 
 
-        mailItem.eventName = "Add Mail";
-        mailItem.time = datetime;
-        r.simulation.businessEvent.push(mailItem);
+            mailItem.eventName = "Add Mail";
+            mailItem.time = datetime;
+            r.simulation.businessEvent.push(mailItem);
 
 
 
-        localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+            localStorage.setItem("mainSimulation",JSON.stringify(r));
             $rootScope.figures = {};
-    $rootScope.figures.critRoutes=getRoutesAtALoss();
-    $rootScope.figures.events = numberEvents();
-    $rootScope.figures.sysItems = numItems();
-    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
-    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
-    $rootScope.figures.totalRevenue = revenue();
-    $rootScope.figures.totalExpenditure = expenditure();
-    $rootScope.figures.averageTime = averTimeDelivery();
-                $route.reload();
+            $rootScope.figures.critRoutes=getRoutesAtALoss();
+            $rootScope.figures.events = numberEvents();
+            $rootScope.figures.sysItems = numItems();
+            $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+            $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+            $rootScope.figures.totalRevenue = revenue();
+            $rootScope.figures.totalExpenditure = expenditure();
+            $rootScope.figures.averageTime = averTimeDelivery();
+            $route.reload();
 
-    }
+        }}
 });
 
 kpsApp.directive('customValidation', function () {
