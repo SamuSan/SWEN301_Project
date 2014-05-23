@@ -6,12 +6,8 @@
 </head>
 <body>
 <div ng-controller="eventLogController">
-    <table ng-switch="current.event">
-        <tr>
-            <td>
-                <label>Business Data </label>
-            </td>
-        </tr>
+    <h2>Business Data</h2>
+    <table ng-switch="current.event" style="width:400px">
         <tr>
             <td>
                 <button type="previous" class="btn btn-success" ng-click="previous()">Previous</button>
@@ -27,13 +23,22 @@
             <td>
                 <label>Company:</label> {{current.company}}
             </td>
+            <td>
+                <label>Type:</label> {{current.type}}
+            </td>
+        </tr>
+        <tr ng-switch-when="Change Route">
+            <td>
+                <label>Company:</label> {{current.company}}
+            </td>
+            <td>
+                <label>Type:</label> {{current.type}}
+            </td>
         </tr>
         <tr ng-switch-when="Add Mail">
             <td>
                 <label>To:</label> {{current.to}}
             </td>
-        </tr>
-        <tr ng-switch-when="Add Mail">
             <td>
                 <label >From:</label> {{current.from}}
             </td>
@@ -42,8 +47,6 @@
             <td>
                 <label>Weight:</label> {{current.weight}}
             </td>
-        </tr>
-        <tr ng-switch-when="Add Mail">
             <td>
                 <label>Volume:</label> {{current.volume}}
             </td>
@@ -52,33 +55,46 @@
             <td>
                 <label>Destination:</label> {{current.destination}}
             </td>
+            <td>
+                <label>Origin:</label> {{current.origin}}
+            </td>
         </tr>
-        <tr ng-switch-when="Add Route">
+        <tr ng-switch-when="Change Route">
+            <td>
+                <label>Destination:</label> {{current.destination}}
+            </td>
             <td>
                 <label>Origin:</label> {{current.origin}}
             </td>
         </tr>
         <tr ng-switch-when="Add Route">
             <td>
-                <label>Type:</label> {{current.type}}
+                <label>Weight Cost:</label> {{current.weightcost}}
+            </td>
+            <td>
+                <label>Volume Cost:</label> {{current.volumecost}}
             </td>
         </tr>
-        <tr ng-switch-when="Add Route">
+        <tr ng-switch-when="Change Route">
             <td>
-                <label>Weight Cost:</label> {{current.weightCost}}
+                <label>Weight Cost:</label> {{current.weightcost}}
             </td>
-        </tr>
-        <tr ng-switch-when="Add Route">
             <td>
-                <label>Volume Cost:</label> {{current.volumeCost}}
+                <label>Volume Cost:</label> {{current.volumecost}}
             </td>
         </tr>
         <tr ng-switch-when="Add Route">
             <td>
                 <label>Max Weight:</label> {{current.maxWeight}}
             </td>
+            <td>
+                <label>Max Volume:</label> {{current.maxVolume}}
+            </td>
         </tr>
-        <tr ng-switch-when="Add Route">
+        <tr ng-switch-when="Change Route">
+            <td>
+                <label>Max Weight:</label> {{current.maxWeight}}
+            </td>
             <td>
                 <label>Max Volume:</label> {{current.maxVolume}}
             </td>
@@ -87,8 +103,14 @@
             <td>
                 <label>Duration:</label> {{current.duration}}
             </td>
+            <td>
+                <label>Frequency:</label> {{current.frequency}}
+            </td>
         </tr>
-        <tr ng-switch-when="Add Route">
+        <tr ng-switch-when="Change Route">
+            <td>
+                <label>Duration:</label> {{current.duration}}
+            </td>
             <td>
                 <label>Frequency:</label> {{current.frequency}}
             </td>
@@ -97,8 +119,6 @@
             <td>
                 <label>Priority:</label> {{current.priority}}
             </td>
-        </tr>
-        <tr>
             <td>
                 <label>Day:</label> {{current.day}}
             </td>
@@ -107,8 +127,14 @@
             <td>
                 <label>Weight Price:</label> {{current.weightPrice}}
             </td>
+             <td>
+                <label>Volume Price:</label> {{current.volumePrice}}
+            </td>
         </tr>
-        <tr ng-switch-when="Add Route">
+        <tr ng-switch-when="Change Route">
+            <td>
+                <label>Weight Price:</label> {{current.weightPrice}}
+            </td>
             <td>
                 <label>Volume Price:</label> {{current.volumePrice}}
             </td>
