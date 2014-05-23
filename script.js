@@ -327,6 +327,7 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         var newRoute = $scope.addRoute;
         r.simulation.route.push(newRoute);
     $scope.routeEvent = {
+        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -337,9 +338,9 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         "origin":"",
         "priority":"",
         "type":"",
-        "volumeCost":"",
+        "volumecost":"",
         "volumePrice":"",
-        "weightCost":"",
+        "weightcost":"",
         "weightPrice":""
 
 
@@ -359,7 +360,7 @@ var routeEvent = $scope.routeEvent;
         routeEvent.volumePrice=newRoute.volumePrice;
         routeEvent.weightCost=newRoute.weightcost;
         routeEvent.weightPrice=newRoute.weightPrice;
-        routeEvent.eventName = "Route Addition";
+        routeEvent.event = "Add Route";
         r.simulation.businessEvent.push(routeEvent);
 
         localStorage.setItem("mainSimulation", JSON.stringify(r));
@@ -669,7 +670,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-         "eventName":"",
+        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -708,7 +709,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.priceBox.volumePrice;
         routeEvent.weightcost=$scope.priceBox.weightcost;
         routeEvent.weightPrice=$scope.priceBox.weightPrice;
-        routeEvent.eventName = "Change Route";
+       routeEvent.event = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
@@ -766,7 +767,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-        "eventName":"",
+        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -805,7 +806,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.routeBox.volumePrice;
         routeEvent.weightcost=$scope.routeBox.weightcost;
         routeEvent.weightPrice=$scope.routeBox.weightPrice;
-        routeEvent.eventName = "Change Route";
+        routeEvent.event = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         //#####modifying the route data
