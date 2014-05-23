@@ -12,7 +12,7 @@ $ python -m SimpleHTTPServer
 
 or for python version 3 the command  python -m http.server 8000
 
-once the server is up you need to open a browser and go to localhost:8000
+3. once the server is up you need to open a browser and go to localhost:8000
 
 
 ###say stuff about the pages.
