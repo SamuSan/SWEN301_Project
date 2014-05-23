@@ -562,8 +562,8 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
                     && dk.path[i-1] == r.simulation.route[j].origin
                     && dk.path[i] == r.simulation.route[j].destination){
                     found = true;
-                    dk.volumeCost = parseInt(dk.volumeCost) + parseInt(r.simulation.route[j].volumecost);
-                    dk.weightCost = parseInt(dk.weightCost) + parseInt(r.simulation.route[j].weightcost);
+                    dk.volumeCost = parseInt(dk.volumeCost) + parseInt(r.simulation.route[j].volumePrice);
+                    dk.weightCost = parseInt(dk.weightCost) + parseInt(r.simulation.route[j].weightPrice);
                 }
             }
             if(found == false){
