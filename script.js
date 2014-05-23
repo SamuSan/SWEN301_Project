@@ -475,9 +475,20 @@ kpsApp.controller('eventLogController', function ($scope, $filter, ngTableParams
  * Created by Marcus on 5/10/2014.
  */
 
-kpsApp.controller('addMailItemController', function ($scope) {
+kpsApp.controller('addMailItemController', function ($scope, $rootScope) {
 
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
+
+
+    $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
 
     $scope.mailItem = {
         "Width": 0,
@@ -594,6 +605,16 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
+            $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
+                $route.reload();
 
     }
 });
@@ -624,8 +645,18 @@ kpsApp.directive('customValidation', function () {
 /* James fat controller
  */
 
-kpsApp.controller('updatePriceController', function ($scope) {
+kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
 
+
+    $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
@@ -685,6 +716,16 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
 
+            $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
+
         $scope.priceBox = null;
         $scope.updateMessage = 'Successfully Updated';
     }
@@ -701,7 +742,17 @@ kpsApp.controller('updatePriceController', function ($scope) {
 
 //########################update route
 
-kpsApp.controller('updateRouteController', function ($scope) {
+kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
+
+                $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
     var r = JSON.parse(localStorage.getItem("mainSimulation"));
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
@@ -767,6 +818,16 @@ kpsApp.controller('updateRouteController', function ($scope) {
 
 
         localStorage.setItem("mainSimulation",JSON.stringify(r));
+
+                    $rootScope.figures = {};
+    $rootScope.figures.critRoutes=getRoutesAtALoss();
+    $rootScope.figures.events = numberEvents();
+    $rootScope.figures.sysItems = numItems();
+    $rootScope.figures.sysItemsWeight = itemsWeightInSys();
+    $rootScope.figures.sysItemsVolume = itemsVolumeInSys();
+    $rootScope.figures.totalRevenue = revenue();
+    $rootScope.figures.totalExpenditure = expenditure();
+    $rootScope.figures.averageTime = averTimeDelivery();
       
         $scope.routeBox = null;
         $scope.updateMessage = 'Successfully Updated';

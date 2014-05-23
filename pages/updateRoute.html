@@ -94,8 +94,35 @@
               <label> Update Status:</label> {{updateMessage}}
 
             </td></tr>
-</table>
+            <tr>
 
+            </tr>
+</table>
+    <div class="kpsfooter">
+    <div>
+        <p ng-controller="updateRouteController">
+            <label class="kp-badge" >
+                Events Processed :   {{figures.events}}
+            </label>
+                        <label class="kp-badge" >
+                Items Processed :   {{figures.sysItems}} Total Weight : {{figures.sysItemsWeight}} gms Total Volume: {{figures.sysItemsVolume}} cm^3
+            </label>
+            <label class="kp-badge" >
+                Total Revenue : $ {{figures.totalRevenue}}
+            </label>
+            <label class="kp-badge" >
+                Total Expenditure : $ {{figures.totalExpenditure}}
+            </label>
+            <label class="kp-badge" >
+                Average Delivery Time :  {{figures.averageTime}} Days
+            </label>
+            <div class = "kp-red-badge"> Routes Running At A Loss:
+            <li ng-repeat="crits in figures.critRoutes">{{crits.Destination}} : {{crits.Origin}} : {{crits.Priority}} : {{crits.Difference}}
+            </li>
+        </div>
+        </p>
+    </div>
+</div>
 
 </body>
 </html>
