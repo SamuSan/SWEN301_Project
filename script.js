@@ -426,14 +426,12 @@ kpsApp.controller('addMailItemController', function ($scope) {
         "Height":0,
         "Length":0,
         //Having this throws error
-        //"Volume": $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length,
+        "Volume": 0,
         "destination": "",
         "origin": "",
         "Weight": "",
         "Price": 0
     };
-
-    $scope.mailItem.Volume = $scope.mailItem.Width * $scope.mailItem.Height*$scope.mailItem.Length;
 
     $scope.cost;
 
@@ -441,8 +439,13 @@ kpsApp.controller('addMailItemController', function ($scope) {
 
     $scope.points = ["Auckland","Hamilton","Rotorua","Palmerston North","Wellington","Christchurch","Dunedin"];
 
+  
 
-    $scope.getRoute = function(mailItem){
+
+
+
+
+  $scope.getRoute = function(mailItem){
         $scope.fromRoute = [];
         //will need to set fromRoute to empty
         if(mailItem.origin == ""
