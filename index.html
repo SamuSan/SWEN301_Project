@@ -78,14 +78,6 @@
         <!-- this is where content will be injected -->
         <div ng-view=""></div> </div>
          </div>
-         <div>
-            
-            <p ng-controller="mainController">
-            <ul> Routes Running At A Loss:
-                <li ng-repeat="crits in figures.critRoutes">Dest: {{crits.Destination}}  Orig: {{crits.Origin}}  Priority: {{crits.Priority}} Avg Loss: ${{crits.Difference}}</li>
-            </ul>
-            </p>
-         </div>
     </div>
 
 
@@ -109,7 +101,10 @@
             <label class="kp-badge" >
                 Average Delivery Time :  {{figures.averageTime}} Days
             </label>
-
+            <div class = "kp-red-badge"> Routes Running At A Loss:
+            <li ng-repeat="crits in figures.critRoutes">{{crits.Destination}} : {{crits.Origin}} : {{crits.Priority}} : {{crits.Difference}}
+            </li>
+        </div>
         </p>
     </div>
 </div>
