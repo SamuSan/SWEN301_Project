@@ -41,11 +41,11 @@
                 <td><input name="input5" type="number" ng-model="mailItem.Length" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxVolume}}" required/></td>   </tr>
             <tr>
                 <td><label>Volume(Cubic Centimeter):</label></td>
-                <td><label ng-model="mailItem.Volume"> {{mailItem.Volume || ""}}</label>
+                <td><label ng-model="mailItem.volume"> {{mailItem.volume || ""}}</label>
             </tr>
             <tr>
                 <td><label>Weight(Grams): </label></td>
-                <td><input name="input6" type="number" ng-model="mailItem.Weight" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxWeight}}"  required/></td>
+                <td><input name="input6" type="number" ng-model="mailItem.weight" ng-change=" updateVol(mailItem)" ng-trim="false" min="1" max="{{mailItem.destination.maxWeight}}"  required/></td>
             </tr>
             <tr>
                 <td><label>From: </label></td>
@@ -64,7 +64,7 @@
             <tr>
                 <td><label >Price: </label></td>
                 <td><label>
-                    ${{mailItem.Price || ""}} </label>
+                    ${{mailItem.price || ""}} </label>
                 </td>
 
             </tr>
