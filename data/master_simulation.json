@@ -700,8 +700,8 @@
             {
                 "event":"Add Mail",
                 "day": "Monday",
-                "to": "Rome",
-                "from": "Wellington",
+                "origin": "Rome",
+                "destination": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
@@ -709,8 +709,8 @@
             {
                 "event":"Add Mail",
                 "day": "Monday",
-                "to": "Sydney",
-                "from": "Wellington",
+                "origin": "Sydney",
+                "destination": "Wellington",
                 "weight": "1000",
                 "volume": "120",
                 "priority": "International Air"
@@ -718,8 +718,8 @@
             {
                 "event":"Add Mail",
                 "day": "Tuesday",
-                "to": "Rome",
-                "from": "Wellington",
+                "origin": "Rome",
+                "destination": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
@@ -727,8 +727,8 @@
             {
                 "event":"Add Mail",
                 "day": "Thursday",
-                "to": "Suva",
-                "from": "Wellington",
+                "origin": "Suva",
+                "destination": "Wellington",
                 "weight": "2000",
                 "volume": "120",
                 "priority": "International Standard"
@@ -736,8 +736,8 @@
             {
                 "event":"Add Mail",
                 "day": "Thursday",
-                "to": "Wellington",
-                "from": "Auckland",
+                "origin": "Wellington",
+                "destination": "Auckland",
                 "weight": "100",
                 "volume": "3",
                 "priority": "Domestic Standard"
@@ -745,8 +745,8 @@
             {
                 "event":"Add Mail",
                 "day": "Friday",
-                "to": "Rome",
-                "from": "Hamilton",
+                "origin": "Rome",
+                "destination": "Hamilton",
                 "weight": "400",
                 "volume": "50",
                 "priority": "International Air"
@@ -754,8 +754,8 @@
             {
                 "event":"Add Mail",
                 "day": "Wednesday",
-                "to": "Rome",
-                "from": "Hamilton",
+                "origin": "Rome",
+                "destination": "Hamilton",
                 "weight": "400",
                 "volume": "25",
                 "priority": "International Standard"
@@ -763,8 +763,8 @@
             {
                 "event":"Add Mail",
                 "day": "Wednesday",
-                "to": "Sydney",
-                "from": "Auckland",
+                "origin": "Sydney",
+                "destination": "Auckland",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Standard"
@@ -772,8 +772,8 @@
             {
                 "event":"Add Mail",
                 "day": "Friday",
-                "to": "Rome",
-                "from": "Wellington",
+                "origin": "Rome",
+                "destination": "Wellington",
                 "weight": "100",
                 "volume": "5",
                 "priority": "International Air"
