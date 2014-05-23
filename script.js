@@ -327,7 +327,6 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         var newRoute = $scope.addRoute;
         r.simulation.route.push(newRoute);
     $scope.routeEvent = {
-        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -338,9 +337,9 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         "origin":"",
         "priority":"",
         "type":"",
-        "volumecost":"",
+        "volumeCost":"",
         "volumePrice":"",
-        "weightcost":"",
+        "weightCost":"",
         "weightPrice":""
 
 
@@ -360,7 +359,7 @@ var routeEvent = $scope.routeEvent;
         routeEvent.volumePrice=newRoute.volumePrice;
         routeEvent.weightCost=newRoute.weightcost;
         routeEvent.weightPrice=newRoute.weightPrice;
-        routeEvent.event = "Add Route";
+        routeEvent.eventName = "Route Addition";
         r.simulation.businessEvent.push(routeEvent);
 
         localStorage.setItem("mainSimulation", JSON.stringify(r));
@@ -500,11 +499,11 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
         "Height":0,
         "Length":0,
         //Having this throws error
-        "Volume": 0,
+        "volume": 0,
         "destination": "",
         "origin": "",
-        "Weight": "",
-        "Price": 0
+        "weight": "",
+        "price": 0
     };
     $scope.updateMessage = "Currently Pending";
     $scope.cost;
@@ -515,8 +514,8 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
 
 
     $scope.updateVol = function(mailItem){
-        $scope.mailItem.Volume = mailItem.Width * mailItem.Height*mailItem.Length;
-        $scope.mailItem.Price =  $scope.newWeightPrice * mailItem.Weight + $scope.newVolumePrice * mailItem.Volume;
+        $scope.mailItem.volume = mailItem.Width * mailItem.Height*mailItem.Length;
+        $scope.mailItem.price =  $scope.newWeightPrice * mailItem.weight + $scope.newVolumePrice * mailItem.volume;
     }
 
 
@@ -587,27 +586,33 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
     $scope.submit = function (mailItem) {
 
 
-        if(mailItem.destination.maxVolume < mailItem.Volume){
+        if(mailItem.destination.maxVolume < mailItem.volume){
             $scope.updateMessage = "ERROR: Volume to high. Max Volume: " + mailItem.destination.maxVolume;
         }
-        else if(mailItem.destination.destination.maxWeight < mailItem.Weight){
+        else if(mailItem.destination.destination.maxWeight < mailItem.weight){
             $scope.updateMessage = "ERROR: Weight to high. Max Weight: " + mailItem.destination.maxWeight;
         }
         else{
             var currentdate = new Date();
 
-            var datetime = currentdate.getDate() + "/"+(currentdate.getMonth()+1)
-                + "/" + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0]=  "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+
+            var n = weekday[d.getDay()];
 
             mailItem.priority = mailItem.destination.priority;
 
             r.simulation.mail.push(mailItem);
 
-
             mailItem.eventName = "Add Mail";
-            mailItem.time = datetime;
+            mailItem.day = n;
             r.simulation.businessEvent.push(mailItem);
 
 
@@ -625,7 +630,8 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
             $rootScope.figures.averageTime = averTimeDelivery();
             $route.reload();
 
-        }}
+        }
+    }
 });
 
 kpsApp.directive('customValidation', function () {
@@ -670,7 +676,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-        "event":"",
+         "eventName":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -709,7 +715,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.priceBox.volumePrice;
         routeEvent.weightcost=$scope.priceBox.weightcost;
         routeEvent.weightPrice=$scope.priceBox.weightPrice;
-       routeEvent.event = "Change Route";
+        routeEvent.eventName = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
@@ -767,7 +773,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-        "event":"",
+        "eventName":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -806,7 +812,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.routeBox.volumePrice;
         routeEvent.weightcost=$scope.routeBox.weightcost;
         routeEvent.weightPrice=$scope.routeBox.weightPrice;
-        routeEvent.event = "Change Route";
+        routeEvent.eventName = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         //#####modifying the route data
