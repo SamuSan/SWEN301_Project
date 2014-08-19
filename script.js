@@ -327,6 +327,7 @@ kpsApp.controller('addRouteController', function ($scope, $route, $location, $wi
         var newRoute = $scope.addRoute;
         r.simulation.route.push(newRoute);
     $scope.routeEvent = {
+        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -359,7 +360,7 @@ var routeEvent = $scope.routeEvent;
         routeEvent.volumePrice=newRoute.volumePrice;
         routeEvent.weightCost=newRoute.weightcost;
         routeEvent.weightPrice=newRoute.weightPrice;
-        routeEvent.eventName = "Route Addition";
+        routeEvent.event = "Add Route";
         r.simulation.businessEvent.push(routeEvent);
 
         localStorage.setItem("mainSimulation", JSON.stringify(r));
@@ -505,7 +506,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
         "weight": "",
         "price": 0
     };
-    $scope.updateMessage = "Currently Pending";
+    $scope.updateMessage = "";
     $scope.cost;
 
     $scope.data = r.simulation.route;
@@ -540,6 +541,7 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
                 }
             }
             $scope.updateVol(mailItem);
+            $scope.getPrice(mailItem);
         }
 
 
@@ -560,8 +562,8 @@ kpsApp.controller('addMailItemController', function ($scope, $rootScope,$route) 
                     && dk.path[i-1] == r.simulation.route[j].origin
                     && dk.path[i] == r.simulation.route[j].destination){
                     found = true;
-                    dk.volumeCost = parseInt(dk.volumeCost) + parseInt(r.simulation.route[j].volumecost);
-                    dk.weightCost = parseInt(dk.weightCost) + parseInt(r.simulation.route[j].weightcost);
+                    dk.volumeCost = parseInt(dk.volumeCost) + parseInt(r.simulation.route[j].volumePrice);
+                    dk.weightCost = parseInt(dk.weightCost) + parseInt(r.simulation.route[j].weightPrice);
                 }
             }
             if(found == false){
@@ -677,7 +679,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-         "eventName":"",
+         "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -716,7 +718,7 @@ kpsApp.controller('updatePriceController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.priceBox.volumePrice;
         routeEvent.weightcost=$scope.priceBox.weightcost;
         routeEvent.weightPrice=$scope.priceBox.weightPrice;
-        routeEvent.eventName = "Change Route";
+        routeEvent.event = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         for(var i = 0 ; i < r.simulation.route.length ; i ++)
@@ -774,7 +776,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
     $scope.data = r.simulation.route;
     $scope.updateMessage = 'Changes Pending';
     $scope.routeEvent = {
-        "eventName":"",
+        "event":"",
         "company": "",
         "day":"",
         "destination": "",
@@ -813,7 +815,7 @@ kpsApp.controller('updateRouteController', function ($scope, $rootScope) {
         routeEvent.volumePrice=$scope.routeBox.volumePrice;
         routeEvent.weightcost=$scope.routeBox.weightcost;
         routeEvent.weightPrice=$scope.routeBox.weightPrice;
-        routeEvent.eventName = "Change Route";
+        routeEvent.event = "Change Route";
         r.simulation.businessEvent.push(routeEvent);
 
         //#####modifying the route data
